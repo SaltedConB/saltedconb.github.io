@@ -96,7 +96,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: left;
-    margin: 0 60pt;
+    padding: 24pt;
     flex-direction: column;
     background-color: transparent;
 }
@@ -106,7 +106,7 @@ main img {
 }
 main h1 {
     font-family: 'LINEBd', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 }
 
 .boost:hover {
@@ -132,8 +132,8 @@ main h1 {
     display: flex;
     justify-content: center;
     align-items: space-between;
-    margin: 0 96pt;
-    padding: 30pt 20pt;
+    margin: 0 144pt;
+    padding: 36pt 24pt;
     flex-direction: column;
     background-color: transparent;
     border: #e9e9e9 25px solid;
