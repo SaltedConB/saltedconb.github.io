@@ -134,8 +134,8 @@ main h1 {
     display: flex;
     justify-content: center;
     align-items: space-between;
-    margin: 0 144pt;
-    padding: 36pt 24pt;
+    margin: 0 96pt;
+    padding: 18pt 12pt;
     flex-direction: column;
     background-color: transparent;
     border: #e9e9e9 25px solid;
