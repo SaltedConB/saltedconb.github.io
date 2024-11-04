@@ -1,0 +1,335 @@
+/* 폰트 설정 */
+@font-face {
+    font-family: 'LINERg';
+    font-weight: 45 920;
+    font-style: normal;
+    font-display: swap;
+    src: url('fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
+}
+@font-face {
+    font-family: 'LINEBd';
+    font-weight: 45 920;
+    font-style: bold;
+    font-display: swap;
+    src: url('fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
+}
+@font-face {
+    font-family: 'LINEth';
+    font-weight: 45 920;
+    font-style: italic;
+    font-display: swap;
+    src: url('fonts/woff2/LINESeedKR-Th.woff2') format('woff2-variations');
+}
+
+/* 전체설정 */
+* {
+    font-family: 'LINERg', sans-serif;
+    color: #e9e9e9;
+    font-size: 12pt;
+    background-color: #151515;
+}
+
+/* 바디 부분 */
+body {
+    -webkit-user-select: none; /* 사파리 */
+    -moz-user-select: none; /* 파폭 */
+    -ms-user-select: none; /* 엣지 */
+    user-select: none; /* 크롬 */
+    margin: .5rem;
+}
+
+img {
+    pointer-events: none; /* 이미지 불펌 방지용 */
+}
+
+/* 헤더 설정 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+/* 네비게이션 바 관련 */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 5%;
+}
+
+nav .logo {
+    padding: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2b2b2b;
+}
+
+/* 메인 타이틀 설정 */
+.main-title {
+    opacity: 0.1;
+    transition: opacity 0.25s ease-in;
+}
+
+.main-title:hover {
+    opacity: 1;
+}
+
+/* 네비게이션 버튼 설정 */
+nav button {
+    border: none;
+    border-radius: 50px;
+    font-size: 14pt;
+    padding: 12px 24px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in, color 0.1s ease-in;
+    white-space: nowrap;
+}
+
+nav ul li button:active {
+    color: #3b9400;
+    background-color: #e9e9e9;
+}
+
+nav button:hover {
+    background-color: #2b2b2b;
+    color: #e9e9e9;
+}
+
+/* 메인 관련 */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    margin: 0 60pt;
+    flex-direction: column;
+}
+
+main img {
+    margin: 0 auto;
+}
+
+main h1 {
+    font-family: 'LINEBd', sans-serif;
+    font-size: 2.5rem;
+}
+
+/* 포트폴리오 관련 */
+.portfolio p .boost:hover {
+    color: #80CA4E;
+    font-family: 'LINEBd', sans-serif;
+    transition: color 0.3s ease-in;
+}
+
+.portfolio {
+    padding: 20px;
+    text-align: center;
+}
+
+.portfolio h1 {
+    font-family: 'LINEBd', sans-serif;
+    font-size: 3rem;
+    margin: 10px;
+}
+
+.portfolio p, p .boost {
+    font-family: 'LINEth', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    transition: all 0.5s ease;
+    justify-content: center; /* 그리드를 중앙으로 정렬 */
+}
+
+.portfolio-item {
+    aspect-ratio: 1 / 1; /* Ensures the items are square */
+    box-sizing: border-box;
+    transition: transform 0.5s ease;
+}
+
+.animate-grid .portfolio-item {
+    transform: translateY(20px);
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.25s ease;
+    background-color: transparent;
+    border-radius: 25px;
+}
+
+.portfolio-item img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: rgba(10, 10, 10, 0.5); /* 50% 투명한 #0a0a0a */
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.portfolio-item video {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: rgba(10, 10, 10, 0.5); /* 50% 투명한 #0a0a0a */
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.portfolio-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    color: #fff;
+    padding: 10px 1px;
+    font-size: .8rem;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.portfolio-caption h3 {
+    margin: 10px -20px;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+.portfolio-caption p {
+    font-size: 1rem;
+    margin: 10px -25px;
+    background-color: transparent;
+}
+
+.portfolio-item:hover img {
+    opacity: .25;
+}
+
+.portfolio-item:hover .portfolio-caption, .portfolio h3, p {
+    opacity: 1;
+}
+
+/* 푸터 텍스트 설정 */
+.footer-text{
+    font-size: 10pt;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* 모달 설정 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    transition: opacity 0.25s ease;
+}
+
+.modal-content {
+    background-color: #151515;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 25px;
+    width: 75%;
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    margin: 20px 50px;
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.close {
+    color: #e9e9e9;
+    float: right !important;
+    font-size: 28px;
+    font-weight: bold;
+    transition: opacity 0.25s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #0a0a0a;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 포트폴리오 카테고리 버튼 설정 */
+.portfolio-categories button {
+    border: none;
+    border-radius: 25px;
+    font-size: 12pt;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in, color 0.2s ease-in;
+    background-color: #2b2b2b;
+    color: #e9e9e9;
+}
+
+.portfolio-categories button:hover {
+    background-color: #e9e9e9;
+    color: #2b2b2b;
+}
+
+.portfolio-categories button:active {
+    background-color: #80CA4E;
+    color: #151515;
+}
+
+/* 이미지 갤러리 설정 */
+.image-gallery img {
+    width: 75%;
+    margin: 25px 0;
+}
+
+.portfolio-item {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .portfolio-item.hidden {
+    transform: scale(0.5);
+    opacity: 0;
+    }
+    
+
+    .portfolio-categories {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    }

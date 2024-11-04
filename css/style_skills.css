@@ -1,0 +1,256 @@
+@font-face {
+    font-family: 'LINERg';
+    font-weight: 45 920;
+    font-style: normal;
+    font-display: swap;
+    src: url('fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
+}
+
+@font-face {
+    font-family: 'LINEBd';
+    font-weight: 45 920;
+    font-style: bold;
+    font-display: swap;
+    src: url('fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
+}
+
+/* 전체설정 */
+* {
+    font-family: 'LINERg', sans-serif;
+    color: #e9e9e9;
+    font-size: 12pt;
+    background-color: #151515;
+}
+
+/* 바디 부분 */
+body {
+    -webkit-user-select: none; /* 사파리 */
+    -moz-user-select: none; /* 파폭 */
+    -ms-user-select: none; /* 엣지 */
+    user-select: none; /* 크롬 */
+    margin: .5rem;
+}
+
+img {
+    pointer-events: none; /* 이미지 불펌 방지용 */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+/* 네비게이션 바 관련 */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 5%;
+}
+
+nav .logo {
+    padding: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2b2b2b;
+}
+
+nav button {
+    border: none;
+    border-radius: 50px;
+    font-size: 14pt;
+    padding: 12px 24px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in, color 0.1s ease-in;
+    white-space: nowrap;
+}
+
+nav ul li button:active {
+    color: #3b9400;
+    background-color: #e9e9e9;
+}
+
+nav button:hover {
+    background-color: #2b2b2b;
+    color: #e9e9e9;
+}
+
+/* 메인 관련 */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    margin: 0 60pt;
+    flex-direction: column;
+}
+
+main img {
+    margin: 0 auto;
+}
+
+main h1 {
+    font-family: 'LINEBd', sans-serif;
+    font-size: 3rem;
+}
+
+
+
+.boost:hover {
+    color: rgb(255, 53, 53);
+    font-family: 'LINEBd', sans-serif;
+    transition: color 0.3s ease-in;
+}
+
+::selection {
+    background-color: #2b2b2b;
+    color: #e9e9e9;
+}
+
+.footer-text {
+    font-size: 10pt;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.skill {
+    padding: 20px;
+    text-align: center;
+}
+
+.skills h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20pt 60pt;
+}
+
+.skills h5 {
+    font-family: 'LINEBd', sans-serif;
+    font-size: 1.25rem;
+    margin-top: -30px;
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    list-style-type: none;
+}
+
+.skills-list .skills-list-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: transparent;
+    cursor: pointer;
+    transition: opacity 0.1s ease-in;
+    justify-content: center;
+}
+
+.skills-list .skills-list-detail:hover {
+    opacity: 0.5;
+}
+
+.skills-list .skills-list-detail:active {
+    opacity: 0.2;
+}
+
+.skills-list .skills-list-detail img {
+    width: auto;
+    height: 50px;
+    display: block;
+}
+
+.skills-list .skills-list-detail span {
+    align-items: center;
+    font-size: 10pt;
+}
+
+.skill-icon {
+    cursor: pointer;
+}
+
+/* 모달 설정 */
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.modal-content {
+    background-color: #0a0a0a;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    border: #e9e9e9 2px solid;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    font-family: 'LINEBd', sans-serif;
+    background-color: transparent;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    font-family: 'LINEBd', sans-serif;
+    background-color: transparent;
+}
+
+.modal:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.close {
+    color: #e9e9e9;
+    float: right !important;
+    font-size: 28px;
+    font-weight: bold;
+    transition: opacity 0.25s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #151515;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: opacity 0.25s ease-in-out;
+
+}

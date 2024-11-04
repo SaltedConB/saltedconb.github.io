@@ -1,0 +1,242 @@
+@font-face {
+    font-family: 'LINERg';
+    font-weight: 45 920;
+    font-style: normal;
+    font-display: swap;
+    src: url('fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
+}
+@font-face {
+    font-family: 'LINEBd';
+    font-weight: 45 920;
+    font-style: bold;
+    font-display: swap;
+    src: url('fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
+}
+
+/* 전체설정 */
+* {
+    font-family: 'LINERg', sans-serif;
+    color: #e9e9e9;
+    font-size: 14pt;
+    background-color: #151515;
+    text-decoration: none;
+}
+
+/* 바디 부분 */
+body {
+    -webkit-user-select: none; /* 사파리 */
+    -moz-user-select: none; /* 파폭 */
+    -ms-user-select: none; /* 엣지 */
+    user-select: none; /* 크롬 */
+    margin: .5rem;
+}
+
+img {
+    pointer-events: none; /* 이미지 불펌 방지용 */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+/* 네비게이션 바 관련 */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 7.5%;
+    flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
+}
+
+nav .logo {
+    padding: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: #2b2b2b;
+}
+
+nav button {
+    border: none;
+    border-radius: 50px;
+    font-size: 14pt;
+    padding: 12px 24px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in, color 0.1s ease-in;
+    white-space: nowrap;
+}
+
+nav ul li button:active {
+    color: #3b9400;
+    background-color: #e9e9e9;
+}
+
+nav button:hover {
+    background-color: #2b2b2b;
+    color: #80CA4E;
+}
+
+/* 메인 관련 */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    margin: 0 60pt;
+    flex-direction: column;
+}
+
+.main-img {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.main-title {
+    opacity: 0.25;
+}
+
+.main-title:hover {
+    opacity: 1;
+}
+
+.main-title #boost {
+    font-size: 2.5rem;
+}
+
+.main-title #boost:hover {
+    color: rgb(255, 53, 53);
+    transition: color .5s ease-in-out;
+}
+
+.main-title .title a,
+.main-title .title2 a {
+    font-family: 'LINEBd', sans-serif;
+    color: #e9e9e9;
+    text-decoration-line: none;
+    opacity: 0.05;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.main-title .title a:hover,
+.main-title .title2 a:hover {
+    opacity: 1;
+}
+
+main img {
+    margin: 0 auto;
+}
+
+main h1 {
+    font-family: 'LINEBd', sans-serif;
+    font-size: 2.5rem;
+}
+
+.boost:hover {
+    color: rgb(53, 205, 255);
+    transition: color 0.1s ease-in-out;
+}
+
+.main-text {
+    font-size: 1.5rem;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px 60pt;
+    transition: color 0.1s ease-in-out;
+}
+
+.main-text .boost2:hover {
+    color: #80CA4E;
+    font-family: 'LINEBd', sans-serif;
+    transition: color 0.1s ease-in-out;
+}
+
+::selection {
+    background-color: #2b2b2b;
+    color: #e9e9e9;
+}
+
+/* about 파트 */
+.about .title img {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+.about .main-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
+    text-align: center; /* 제목을 가운데 정렬 */
+    width: 100%; /* 제목이 전체 너비를 차지하도록 설정 */
+}
+
+.about .main-title .title a {
+    left: 0;
+    position: relative;
+    font-size: 4rem;
+}
+
+.about .main-title .title2 a {
+    right: 0;
+    position: relative;
+    font-size: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* footer 파트 */
+.footer-text {
+    font-size: 10pt;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* contact 파트 */
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    margin: 0 60pt;
+    flex-direction: column;
+}
+
+.contact .contact-text button {
+    border: none !important;
+    background-color: #e9e9e9;
+    color: #2b2b2b;
+    border-radius: 50px;
+    font-size: 14pt;
+    padding: 12px 24px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in, color 0.1s ease-in;
+    white-space: nowrap;
+}
+
+.contact .contact-text button:hover {
+    background-color: #2b2b2b;
+    color: #80CA4E;
+}
+
+.contact .contact-text button:active {
+    color: #3b9400;
+    background-color: #2b2b2b;
+}

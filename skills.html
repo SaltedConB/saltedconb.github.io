@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sujong's Skills</title>
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style_skills.css">
+    </head>
+<body>
+    
+    <!-- 헤더 시작부분 -->
+    <header>
+        <nav>
+        <div class="logo">
+            <a href="./index.html"><img src="./img/favicon-light.png" alt="logo" style="width: 56px;"></a>
+        </div>
+            <ul>
+                <li>
+                    <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
+                </li>
+                <li>
+                    <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
+                </li>
+                <li>
+                    <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
+                </li>
+                <li>
+                    <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 헤더 끝부분 -->
+
+    <!-- 메인 시작부분 -->
+    <main>
+    <section class="skill">
+        <div class="skills">
+            <h1>My Skills</h1><h5>in nutshell</h5>
+            <div class="skills-list">
+        <button class="skills-list-detail" onclick="openModal('modal1')">
+        <img src="./img/tool_photoshop.png" alt="Tool 1" class="skill-icon">
+        <br><span>Adobe Photoshop</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal2')">
+        <img src="./img/tool_illust.png" alt="Tool 2" class="skill-icon">
+        <br><span>Adobe Illustrator</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal3')">
+        <img src="./img/tool_ae.png" alt="Tool 3" class="skill-icon">
+        <br><span>Adobe After Effects</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal4')">
+        <img src="./img/tool_premiere.png" alt="Tool 4" class="skill-icon">
+        <br><span>Adobe Premiere Pro</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal5')">
+        <img src="./img/tool_c4d.png" alt="Tool 5" class="skill-icon">
+        <br><span>Maxon Cinema 4D</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal6')">
+        <img src="./img/tool_blender.png" alt="Tool 6" class="skill-icon">
+        <br><span>Blender</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal7')">
+        <img src="./img/tool_figma.png" alt="Tool 7" class="skill-icon">
+        <br><span>Figma</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal8')">
+        <img src="./img/tool_xd.png" alt="Tool 8" class="skill-icon">
+        <br><span>Adobe Xd</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal9')">
+        <img src="./img/tool_firefly.png" alt="Tool 9" class="skill-icon">
+        <br><span>Adobe Firefly</span>
+        </button>
+        <button class="skills-list-detail" onclick="openModal('modal10')">
+        <img src="./img/tool_dimension.png" alt="Tool 10" class="skill-icon" >
+        <br><span>Adobe Dimension</span>
+        </button>
+        </div>
+        </div>
+
+        
+        <!-- 모달창 -->
+        <div id="modal1" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>Adobe Photoshop</h2>
+            <p>툴과 기능을 상당량 숙지함 및 응용기술 소지. <br>
+            GTQ 1급, 컴퓨터그래픽스운용기능사 소지.</p>
+            </div>
+        </div>
+        <div id="modal2" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>Adobe Illustrator</h2>
+            <p>툴과 기능을 상당량 숙지함 및 응용기술 소지. <br>
+            컴퓨터그래픽스운용기능사 소지.</p>
+            </div>
+        </div>
+        <div id="modal3" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2>Adobe After Effects</h2>
+            <p>키프레임 조절, 효과기능, 컷편집 기술, 템플릿 제작기술 소지.</p>
+            </div>
+        </div>
+        <div id="modal4" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <h2>Adobe Premiere Pro</h2>
+            <p>컷편집 기술, 자막 템플릿 제작기술 소지.</p>
+            </div>
+        </div>
+        <div id="modal5" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <h2>Maxon Cinema 4D</h2>
+            <p>모델링, 애니메이션 기술 소지. <br>
+            Octane, Redshift 렌더러 사용 가능</p>
+            </div>
+        </div>
+        <div id="modal6" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal6')">&times;</span>
+            <h2>Blender</h2>
+            <p>중급 모델링, 기본 키프레임 애니메이션 기술 소지.</p>
+            </div>
+        </div>
+        <div id="modal7" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal7')">&times;</span>
+            <h2>Figma</h2>
+            <p>레이아웃 기획, 디자인기술 소지.</p>
+            </div>
+        </div>
+        <div id="modal8" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal8')">&times;</span>
+            <h2>Adobe Xd</h2>
+            <p>레이아웃 기획, 디자인기술 소지.</p>
+            </div>
+        </div>
+        <div id="modal9" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal9')">&times;</span>
+            <h2>Adobe Firefly</h2>
+            <p>프롬프트 작성, 응용이미지 제작기술 소지.</p>
+            </div>
+        </div>
+        <div id="modal10" class="modal hidden">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal('modal10')">&times;</span>
+            <h2>Adobe Dimension</h2>
+            <p>오브젝트, 라이트를 이용한 배치 및 목업 제작기술 소지.</p>
+            </div>
+        </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-text">
+            <p>© 2024 You Sujong. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+    <script src="./script.js"></script>
+    <script>
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            closeModal(modal.id);
+          }
+        });
+      });
+    </script>
+</html>
