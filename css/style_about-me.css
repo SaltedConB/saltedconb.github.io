@@ -96,7 +96,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: left;
-    padding: 24pt;
+    padding: 0pt;
     flex-direction: column;
     background-color: transparent;
 }
