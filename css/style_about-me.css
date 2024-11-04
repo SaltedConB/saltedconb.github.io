@@ -96,7 +96,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: left;
-    padding: 0pt;
+    padding: 12pt 0pt;
     flex-direction: column;
     background-color: transparent;
 }
@@ -132,7 +132,7 @@ main h1 {
     display: flex;
     justify-content: center;
     align-items: space-between;
-    margin: 0 108pt;
+    margin: 0 96pt;
     padding: 30pt 20pt;
     flex-direction: column;
     background-color: transparent;
