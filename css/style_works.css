@@ -56,8 +56,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0% 7.5%;
-    flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
+    margin: 0 5%;
+    flex-wrap: wrap;
 }
 
 nav .logo {
@@ -504,5 +504,9 @@ main h1 {
     .portfolio-item {
         width: 200px;
         height: 200px;
+    }
+
+    nav {
+        margin: 0 2%;
     }
 }

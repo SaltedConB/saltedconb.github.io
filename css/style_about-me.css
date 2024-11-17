@@ -45,6 +45,7 @@ nav {
     align-items: center;
     width: 100%;
     margin: 0 5%;
+    flex-wrap: wrap;
 }
 nav .logo {
     padding: 0 20px;

@@ -49,6 +49,7 @@ nav {
     align-items: center;
     width: 100%;
     margin: 0 5%;
+    flex-wrap: wrap;
 }
 
 nav .logo {
@@ -365,5 +366,9 @@ main h1 {
 
     .skills-list .skills-list-detail span {
         font-size: 9pt;
+    }
+
+    nav {
+        margin: 0 2%;
     }
 }

@@ -51,6 +51,7 @@ nav {
     align-items: center;
     width: 100%;
     margin: 0 5%;
+    flex-wrap: wrap;
 }
 
 nav .logo {
@@ -307,5 +308,9 @@ main h1 {
 
     .overlay.active {
         display: block;
+    }
+
+    nav {
+        margin: 0 2%;
     }
 }

@@ -48,7 +48,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 7.5%;
+    margin: 0 5%;
     flex-wrap: wrap; /* 항목이 다음 로 넘어가도록 허용 */
 }
 
@@ -333,7 +333,7 @@ main h1 {
         padding: 8px 16px;
     }
 
-    /* 메뉴 활성화시 배경 어둡게 */
+    /* 메뉴 활성화시 배경 ��둡게 */
     .overlay {
         display: none;
         position: fixed;
