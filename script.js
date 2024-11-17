@@ -1,185 +1,65 @@
-// DOM이 완전히 로드된 후 실행
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM 요소 선택
-    const headerEl = document.querySelector("header");
-    const navButtonEl = document.querySelector(".nav-button");
-    const mainImg = document.querySelector(".main-img");
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const body = document.body;
-    let isPaused = false;
-
-    // 오버레이 요소 생성
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    body.appendChild(overlay);
-
-    // 모바일 메뉴 토글 함수
-    function toggleMobileMenu() {
-        mobileMenuBtn.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
+window.filterPortfolio = function(category) {
+    const items = document.querySelectorAll('.portfolio-item');
+    
+    items.forEach(item => {
+        const shouldShow = category === 'all' || item.classList.contains(category);
         
-        if (navMenu.classList.contains('active')) {
-            body.style.overflow = 'hidden';
-        } else {
-            body.style.overflow = 'auto';
-        }
-    }
-
-    // 이벤트 리스너 추가
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    overlay.addEventListener('click', toggleMobileMenu);
-
-    // 메뉴 항목 클릭시 메뉴 닫기
-    document.querySelectorAll('.nav-menu a').forEach(item => {
-        item.addEventListener('click', () => {
-            if (navMenu.classList.contains('active')) {
-                toggleMobileMenu();
-            }
-        });
-    });
-
-    // 스크롤 이벤트 처리
-    window.addEventListener('scroll', function() {
-        requestAnimationFrame(scrollCheck);
-    });
-
-    // 스크롤 위치에 따른 헤더 스타일 변경
-    function scrollCheck() {
-        let browserScrollY = window.scrollY || window.pageYOffset;
-        headerEl.classList.toggle("active", browserScrollY > 0);
-    }
-
-    // 반응형 디자인을 위한 윈도우 크기 변경 이벤트 처리
-    window.addEventListener('resize', function() {
-        const windowWidth = window.innerWidth;
-        const fontSize = windowWidth / 20;    // 화면 너비에 따른 폰트 크기 조절
-        const buttonSize = windowWidth / 10;   // 화면 너비에 따른 버튼 크기 조절
-
-        navButtonEl.style.fontSize = `${fontSize}px`;
-        navButtonEl.style.width = `${buttonSize}px`;
-        navButtonEl.style.height = `${buttonSize}px`;
-    });
-
-    // 메인 이미지 클릭 이벤트 처리 (페이드 효과 일시정지)
-    mainImg.addEventListener('click', function() {
-        isPaused = !isPaused;
-        mainImg.classList.toggle("paused", isPaused);
-    });
-
-    // 메인 이미지 자동 페이드 효과
-    setInterval(function() {
-        if (!isPaused) {
-            mainImg.classList.toggle("fade");
-        }
-    }, 100);
-
-    // 모달 열기 함수 - 페이드인 효과 포함
-    function openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.style.display = "block";
-        modal.style.opacity = 0;
+        item.style.transition = 'all 0.5s ease-out';
         
-        let opacity = 0;
-        const fadeIn = setInterval(function() {
-            if (opacity >= 1) {
-                clearInterval(fadeIn);
-            } else {
-                opacity += 0.1;
-                modal.style.opacity = opacity;
-            }
-        }, 25);  // 페이드인 속도: 25ms
-    }
-
-    // 모달 닫기 함수 - 페이드아웃 효과 포함
-    function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        let opacity = 1;
-        
-        const fadeOut = setInterval(function() {
-            if (opacity <= 0) {
-                clearInterval(fadeOut);
-                modal.style.display = "none";
-            } else {
-                opacity -= 0.1;
-                modal.style.opacity = opacity;
-            }
-        }, 5);  // 페이드아웃 속도: 5ms
-    }
-
-    // 모달 외부 클릭 시 닫기 처리
-    window.onclick = function(event) {
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            if (event.target == modal) {
-                closeModal(modal.id);
-            }
-        });
-    }
-
-    // 포트폴리오 필터 함수
-    function filterPortfolio(category) {
-        const grid = document.querySelector('.portfolio-grid');
-        const items = document.getElementsByClassName('portfolio-item');
-        const itemsArray = Array.from(items);
-        
-        // 초기 상태 설정
-        itemsArray.forEach(item => {
-            item.style.transition = 'all 0.5s ease-out';
-            item.style.position = 'relative';
+        if (shouldShow) {
             item.style.display = 'block';
-        });
-
-        // 아이템 분류
-        const selectedItems = itemsArray.filter(item => 
-            category === 'all' || item.classList.contains(category)
-        );
-        const unselectedItems = itemsArray.filter(item => 
-            category !== 'all' && !item.classList.contains(category)
-        );
-
-        // 선택되지 않은 아이템 페이드아웃
-        unselectedItems.forEach(item => {
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+            }, 50);
+        } else {
             item.style.opacity = '0';
-            item.style.transform = 'scale(0.8) translateY(20px)';
-            
+            item.style.transform = 'scale(0.8)';
             setTimeout(() => {
                 item.style.display = 'none';
             }, 500);
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    const overlay = document.querySelector('.overlay');
+    
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            if (overlay) {
+                overlay.classList.toggle('active');
+            }
         });
-
-        // 선택된 아이템 페이드인
-        setTimeout(() => {
-            selectedItems.forEach((item, index) => {
-                item.style.display = 'block';
-                
-                // 각 아이템마다 시차를 두어 순차적으로 나타나게 함
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'scale(1) translateY(0)';
-                }, index * 100);
-            });
-        }, 300);
     }
-});
+    
+    document.querySelector('.portfolio-grid').addEventListener('click', function(e) {
+        const portfolioItem = e.target.closest('.portfolio-item');
+        if (portfolioItem) {
+            const itemId = portfolioItem.getAttribute('data-id');
+            const modal = document.getElementById(`modal-${itemId}`);
+            if (modal) {
+                modal.style.display = 'block';
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                }, 10);
+            }
+        }
+    });
 
-            // 모달 열기 함수
-            function openModal(modalId) {
-              document.getElementById(modalId).style.display = 'block';
-              }
-  
-              // 모달 닫기 함수
-              function closeModal(modalId) {
-              document.getElementById(modalId).style.display = 'none';
-              }
-  
-              // 모달 외부 클릭 시 닫기 이벤트 추가
-              window.onclick = function(event) {
-              const modals = document.getElementsByClassName('modal');
-              for (let i = 0; i < modals.length; i++) {
-                  if (event.target == modals[i]) {
-                  modals[i].style.display = 'none';
-                  }
-              }
-              }
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('close') || e.target.classList.contains('modal')) {
+            const modal = e.target.closest('.modal');
+            if (modal) {
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 250);
+            }
+        }
+    });
+});

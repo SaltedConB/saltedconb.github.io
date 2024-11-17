@@ -183,6 +183,10 @@ main h1 {
     .about .title img {
         max-width: 100%;
     }
+
+    .main-title {
+        display: none;
+    }
 }
 
 .about .main-title {
@@ -261,7 +265,6 @@ main h1 {
     position: relative;
     width: 50px;
     height: 50px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -308,7 +308,6 @@ main h1 {
     position: relative;
     width: 50px;
     height: 50px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -346,25 +345,60 @@ main h1 {
         height: 1.5px;
         margin: 3px 0;
     }
-}
 
-@media screen and (max-width: 768px) {
-    /* About Me 페이지 */
+    nav ul {
+        display: none;
+    }
+
+    nav ul.nav-menu {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 40%;
+        height: 100vh;
+        background-color: #151515;
+        padding-top: 60px;
+        transition: 0.3s ease-in-out;
+        flex-direction: column;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        right: 0;
+        border-left: 1px solid #2b2b2b;
+    }
+
+    /* 메뉴 활성화시 배경 어둡게 */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 998;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    /* 기존 미디어 쿼리 내용 유지 */
     .about-intro {
         flex-direction: column;
     }
     
-    /* Skills 페이지 */
     .skills-list {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
     
-    /* Works 페이지 */
     .portfolio-grid {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
     
-    /* Contact 페이지 */
     #contact-section {
         margin: 0 20px;
     }

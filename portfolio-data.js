@@ -75,7 +75,7 @@ const portfolioData = [
         thumbnail: "./img/work5-thumb.png",
         shortDesc: "동화 신데렐라를 오프닝 타이틀 시퀀스로 만든 영상.",
         content: {
-            description: `동화 신데렐라를 오프닝 타이틀 시퀀스로 만든 영상입니다.
+            description: `동화 신데렐라를 오프닝 타이틀 시퀀스로 만든 ��상입니다.
                 Blender와 After Effects를 같이 활용해 제작했으며,
                 신데렐라 라고 하는 유명한 동화의 이야기를 저만의 특색있는 스타일로 재해석해 보았습니다.`,
             youtube: "https://www.youtube.com/embed/i0FSq5MgT4o?si=cHyMZDWN_50C2-1l"
@@ -146,18 +146,61 @@ const portfolioData = [
     }
 ];
 
-// 포트폴리오 아이템 렌더링 함수
+function createModal(item) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.id = `modal-${item.id}`;
+    
+    let contentHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>${item.title}</h2>
+            <p>${item.content.description}</p>
+    `;
+
+    if (item.content.youtube) {
+        contentHTML += `
+            <div class="video-container">
+                <iframe src="${item.content.youtube}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        `;
+    }
+
+    if (item.content.images) {
+        contentHTML += '<div class="image-gallery">';
+        item.content.images.forEach(image => {
+            contentHTML += `<img src="${image}" alt="프로젝트 이미지">`;
+        });
+        contentHTML += '</div>';
+    }
+
+    if (item.content.behance) {
+        contentHTML += `
+            <div class="behance-container">
+                <iframe src="${item.content.behance}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        `;
+    }
+
+    contentHTML += '</div>';
+    modal.innerHTML = contentHTML;
+    
+    return modal;
+}
+
 function renderPortfolioItems() {
     const gridContainer = document.querySelector('.portfolio-grid');
     const modalContainer = document.createElement('div');
-    modalContainer.id = 'modal-container';
+    modalContainer.className = 'modal-container';
+    
+    if (!gridContainer) return;
+    
+    gridContainer.innerHTML = '';
     
     portfolioData.forEach(item => {
-        // 포트폴리오 그리드 아이템 생성
         const portfolioItem = createPortfolioItem(item);
         gridContainer.appendChild(portfolioItem);
         
-        // 모달 생성
         const modal = createModal(item);
         modalContainer.appendChild(modal);
     });
@@ -165,13 +208,12 @@ function renderPortfolioItems() {
     document.querySelector('.portfolio').appendChild(modalContainer);
 }
 
-// 포트폴리오 아이템 생성 함수
 function createPortfolioItem(item) {
-    const div = document.createElement('div');
-    div.className = `portfolio-item ${item.category}`;
-    div.onclick = () => openModal(`modal${item.id}`);
+    const portfolioItem = document.createElement('div');
+    portfolioItem.className = `portfolio-item ${item.category}`;
+    portfolioItem.setAttribute('data-id', item.id);
     
-    div.innerHTML = `
+    portfolioItem.innerHTML = `
         <img src="${item.thumbnail}" alt="${item.title}">
         <div class="portfolio-caption">
             <h3>${item.title}</h3>
@@ -179,59 +221,9 @@ function createPortfolioItem(item) {
         </div>
     `;
     
-    return div;
+    return portfolioItem;
 }
 
-// 모달 생성 함수
-function createModal(item) {
-    const modal = document.createElement('div');
-    modal.id = `modal${item.id}`;
-    modal.className = 'modal';
-    
-    let contentHTML = `
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal${item.id}')">&times;</span>
-            <h1>${item.title}</h1>
-            <p>${item.content.description}</p>
-    `;
-    
-    // 이미지 갤러리가 있는 경우
-    if (item.content.images) {
-        contentHTML += `
-            <div class="image-gallery">
-                ${item.content.images.map(img => `<img src="${img}" alt="${item.title}">`).join('')}
-            </div>
-        `;
-    }
-    
-    // YouTube 영상이 있는 경우
-    if (item.content.youtube) {
-        contentHTML += `
-            <iframe width="640" height="480" src="${item.content.youtube}" 
-                title="YouTube video player" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-            </iframe>
-        `;
-    }
-    
-    // Behance 임베드가 있는 경우
-    if (item.content.behance) {
-        contentHTML += `
-            <h3>Behance</h3>
-            <iframe src="${item.content.behance}" height="316" width="404" 
-                allowfullscreen lazyload frameborder="0" 
-                allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin">
-            </iframe>
-        `;
-    }
-    
-    contentHTML += `</div>`;
-    modal.innerHTML = contentHTML;
-    
-    return modal;
-}
-
-// 페이지 로드 시 포트폴리오 렌더링
+// DOMContentLoaded 이벤트에서 렌더링 실행
 document.addEventListener('DOMContentLoaded', renderPortfolioItems);
 export default portfolioData;
