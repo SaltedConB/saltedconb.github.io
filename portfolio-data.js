@@ -31,7 +31,7 @@ const portfolioData = [
         title: "상상해봐! 판타지움",
         category: "motion-graphics",
         thumbnail: "./img/work2-thumb.webp",
-        shortDesc: "쇼핑몰 판타지움의 홍보영상 콘테스트 출품작. 우수상.",
+        shortDesc: "쇼핑몰 판타지움 홍보영상 콘테스트 출품작. 우수상.",
         content: {
             description: `수인분당선 망포역에 있는 지역쇼핑몰,
                 판타지움에서 주최한 판타지움 유튜브 영상 공모전에 출품한 작품입니다.
@@ -45,7 +45,7 @@ const portfolioData = [
         title: "소래의 풍차",
         category: "motion-graphics",
         thumbnail: "./img/work3-thumb.webp",
-        shortDesc: "Web3 Creator Festival 2023 공모전에 출품한 작품. 우수상.",
+        shortDesc: "Web3 Creator Festival 2023 공모전 출품작. 우수상.",
         content: {
             description: `NFT플랫폼 LM NOVA와 인천시 남동구에서 주최한
                 Web3 Creator Festival 2023 공모전에 출품한 작품입니다.
@@ -55,10 +55,10 @@ const portfolioData = [
     },
     {
         id: 4,
-        title: "브랜딩 프로젝트 : 엠게임",
+        title: "브랜딩 : 엠게임",
         category: "branding",
         thumbnail: "./img/work4-thumb.png",
-        shortDesc: "[귀혼], [열혈강호 온라인]을 제작한 게임회사 \n 엠게임의 BI 프로젝트.",
+        shortDesc: "엠게임의 새로운 BI 프로젝트(가상)",
         content: {
             description: `한국의 게임제작, 배급사 엠게임의 로고와 브랜드 정체성을 리부트 한다는 느낌으로
                 처음부터 직접 기획 및 제작을 진행한 프로젝트입니다.
@@ -75,7 +75,7 @@ const portfolioData = [
         thumbnail: "./img/work5-thumb.png",
         shortDesc: "동화 신데렐라를 오프닝 타이틀 시퀀스로 만든 영상.",
         content: {
-            description: `동화 신데렐라를 오프닝 타이틀 시퀀스로 만든 ��상입니다.
+            description: `동화 신데렐라를 오프닝 타이틀 시퀀스로 만든 영상입니다.
                 Blender와 After Effects를 같이 활용해 제작했으며,
                 신데렐라 라고 하는 유명한 동화의 이야기를 저만의 특색있는 스타일로 재해석해 보았습니다.`,
             youtube: "https://www.youtube.com/embed/i0FSq5MgT4o?si=cHyMZDWN_50C2-1l"
@@ -86,7 +86,7 @@ const portfolioData = [
         title: "게임 타이틀 한글화 #1",
         category: "graphic-design",
         thumbnail: "./img/work6-thumb.png",
-        shortDesc: "말그대로 게임 타이틀을 한글로 만들어본 콜렉션.",
+        shortDesc: "게임 타이틀을 한글로 만들어본 콜렉션.",
         content: {
             description: `평소 즐기던 비디오게임의 타이틀들을 현지화해 보았습니다.
                 '영어로 되어있는 텍스트심볼들을 한국어로 번역하면 어떨까?'
@@ -102,10 +102,10 @@ const portfolioData = [
     },
     {
         id: 7,
-        title: "The Typoster Remake",
+        title: "Typoster Remake",
         category: "graphic-design",
         thumbnail: "./img/work7-thumb.png",
-        shortDesc: "이전에 제작한 레터링 콜렉션을 리메이크한 것.",
+        shortDesc: "전에 제작한 레터링 콜렉션, 리메이크.",
         content: {
             description: `이전에 제작했던 아무말 프로젝트를
                 3D 그래픽 포스터로 다시 제작했습니다.
@@ -126,7 +126,7 @@ const portfolioData = [
         title: "무에서 유기로",
         category: "graphic-design",
         thumbnail: "./img/work8-thumb.jpg",
-        shortDesc: "'만약 내가 예술가였다면?'에서 시작된 가상전시회 포스터.",
+        shortDesc: "'내가 예술가라면?' 가상전시회 포스터.",
         content: {
             description: `만약 내가 예술가로 활동했다면 어땠을까?
                 라는 생각으로 만들어온 가상전시회 프로젝트 입니다.
