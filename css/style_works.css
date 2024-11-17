@@ -491,6 +491,63 @@ main h1 {
 
 /* 아이폰 13 미니 특화 스타일 (320px ~ 375px) */
 @media screen and (max-width: 375px) {
+    * {
+        font-size: 8.4pt;  /* 기본 14pt의 60% */
+    }
+
+    h1 {
+        font-size: 0.6rem;
+    }
+
+    p, span, div {
+        font-size: 0.6rem;
+        line-height: 1.2;
+    }
+
+    .portfolio-caption h3 {
+        font-size: 0.6rem;
+        margin: 2px 0;
+        line-height: 1.1;
+    }
+
+    .portfolio-caption p {
+        font-size: 0.5rem;
+        margin: 2px 0;
+        line-height: 1.1;
+    }
+
+    button, 
+    input, 
+    textarea, 
+    select {
+        font-size: 0.6rem;
+    }
+
+    .portfolio-categories button {
+        font-size: 0.6rem;
+        padding: 5px 8px;
+        min-width: 35px;
+        min-height: 35px;
+    }
+
+    nav button {
+        font-size: 0.6rem;
+        padding: 5px 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 0.7rem;
+    }
+
+    .modal-content p {
+        font-size: 0.6rem;
+        line-height: 1.2;
+    }
+
+    .footer-text {
+        font-size: 0.6rem;
+    }
+
     .portfolio-grid {
         width: 95%;
         padding: 0.5rem;
