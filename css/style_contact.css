@@ -252,6 +252,33 @@ main h1 {
 
 /* 모바일 네비게이션 메뉴 */
 @media screen and (max-width: 768px) {
+    main {
+        margin: 0 auto;
+        padding: 10px;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about, 
+    .skills, 
+    .portfolio, 
+    .contact {
+        margin: 10px auto;
+        padding: 15px 5px;
+        width: 95%;
+        max-width: 95%;
+    }
+
+    nav {
+        margin: 0 auto;
+        padding: 5px;
+        width: 95%;
+        justify-content: center;
+    }
+
     .mobile-menu-btn {
         display: flex;
     }
@@ -379,6 +406,23 @@ main h1 {
 
 /* 아이폰 13 미니 특화 스타일 (320px ~ 375px) */
 @media screen and (max-width: 375px) {
+    main {
+        padding: 5px;
+    }
+
+    .about, 
+    .skills, 
+    .portfolio, 
+    .contact {
+        padding: 10px 5px;
+        width: 98%;
+        max-width: 98%;
+    }
+
+    nav {
+        width: 98%;
+    }
+
     h1 {
         font-size: 1rem;
     }
