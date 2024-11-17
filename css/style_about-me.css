@@ -336,11 +336,11 @@ main h1 {
 /* 아이폰 13 미니 특화 스타일 (320px ~ 375px) */
 @media screen and (max-width: 375px) {
     h1 {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
     p {
-        font-size: 0.85rem;
+        font-size: 0.65rem;
     }
 
     .background-image {
