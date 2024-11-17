@@ -262,12 +262,12 @@ main h1 {
 
     /* 텍스트 크기 조정 */
     h1 {
-        font-size: 1rem;
+        font-size: 0.75rem;
         line-height: 1.3;
     }
 
     p {
-        font-size: 0.65rem;
+        font-size: 0.45rem;
         line-height: 1.4;
     }
 
@@ -336,11 +336,11 @@ main h1 {
 /* 아이폰 13 미니 특화 스타일 (320px ~ 375px) */
 @media screen and (max-width: 375px) {
     h1 {
-        font-size: 1rem;
+        font-size: 0.6rem;
     }
 
     p {
-        font-size: 0.65rem;
+        font-size: 0.35rem;
     }
 
     .background-image {
