@@ -1,65 +1,92 @@
-window.filterPortfolio = function(category) {
-    const items = document.querySelectorAll('.portfolio-item');
-    
-    items.forEach(item => {
-        const shouldShow = category === 'all' || item.classList.contains(category);
-        
-        item.style.transition = 'all 0.5s ease-out';
-        
-        if (shouldShow) {
-            item.style.display = 'block';
-            setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'scale(1)';
-            }, 50);
-        } else {
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-                item.style.display = 'none';
-            }, 500);
-        }
-    });
+const headerEl = document.querySelector("header");
+const navButtonEl = document.querySelector(".nav-button");
+const mainImg = document.querySelector(".main-img");
+let isPaused = false;
+
+window.addEventListener('scroll', function() {
+  requestAnimationFrame(scrollCheck);
+});
+
+function scrollCheck() {
+  let browserScrollY = window.scrollY || window.pageYOffset;
+  headerEl.classList.toggle("active", browserScrollY > 0);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const overlay = document.querySelector('.overlay');
-    
-    if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (overlay) {
-                overlay.classList.toggle('active');
-            }
-        });
-    }
-    
-    document.querySelector('.portfolio-grid').addEventListener('click', function(e) {
-        const portfolioItem = e.target.closest('.portfolio-item');
-        if (portfolioItem) {
-            const itemId = portfolioItem.getAttribute('data-id');
-            const modal = document.getElementById(`modal-${itemId}`);
-            if (modal) {
-                modal.style.display = 'block';
-                setTimeout(() => {
-                    modal.style.opacity = '1';
-                }, 10);
-            }
-        }
-    });
+window.addEventListener('resize', function() {
+  const windowWidth = window.innerWidth;
+  const fontSize = windowWidth / 20; // Adjust the value as needed
+  const buttonSize = windowWidth / 10; // Adjust the value as needed
 
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('close') || e.target.classList.contains('modal')) {
-            const modal = e.target.closest('.modal');
-            if (modal) {
-                modal.style.opacity = '0';
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 250);
-            }
-        }
-    });
+  navButtonEl.style.fontSize = `${fontSize}px`;
+  navButtonEl.style.width = `${buttonSize}px`;
+  navButtonEl.style.height = `${buttonSize}px`;
 });
+
+mainImg.addEventListener('click', function() {
+  isPaused = !isPaused;
+  mainImg.classList.toggle("paused", isPaused);
+});
+
+setInterval(function() {
+  if (!isPaused) {
+    mainImg.classList.toggle("fade");
+  }
+}, 100);
+
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.style.display = "block";
+  modal.style.opacity = 0;
+  let opacity = 0;
+  const fadeIn = setInterval(function() {
+    if (opacity >= 1) {
+      clearInterval(fadeIn);
+    } else {
+      opacity += 0.1;
+      modal.style.opacity = opacity;
+    }
+  }, 25); // 이걸로 페이드인 속도 조절하면 됨
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  let opacity = 1;
+  const fadeOut = setInterval(function() {
+    if (opacity <= 0) {
+      clearInterval(fadeOut);
+      modal.style.display = "none";
+    } else {
+      opacity -= 0.1;
+      modal.style.opacity = opacity;
+    }
+  }, 5); // 이걸로 페이드아웃 속도 조절하면 됨
+}
+
+window.onclick = function(event) {
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    if (event.target == modal) {
+      closeModal(modal.id);
+    }
+  });
+}
+
+function filterPortfolio(category) {
+  var items = document.getElementsByClassName('portfolio-item');
+  for (var i = 0; i < items.length; i++) {
+      if (category === 'all' || items[i].classList.contains(category)) {
+          items[i].style.transition = 'opacity 0.5s ease-out';
+          items[i].style.opacity = 1;
+          setTimeout(() => {
+              items[i].style.display = 'block';
+          }, 500); // Match the transition duration
+      } else {
+          items[i].style.transition = 'opacity 0.5s ease-out';
+          items[i].style.opacity = 0;
+          setTimeout(() => {
+              items[i].style.display = 'none';
+          }, 500); // Match the transition duration
+      }
+  }
+}
+

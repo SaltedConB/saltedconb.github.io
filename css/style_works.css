@@ -56,8 +56,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 5%;
-    flex-wrap: wrap;
+    margin: 0% 7.5%;
+    flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
 }
 
 nav .logo {
@@ -154,49 +154,48 @@ main h1 {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    justify-content: center;
-    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    transition: all 0.5s ease;
+    justify-content: center; /* 그리드를 중앙으로 정렬 */
+}
+
+.portfolio-item {
+    aspect-ratio: 1 / 1; /* Ensures the items are square */
+    box-sizing: border-box;
+    transition: transform 0.5s ease;
+}
+
+.animate-grid .portfolio-item {
+    transform: translateY(20px);
 }
 
 .portfolio-item {
     position: relative;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    aspect-ratio: 1/1;
-    margin: 0 auto;
+    overflow: hidden;
+    transition: opacity 0.25s ease;
+    background-color: transparent;
+    border-radius: 25px;
 }
 
 .portfolio-item img {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px;
-    transition: transform 0.3s ease;
+    display: block;
+    background: rgba(10, 10, 10, 0.5); /* 50% 투명한 #0a0a0a */
+    opacity: 1;
+    transition: opacity 0.25s ease;
 }
 
-.portfolio-item:hover img {
-    transform: scale(1.05);
-}
-
-.portfolio-item h3 {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-.portfolio-item.hidden {
-    opacity: 0;
-    transform: scale(0.8) translateY(20px);
-    pointer-events: none;
+.portfolio-item video {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: rgba(10, 10, 10, 0.5); /* 50% 투명한 #0a0a0a */
+    opacity: 1;
+    transition: opacity 0.25s ease;
 }
 
 .portfolio-caption {
@@ -215,11 +214,11 @@ main h1 {
 .portfolio-caption h3 {
     margin: 10px -20px;
     background-color: transparent;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .portfolio-caption p {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin: 10px -25px;
     background-color: transparent;
 }
@@ -244,58 +243,37 @@ main h1 {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    opacity: 0;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
     transition: opacity 0.25s ease;
 }
 
 .modal-content {
     background-color: #151515;
-    margin: 5% auto;
+    margin: 15% auto;
     padding: 20px;
-    width: 80%;
-    max-width: 1200px;
-    position: relative;
-    border-radius: 15px;
+    border-radius: 25px;
+    width: 75%;
 }
 
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    margin: 20px 0;
+.modal-content h3 {
+    font-size: 1.5rem;
 }
 
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+.modal-content p {
+    font-size: 1rem;
+    margin: 20px 50px;
+}
+
+.modal-content img {
     width: 100%;
-    height: 100%;
-}
-
-.behance-container {
-    position: relative;
-    padding-bottom: 75%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    margin: 20px 0;
-}
-
-.behance-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    border-radius: 50px;
 }
 
 .close {
@@ -314,29 +292,16 @@ main h1 {
 }
 
 /* 포트폴리오 카테고리 버튼 설정 */
-.portfolio-categories {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 15px 10px;
-    margin: 0 auto;
-    max-width: 100%;
-}
-
 .portfolio-categories button {
     border: none;
     border-radius: 25px;
-    font-size: 11pt;
-    padding: 8px 16px;
-    margin: 2px;
+    font-size: 12pt;
+    padding: 10px 20px;
+    margin: 5px;
     cursor: pointer;
-    transition: all 0.3s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-in;
     background-color: #2b2b2b;
     color: #e9e9e9;
-    min-width: 44px;
-    min-height: 44px;
-    white-space: nowrap;
 }
 
 .portfolio-categories button:hover {
@@ -347,7 +312,6 @@ main h1 {
 .portfolio-categories button:active {
     background-color: #80CA4E;
     color: #151515;
-    transform: scale(0.95);
 }
 
 /* 이미지 갤러리 설정 */
@@ -356,338 +320,17 @@ main h1 {
     margin: 25px 0;
 }
 
-/* 모바일 메뉴 버튼 스타일 */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1000;
-    position: relative;
-    width: 50px;
-    height: 50px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.mobile-menu-btn span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background-color: #e9e9e9;
-    margin: 4px 0;
-    transition: 0.4s;
-}
-
-/* 햄버거 메뉴 활성화 시 X 모양으로 변경 */
-.mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.mobile-menu-btn.active span:nth-child(2) {
+.portfolio-item {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .portfolio-item.hidden {
+    transform: scale(0.5);
     opacity: 0;
-}
-
-.mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
-
-/* 모바일 네비게이션 메뉴 */
-@media screen and (max-width: 768px) {
-    /* 기본 레이아웃 조정 */
-    main {
-        margin: 0;
-        padding: 10px;
-        width: 100%;
     }
-
-    /* 이미지 최적화 */
-    img {
-        max-width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
-
-    /* 네비게이션 메뉴 조정 */
-    nav {
-        margin: 0 10px;
-        padding: 5px;
-    }
-
-    /* 텍스트 크기 조정 */
-    h1 {
-        font-size: 1.5rem;
-        line-height: 1.3;
-    }
-
-    p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-
-    /* 컨테이너 여백 조정 */
-    .about, 
-    .skills, 
-    .portfolio, 
-    .contact {
-        margin: 10px;
-        padding: 15px;
-        width: calc(100% - 30px);
-    }
-
-    /* 그리드 레이아웃 조정 */
-    .skills-list,
-    .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 10px;
-        padding: 10px;
-    }
-
-    /* 자기소개 섹션 조정 */
-    .about-intro {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .background-image {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 15px;
-    }
-
-    .about-text {
-        width: 100%;
-        text-align: center;
-        padding: 0;
-    }
-
-    .about-text h1,
-    .about-text p {
-        max-width: 100%;
-        margin: 10px auto;
-    }
-
-    /* 모달 창 조정 */
-    .modal-content {
-        width: 90%;
-        margin: 5% auto;
-        padding: 15px;
-    }
-
-    /* 버튼 크기 조정 */
-    button {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-
-    /* 푸터 조정 */
-    .footer-text {
-        font-size: 0.8rem;
-        padding: 10px 0;
-    }
-}
-
-/* 아이폰 13 미니 특화 스타일 (320px ~ 375px) */
-@media screen and (max-width: 375px) {
-    * {
-        font-size: 8.4pt;  /* 기본 14pt의 60% */
-    }
-
-    h1 {
-        font-size: 0.6rem;
-    }
-
-    p, span, div {
-        font-size: 0.6rem;
-        line-height: 1.2;
-    }
-
-    .portfolio-caption h3 {
-        font-size: 0.6rem;
-        margin: 2px 0;
-        line-height: 1.1;
-    }
-
-    .portfolio-caption p {
-        font-size: 0.5rem;
-        margin: 2px 0;
-        line-height: 1.1;
-    }
-
-    button, 
-    input, 
-    textarea, 
-    select {
-        font-size: 0.6rem;
-    }
-
-    .portfolio-categories button {
-        font-size: 0.6rem;
-        padding: 5px 8px;
-        min-width: 35px;
-        min-height: 35px;
-    }
-
-    nav button {
-        font-size: 0.6rem;
-        padding: 5px 10px;
-    }
-
-    .modal-content h2 {
-        font-size: 0.7rem;
-    }
-
-    .modal-content p {
-        font-size: 0.6rem;
-        line-height: 1.2;
-    }
-
-    .footer-text {
-        font-size: 0.6rem;
-    }
-
-    .portfolio-grid {
-        width: 95%;
-        padding: 0.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 0.8rem;
-    }
-
-    .portfolio-item {
-        max-width: 250px;
-    }
-
-    .portfolio-caption {
-        padding: 8px 5px;
-    }
-
-    .portfolio-caption h3 {
-        font-size: 0.75rem;
-        margin: 2px 0;
-        line-height: 1.1;
-    }
-
-    .portfolio-caption p {
-        font-size: 0.55rem;
-        margin: 2px 0;
-        line-height: 1.1;
-        word-break: keep-all;
-    }
-
-    .portfolio-caption {
-        padding: 5px;
-    }
+    
 
     .portfolio-categories {
-        gap: 5px;
-        padding: 10px 5px;
-    }
-
-    .portfolio-categories button {
-        font-size: 0.65rem;
-        padding: 6px 10px;
-        min-width: 40px;
-        min-height: 40px;
-    }
-
-    .modal-content h2 {
-        font-size: 1rem;
-    }
-
-    .modal-content p {
-        font-size: 0.7rem;
-        line-height: 1.2;
-    }
-}
-
-/* 모바일 메뉴 버튼 스타일 */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1000;
-    position: relative;
-    width: 50px;
-    height: 50px;
-    flex-direction: column;
+    display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.mobile-menu-btn span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background-color: #e9e9e9;
-    margin: 4px 0;
-    transition: 0.4s;
-}
-
-/* 햄버거 메뉴 활성화 시 X 모양으로 변경 */
-.mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.mobile-menu-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
-
-@media screen and (max-width: 768px) {
-    .mobile-menu-btn {
-        display: flex;
+    padding: 20px 0;
     }
-
-    .mobile-menu-btn span {
-        width: 20px;
-        height: 1.5px;
-        margin: 3px 0;
-    }
-
-    nav ul {
-        display: none;
-    }
-
-    nav ul.nav-menu {
-        display: flex;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 40%;
-        height: 100vh;
-        background-color: #151515;
-        padding-top: 60px;
-        transition: 0.3s ease-in-out;
-        flex-direction: column;
-        align-items: center;
-        z-index: 999;
-    }
-
-    .nav-menu.active {
-        right: 0;
-        border-left: 1px solid #2b2b2b;
-    }
-
-    /* 메뉴 활성화시 배경 어둡게 */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 998;
-    }
-
-    .overlay.active {
-        display: block;
-    }
-}
