@@ -50,7 +50,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 5%;
+    margin: 0 7.5%;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
 nav .logo {
@@ -209,4 +211,131 @@ main h1 {
 }
 #contact-section .form-group label {
     background-color: #151515;
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        margin: 0 2%;
+        position: relative;
+    }
+    
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+        height: 2rem;
+        z-index: 1000;
+    }
+    
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background: rgba(21, 21, 21, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+    }
+    
+    nav ul.active {
+        display: flex;
+        right: 0;
+    }
+    
+    nav li {
+        margin: 20px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    nav ul.active li {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.2s;
+    }
+    
+    nav ul.active li:nth-child(2) {
+        transition-delay: 0.3s;
+    }
+    
+    nav ul.active li:nth-child(3) {
+        transition-delay: 0.4s;
+    }
+    
+    nav ul.active li:nth-child(4) {
+        transition-delay: 0.5s;
+    }
+    
+    nav button {
+        width: 200px;
+        text-align: center;
+    }
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1000;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background: #e9e9e9;
+    transition: all 0.3s ease-in-out;
+    transform-origin: center;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(21, 21, 21, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+    }
+    
+    nav ul.active {
+        right: 0;
+        display: flex;
+    }
 }

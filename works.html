@@ -6,6 +6,9 @@
     <title>Sujong's Portfolio</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style_works.css">
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="./script.js"></script>
+
 </head>
 <body>
     
@@ -15,20 +18,25 @@
         <div class="logo">
             <a href="./index.html"><img src="./img/favicon-light.png" alt="logo" style="width: 56px;"></a>
         </div>
-            <ul>
-                <li>
-                    <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
-                </li>
-                <li>
-                    <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
-                </li>
-                <li>
-                    <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
-                </li>
-                <li>
-                    <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
-                </li>
-            </ul>
+        <button class="hamburger" aria-label="메뉴">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul>
+            <li>
+                <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
+            </li>
+            <li>
+                <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
+            </li>
+            <li>
+                <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
+            </li>
+            <li>
+                <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
+            </li>
+        </ul>
         </nav>
     </header>
     <!-- 헤더 끝부분 -->
@@ -39,12 +47,12 @@
         <h1>My Works</h1>
         <p>여태껏 작업한 <span class="boost">저</span>의 작업물 아카이브입니다.</p>
         <br>
-        <div class="portfolio-categories">
-            <button onclick="filterPortfolio('all')">전체</button>
-            <button onclick="filterPortfolio('motion-graphics')">모션그래픽</button>
-            <button onclick="filterPortfolio('graphic-design')">그래픽디자인</button>
-            <button onclick="filterPortfolio('web-design')">UX/UI 디자인</button>
-            <button onclick="filterPortfolio('branding')">브랜딩 프로젝트</button>
+        <div class="portfolio-categories" role="group" aria-label="포트폴리오 카테고리">
+            <button onclick="filterPortfolio('all')" aria-pressed="true">전체</button>
+            <button onclick="filterPortfolio('motion-graphics')" aria-pressed="false">모션그래픽</button>
+            <button onclick="filterPortfolio('graphic-design')" aria-pressed="false">그래픽디자인</button>
+            <button onclick="filterPortfolio('web-design')" aria-pressed="false">UX/UI 디자인</button>
+            <button onclick="filterPortfolio('branding')" aria-pressed="false">브랜딩 프로젝트</button>
         </div>
         <div class="portfolio-grid">
             <div class="portfolio-item graphic-design" onclick="openModal('modal1')">
@@ -262,28 +270,6 @@
         <div class="footer-text">
             <p>© 2024 You Sujong. All rights reserved.</p>
         </div>
-        <script>
-            // 모달 열기 함수
-            function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-            }
-
-            // 모달 닫기 함수
-            function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            }
-
-            // 모달 외부 클릭 시 닫기 이벤트 추가
-            window.onclick = function(event) {
-            const modals = document.getElementsByClassName('modal');
-            for (let i = 0; i < modals.length; i++) {
-                if (event.target == modals[i]) {
-                modals[i].style.display = 'none';
-                }
-            }
-            }
-        </script>
-        <script src="./script.js"></script>
     </footer>
 </body>
 </html>

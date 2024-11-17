@@ -6,6 +6,7 @@
     <title>About You Sujong</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style_about-me.css">
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="./script.js"></script>
 </head>
 <body>
@@ -16,20 +17,25 @@
         <div class="logo">
             <a href="./index.html"><img src="./img/favicon-light.png" alt="logo" style="width: 56px;"></a>
         </div>
-            <ul>
-                <li>
-                    <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
-                </li>
-                <li>
-                    <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
-                </li>
-                <li>
-                    <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
-                </li>
-                <li>
-                    <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
-                </li>
-            </ul>
+        <button class="hamburger" aria-label="메뉴">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul>
+            <li>
+                <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
+            </li>
+            <li>
+                <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
+            </li>
+            <li>
+                <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
+            </li>
+            <li>
+                <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
+            </li>
+        </ul>
         </nav>
     </header>
     <!-- 헤더 끝부분 -->
@@ -39,7 +45,7 @@
         <section class="about">
     <section class="about-intro">
         <div class="background-image">
-            <img src="./img/sujong_bg.jpeg" alt="My img BG">
+            <img src="./img/sujong_bg.jpg" alt="My img BG">
         </div>
         <div class="about-text" style="background-color: transparent;">
             <h1 style="background-color: transparent;">안녕하세요, 유수종입니다.</h1>

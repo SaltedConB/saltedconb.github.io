@@ -44,7 +44,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 5%;
+    margin: 0 7.5%;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 nav .logo {
     padding: 0 20px;
@@ -131,47 +133,56 @@ main h1 {
 .about {
     display: flex;
     justify-content: center;
-    align-items: space-between;
-    margin: 0 144pt;
-    padding: 36pt 24pt;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px;
     flex-direction: column;
     background-color: transparent;
-    border: #e9e9e9 25px solid;
-    border-radius: 50px;
+    border: #e9e9e9 15px solid;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 1200px;
 }
 .about-intro {
     display: flex;
-    justify-content: space-between;
-    align-items: space-between;
-    flex-direction: row;
-    padding: auto 12pt;
-    margin: 24pt 0pt;
-    object-fit: cover;
-    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
 }
 .background-image {
     position: relative;
-    width: 240px;
-    height: 240px;
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    margin: 0 auto;
 }
 .background-image img {
-    position: relative;
-    margin: 0 0 0 72pt;
-    width: 90%;
-    padding: 0 auto;
+    width: 100%;
     height: auto;
-    object-fit: cover;
     border-radius: 25px;
+    margin: 0 auto;
 }
 /* 출처: https://memostack.tistory.com/260 [memostack:티스토리] */
 
 /* 자기소개 텍스트 */
 .about-text {
-    position: relative;
-    transform: translate(50, 50);
-    padding: 0 auto;
-    margin: -12pt 72pt;
-    background-color: transparent;
+    text-align: center;
+    padding: 15px;
+    margin: 10px auto;
+    width: 90%;
+}
+
+.about-text h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 /* 공모전, 자격증, 수상 관련 */
@@ -180,9 +191,10 @@ main h1 {
     transform: translate(50, 50);
     background-color: transparent;
     margin: -36pt 0pt 24pt 0pt;
-    padding: 0 72pt;
+    padding: 10px 20px;
     border-bottom: 5px solid #e9e9e9;
     /* 갭 줄이기용 마진값 */
+    width: 90%;
 }
 .about-award .award1,.award2,.award3 {
     display: flex;
@@ -213,7 +225,8 @@ main h1 {
     transform: translate(50, 50);
     background-color: transparent;
     margin: 12pt 0pt 12pt 0;
-    padding: 0 72pt;
+    padding: 10px 20px;
+    width: 90%;
 }
 
 .about-education .education1,.education2 {
@@ -229,4 +242,168 @@ main h1 {
 }
 .about-education .education1 {
     border-bottom: 1px solid #e9e9e9;
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        margin: 0 2%;
+        position: relative;
+    }
+    
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+        height: 2rem;
+        z-index: 1000;
+    }
+    
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background: rgba(21, 21, 21, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+    }
+    
+    nav ul.active {
+        display: flex;
+        right: 0;
+    }
+    
+    nav li {
+        margin: 20px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    nav ul.active li {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.2s;
+    }
+    
+    nav ul.active li:nth-child(2) {
+        transition-delay: 0.3s;
+    }
+    
+    nav ul.active li:nth-child(3) {
+        transition-delay: 0.4s;
+    }
+    
+    nav ul.active li:nth-child(4) {
+        transition-delay: 0.5s;
+    }
+    
+    nav button {
+        width: 200px;
+        text-align: center;
+    }
+    .about {
+        padding: 10px;
+        border-width: 10px;
+    }
+    * {
+        font-size: 12pt;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    p {
+        font-size: 1rem;
+    }
+    
+    .about-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .about-text p {
+        font-size: 0.9rem;
+    }
+    
+    .about-award h2,
+    .about-education h2 {
+        font-size: 1rem;
+    }
+    
+    .about-award p,
+    .about-education p {
+        font-size: 0.9rem;
+    }
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1000;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background: #e9e9e9;
+    transition: all 0.3s ease-in-out;
+    transform-origin: center;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(21, 21, 21, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+    }
+    
+    nav ul.active {
+        right: 0;
+        display: flex;
+    }
 }

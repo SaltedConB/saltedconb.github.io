@@ -6,7 +6,7 @@
     <title>You Sujong's Portfolio</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 </head>
 <body>
     
@@ -16,20 +16,25 @@
         <div class="logo">
             <a href="./index.html"><img src="./img/favicon-light.png" alt="logo" style="width: 56px;"></a>
         </div>
-            <ul>
-                <li>
-                    <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
-                </li>
-                <li>
-                    <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
-                </li>
-                <li>
-                    <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
-                </li>
-                <li>
-                    <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
-                </li>
-            </ul>
+        <button class="hamburger" aria-label="메뉴">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul>
+            <li>
+                <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
+            </li>
+            <li>
+                <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
+            </li>
+            <li>
+                <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
+            </li>
+            <li>
+                <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
+            </li>
+        </ul>
         </nav>
     </header>
     <!-- 헤더 끝부분 -->
@@ -70,5 +75,6 @@
             <p>© 2024 You Sujong. All rights reserved.</p>
         </div>
     </footer>
+    <script src="./script.js"></script>
 </body>
 </html>
