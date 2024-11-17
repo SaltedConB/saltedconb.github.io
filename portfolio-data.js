@@ -55,7 +55,7 @@ const portfolioData = [
     },
     {
         id: 4,
-        title: "브랜딩 프로젝트 - 엠게임",
+        title: "브랜딩 프로젝트 : 엠게임",
         category: "branding",
         thumbnail: "./img/work4-thumb.png",
         shortDesc: "[귀혼], [열혈강호 온라인]을 제작한 게임회사 \n 엠게임의 BI 프로젝트.",
