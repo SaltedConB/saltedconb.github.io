@@ -152,7 +152,7 @@ main h1 {
 }
 
 .main-text {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0 auto;
     text-align: left;
     padding: 20px 60pt;
@@ -191,13 +191,13 @@ main h1 {
 .about .main-title .title a {
     left: 0;
     position: relative;
-    font-size: 4rem;
+    font-size: 2rem;
 }
 
 .about .main-title .title2 a {
     right: 0;
     position: relative;
-    font-size: 4rem;
+    font-size: 2rem;
     top: 50%;
     transform: translateY(-50%);
 }
