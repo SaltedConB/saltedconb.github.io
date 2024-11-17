@@ -447,11 +447,13 @@ main h1 {
 
     /* 메인 콘텐츠 반응형 조정 */
     main {
-        margin: 0 20px;
+        margin: 0 10px;
+        padding: 10px;
     }
 
     .main-text {
-        padding: 20px;
+        padding: 10px;
+        margin: 0;
     }
 
     .main-title {
@@ -470,9 +472,8 @@ main h1 {
     
     /* Works 페이지 */
     .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-        padding: 1rem;
+        padding: 10px;
+        gap: 10px;
     }
     
     /* Contact 페이지 */
@@ -533,6 +534,6 @@ main h1 {
     }
 
     nav {
-        margin: 0 2%;
+        margin: 0 10px;
     }
 }

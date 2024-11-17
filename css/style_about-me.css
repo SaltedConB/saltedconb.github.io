@@ -240,12 +240,31 @@ main h1 {
 
 /* 반응형 미디어 쿼리 추가 */
 @media screen and (max-width: 768px) {
-    .about {
-        margin: 0 2%;
-        padding: 1rem;
-        border-width: 15px;
+    main {
+        margin: 0 10px;
+        padding: 10px;
     }
-    
+
+    .about {
+        margin: 0;
+        padding: 10px;
+    }
+
+    .about-text {
+        padding: 10px;
+        margin: 0;
+    }
+
+    .about-award,
+    .about-education {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    nav {
+        margin: 0 10px;
+    }
+
     .about-intro {
         flex-direction: column;
         text-align: center;

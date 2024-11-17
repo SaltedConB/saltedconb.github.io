@@ -252,6 +252,30 @@ main h1 {
 
 /* 모바일 네비게이션 메뉴 */
 @media screen and (max-width: 768px) {
+    main {
+        margin: 0 10px;
+        padding: 10px;
+    }
+
+    #contact-section {
+        margin: 0 10px;
+        padding: 10px;
+    }
+
+    #contact-section .form-group {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    nav {
+        margin: 0 10px;
+    }
+
+    .main-text {
+        padding: 10px;
+        margin: 0;
+    }
+
     .mobile-menu-btn {
         display: flex;
     }
@@ -313,9 +337,5 @@ main h1 {
 
     .overlay.active {
         display: block;
-    }
-
-    nav {
-        margin: 0 2%;
     }
 }

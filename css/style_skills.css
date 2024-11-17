@@ -296,6 +296,28 @@ main h1 {
 
 /* 모바일 네비게이션 메뉴 */
 @media screen and (max-width: 768px) {
+    main {
+        margin: 0 10px;
+        padding: 10px;
+    }
+
+    .skills {
+        padding: 10px;
+    }
+
+    .skills h1 {
+        margin: 10px;
+    }
+
+    .skills-list {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    nav {
+        margin: 0 10px;
+    }
+
     .mobile-menu-btn {
         display: flex;
     }
