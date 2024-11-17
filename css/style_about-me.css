@@ -44,8 +44,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 7.5%;
-        flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
+    margin: 0 5%;
 }
 nav .logo {
     padding: 0 20px;
@@ -97,8 +96,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: left;
-    padding: 8pt;
-    margin: 0 36pt;
+    padding: 24pt;
     flex-direction: column;
     background-color: transparent;
 }
@@ -108,7 +106,7 @@ main img {
 }
 main h1 {
     font-family: 'LINEBd', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 }
 
 .boost:hover {
@@ -133,102 +131,133 @@ main h1 {
 .about {
     display: flex;
     justify-content: center;
-    align-items: space-between;
-    margin: 0 96pt;
-    padding: 18pt 12pt;
+    align-items: center;
+    margin: 0 5%;
+    padding: 2rem;
     flex-direction: column;
     background-color: transparent;
     border: #e9e9e9 25px solid;
     border-radius: 50px;
+    box-sizing: border-box;
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
 }
+
 .about-intro {
     display: flex;
     justify-content: space-between;
-    align-items: space-between;
+    align-items: center;
     flex-direction: row;
-    padding: auto 12pt;
-    margin: 24pt 0pt;
-    object-fit: cover;
-    background-color: transparent;
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+    flex-wrap: wrap;
 }
+
 .background-image {
     position: relative;
-    width: 240px;
-    height: 240px;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
 }
+
 .background-image img {
-    position: relative;
-    margin: 0 0 0 72pt;
-    width: 90%;
-    padding: 0 auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 25px;
+    margin: 0;
 }
-/* 출처: https://memostack.tistory.com/260 [memostack:티스토리] */
 
-/* 자기소개 텍스트 */
 .about-text {
-    position: relative;
-    transform: translate(50, 50);
-    padding: 0 auto;
-    margin: -12pt 72pt;
+    flex: 1;
+    min-width: 300px;
+    padding: 1rem;
+    margin: 0;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.about-text h1,
+.about-text p {
+    max-width: 80%;
     background-color: transparent;
+}
+
+.about-text p {
+    line-height: 1.6;
 }
 
 /* 공모전, 자격증, 수상 관련 */
 .about-award {
-    position: relative;
-    transform: translate(50, 50);
-    background-color: transparent;
-    margin: -36pt 0pt 24pt 0pt;
-    padding: 0 72pt;
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
     border-bottom: 5px solid #e9e9e9;
-    /* 갭 줄이기용 마진값 */
 }
-.about-award .award1,.award2,.award3 {
-    display: flex;
-    justify-content: space-between;
-    text-align: right;
-    align-items: left;
-    flex-direction: row;
-    margin: auto;
-    padding: auto;
-    object-fit: cover;
-    background-color: transparent;
-    border-bottom: 1px solid #e9e9e9;
-}
+
+.about-award .award1,
+.about-award .award2,
+.about-award .award3,
 .about-award .award4 {
     display: flex;
     justify-content: space-between;
-    text-align: right;
-    align-items: left;
-    flex-direction: row;
-    margin: auto;
-    padding: auto;
-    object-fit: cover;
-    background-color: transparent;
-}
-/* 학력 관련 */
-.about-education {
-    position: relative;
-    transform: translate(50, 50);
-    background-color: transparent;
-    margin: 12pt 0pt 12pt 0;
-    padding: 0 72pt;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    flex-wrap: wrap;
 }
 
-.about-education .education1,.education2 {
+.about-award .award1,
+.about-award .award2,
+.about-award .award3 {
+    border-bottom: 1px solid #e9e9e9;
+}
+
+/* 학력 관련 */
+.about-education {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.about-education .education1,
+.about-education .education2 {
     display: flex;
     justify-content: space-between;
-    text-align: right;
-    align-items: left;
-    flex-direction: row;
-    margin: auto;
-    padding: auto;
-    object-fit: cover;
-    background-color: transparent;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    flex-wrap: wrap;
 }
+
 .about-education .education1 {
     border-bottom: 1px solid #e9e9e9;
+}
+
+/* 반응형 미디어 쿼리 추가 */
+@media screen and (max-width: 768px) {
+    .about {
+        margin: 0 2%;
+        padding: 1rem;
+        border-width: 15px;
+    }
+    
+    .about-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .background-image {
+        margin: 0 auto 1rem auto;
+    }
+    
+    .about-text,
+    .about-award,
+    .about-education {
+        padding: 0.5rem;
+    }
 }

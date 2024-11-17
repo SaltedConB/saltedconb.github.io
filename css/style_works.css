@@ -56,7 +56,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 7.5%;
+    margin: 0% 7.5%;
     flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
 }
 
@@ -154,48 +154,40 @@ main h1 {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    transition: all 0.5s ease;
-    justify-content: center; /* 그리드를 중앙으로 정렬 */
-}
-
-.portfolio-item {
-    aspect-ratio: 1 / 1; /* Ensures the items are square */
-    box-sizing: border-box;
-    transition: transform 0.5s ease;
-}
-
-.animate-grid .portfolio-item {
-    transform: translateY(20px);
+    grid-template-columns: repeat(auto-fill, 400px);
+    gap: 50px;
+    padding: 25px;
+    justify-content: center;
+    transition: all 0.5s ease-out;
+    min-height: 400px;
 }
 
 .portfolio-item {
     position: relative;
-    overflow: hidden;
-    transition: opacity 0.25s ease;
-    background-color: transparent;
+    width: 400px;
+    height: 400px;
+    transition: all 0.5s ease-out;
+    transform-origin: center;
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
     border-radius: 25px;
+    overflow: hidden;
+    backface-visibility: hidden;
 }
 
 .portfolio-item img {
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    background: rgba(10, 10, 10, 0.5); /* 50% 투명한 #0a0a0a */
-    opacity: 1;
     transition: opacity 0.25s ease;
 }
 
-.portfolio-item video {
-    max-width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    background: rgba(10, 10, 10, 0.5); /* 50% 투명한 #0a0a0a */
-    opacity: 1;
-    transition: opacity 0.25s ease;
+.portfolio-item.hidden {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    pointer-events: none;
 }
 
 .portfolio-caption {
@@ -299,7 +291,7 @@ main h1 {
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in, color 0.2s ease-in;
+    transition: all 0.3s ease-out;
     background-color: #2b2b2b;
     color: #e9e9e9;
 }
@@ -312,6 +304,7 @@ main h1 {
 .portfolio-categories button:active {
     background-color: #80CA4E;
     color: #151515;
+    transform: scale(0.95);
 }
 
 /* 이미지 갤러리 설정 */
@@ -320,17 +313,8 @@ main h1 {
     margin: 25px 0;
 }
 
-.portfolio-item {
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-    .portfolio-item.hidden {
-    transform: scale(0.5);
-    opacity: 0;
-    }
-    
-
-    .portfolio-categories {
+.portfolio-categories {
     display: flex;
     justify-content: center;
     padding: 20px 0;
-    }
+}
