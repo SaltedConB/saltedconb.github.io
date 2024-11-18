@@ -216,6 +216,9 @@ main h1 {
 }
 
 @media screen and (max-width: 768px) {
+    #contact-section {
+        margin: 0;
+    }
     main {
         margin: 0;
     }
@@ -263,6 +266,9 @@ main h1 {
 
 /* 더 작은 화면에서의 추가 조정 */
 @media screen and (max-width: 480px) {
+    #contact-section {
+        margin: 0;
+    }
     main {
         margin: 0;
     }
