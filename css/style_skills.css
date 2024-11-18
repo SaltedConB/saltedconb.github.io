@@ -326,11 +326,57 @@ main h1 {
 @media screen and (max-width: 768px) {
     .skills-list {
         grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .skills h1 {
+        font-size: 2rem;
+        margin: 15pt 30pt;
+    }
+
+    .skills h5 {
+        font-size: 1rem;
+        margin-top: -20px;
+    }
+
+    .skills-list .skills-list-detail {
+        padding: 8px;
+    }
+
+    .skills-list .skills-list-detail img {
+        height: 40px;
+    }
+
+    .skills-list .skills-list-detail span {
+        font-size: 9pt;
     }
 }
 
 @media screen and (max-width: 480px) {
     .skills-list {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 5px;
+    }
+
+    .skills h1 {
+        font-size: 1.5rem;
+        margin: 10pt 20pt;
+    }
+
+    .skills h5 {
+        font-size: 0.9rem;
+        margin-top: -15px;
+    }
+
+    .skills-list .skills-list-detail img {
+        height: 35px;
+    }
+
+    .skills-list .skills-list-detail span {
+        font-size: 8pt;
     }
 }
