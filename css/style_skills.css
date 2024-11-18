@@ -328,30 +328,30 @@ main h1 {
         grid-template-columns: repeat(3, 1fr);
         justify-content: center;
         align-items: center;
-        gap: 15px;
-        padding: 10px;
+        gap: 12px;
+        padding: 8px;
     }
 
     .skills h1 {
-        font-size: 2rem;
-        margin: 15pt 30pt;
+        font-size: 1.8rem;
+        margin: 12pt 25pt;
     }
 
     .skills h5 {
         font-size: 1rem;
-        margin-top: -20px;
+        margin-top: -15px;
     }
 
     .skills-list .skills-list-detail {
-        padding: 8px;
+        padding: 6px;
     }
 
     .skills-list .skills-list-detail img {
-        height: 40px;
+        height: 35px;
     }
 
     .skills-list .skills-list-detail span {
-        font-size: 9pt;
+        font-size: 8pt;
     }
 }
 
@@ -378,5 +378,54 @@ main h1 {
 
     .skills-list .skills-list-detail span {
         font-size: 8pt;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .skills-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 5px;
+        margin: 0 auto;
+    }
+
+    .skills h1 {
+        font-size: 1.3rem;
+        margin: 8pt 15pt;
+    }
+
+    .skills h5 {
+        font-size: 0.8rem;
+        margin-top: -12px;
+    }
+
+    .skills-list .skills-list-detail {
+        padding: 5px;
+    }
+
+    .skills-list .skills-list-detail img {
+        height: 30px;
+    }
+
+    .skills-list .skills-list-detail span {
+        font-size: 7pt;
+    }
+
+    main {
+        margin: 0 5pt;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 8px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .modal-content p {
+        font-size: 0.9rem;
+        margin: 8px;
     }
 }

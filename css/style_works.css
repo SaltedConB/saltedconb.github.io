@@ -614,10 +614,52 @@ main h1 {
         flex-direction: column;
         align-items: center;
         gap: 8px;
+        padding: 15px 10px;
     }
     
     .portfolio-categories button {
-        width: 80%;
+        width: 85%;
         max-width: 300px;
+        font-size: 10pt;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio-categories {
+        gap: 6px;
+        padding: 12px 8px;
+    }
+    
+    .portfolio-categories button {
+        width: 85%;
+        max-width: 280px;
+        font-size: 9.5pt;
+        padding: 10px 15px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .portfolio-categories {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        padding: 10px 5px;
+    }
+    
+    .portfolio-categories button {
+        width: 90%;
+        max-width: 250px;
+        font-size: 9pt;
+        padding: 8px 12px;
+        margin: 2px 0;
+    }
+
+    .portfolio-grid {
+        gap: 8px;
+        padding: 5px;
+    }
+
+    main {
+        margin: 0 5pt;
     }
 }
