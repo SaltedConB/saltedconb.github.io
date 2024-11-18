@@ -263,8 +263,8 @@ main h1 {
         font-size: 1rem;
     }
 
-    p, span, button {
-        font-size: 10pt;
+    p, span {
+        font-size: 7pt;
     }
     nav {
         margin: 0;
