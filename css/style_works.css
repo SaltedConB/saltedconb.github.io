@@ -232,7 +232,7 @@ main h1 {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -362,7 +362,7 @@ main h1 {
         transform: translateY(-50%);
         width: 2rem;
         height: 2rem;
-        z-index: 1000;
+        z-index: 999;
     }
     
     nav ul {
@@ -557,7 +557,7 @@ main h1 {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1000;
+    z-index: 999;
 }
 
 .hamburger.active span:nth-child(1) {
