@@ -339,3 +339,138 @@ main h1 {
         display: flex;
     }
 }
+
+@media screen and (max-width: 768px) {
+    /* 전체 여백 축소 */
+    main {
+        margin: 0 15pt;
+        padding: 10px;
+    }
+    
+    /* 섹션 간격 축소 */
+    section {
+        margin: 10px 0;
+        padding: 10px;
+    }
+    
+    /* 네비게이션 여백 축소 */
+    nav {
+        margin: 0 2%;
+        padding: 5px;
+    }
+    
+    /* 그리드 간격 축소 */
+    .portfolio-grid {
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    /* 모달 여백 축소 */
+    .modal-content {
+        padding: 10px;
+        margin: 5% auto;
+    }
+    
+    /* 텍스트 간격 축소 */
+    p {
+        margin: 5px 0;
+    }
+    
+    h1, h2, h3 {
+        margin: 10px 0;
+    }
+    
+    /* 버튼 패딩 축소 */
+    button {
+        padding: 8px 16px;
+    }
+    
+    /* 푸터 패딩 축소 */
+    .footer-text {
+        padding: 10px 0;
+    }
+}
+
+/* 더 작은 모바일 화면 */
+@media screen and (max-width: 480px) {
+    main {
+        margin: 0 10pt;
+    }
+    
+    .portfolio-grid {
+        gap: 5px;
+        padding: 5px;
+    }
+    
+    nav {
+        margin: 0 1%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    * {
+        font-size: 12pt;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p, span, button {
+        font-size: 11pt;
+    }
+
+    .portfolio-caption h3 {
+        font-size: 1.2rem;
+    }
+
+    .portfolio-caption p {
+        font-size: 0.9rem;
+    }
+
+    nav button {
+        font-size: 11pt;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    * {
+        font-size: 11pt;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p, span, button {
+        font-size: 10pt;
+    }
+
+    .portfolio-caption h3 {
+        font-size: 1.1rem;
+    }
+
+    .portfolio-caption p {
+        font-size: 0.8rem;
+    }
+
+    nav button {
+        font-size: 10pt;
+    }
+}
