@@ -1,3 +1,5 @@
+@import url(style.css);
+
 /* 폰트 설정 */
 @font-face {
     font-family: 'LINERg';
@@ -215,262 +217,55 @@ main h1 {
 
 @media screen and (max-width: 768px) {
     nav {
-        margin: 0 2%;
-        position: relative;
+        margin: 0;
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav .logo {
+        padding: 0;
+        margin-bottom: 10px;
     }
     
     .hamburger {
-        display: flex;
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 2rem;
-        height: 2rem;
-        z-index: 1000;
+        display: none;  /* 햄버거 메뉴 숨기기 */
     }
     
     nav ul {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 100%;
-        background: rgba(21, 21, 21, 0.95);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(10px);
-    }
-    
-    nav ul.active {
         display: flex;
-        right: 0;
+        position: static;
+        width: 100%;
+        height: auto;
+        background: transparent;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        gap: 5px;
     }
     
     nav li {
-        margin: 20px 0;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    
-    nav ul.active li {
+        margin: 0;
         opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.2s;
-    }
-    
-    nav ul.active li:nth-child(2) {
-        transition-delay: 0.3s;
-    }
-    
-    nav ul.active li:nth-child(3) {
-        transition-delay: 0.4s;
-    }
-    
-    nav ul.active li:nth-child(4) {
-        transition-delay: 0.5s;
+        transform: none;
     }
     
     nav button {
-        width: 200px;
-        text-align: center;
+        font-size: 11pt;
+        padding: 8px 16px;
+        width: auto;
     }
 }
 
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1000;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-}
-
-.hamburger span {
-    width: 100%;
-    height: 2px;
-    background: #e9e9e9;
-    transition: all 0.3s ease-in-out;
-    transform-origin: center;
-}
-
-@media screen and (max-width: 768px) {
-    .hamburger {
-        display: flex;
+/* 더 작은 화면에서의 추가 조정 */
+@media screen and (max-width: 480px) {
+    nav button {
+        font-size: 10pt;
+        padding: 6px 12px;
     }
     
     nav ul {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(21, 21, 21, 0.95);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: 0.3s;
-    }
-    
-    nav ul.active {
-        right: 0;
-        display: flex;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    /* 전체 여백 축소 */
-    main {
-        margin: 0 15pt;
-        padding: 10px;
-    }
-    
-    /* 섹션 간격 축소 */
-    section {
-        margin: 10px 0;
-        padding: 10px;
-    }
-    
-    /* 네비게이션 여백 축소 */
-    nav {
-        margin: 0 2%;
-        padding: 5px;
-    }
-    
-    /* 그리드 간격 축소 */
-    .portfolio-grid {
-        gap: 10px;
-        padding: 10px;
-    }
-    
-    /* 모달 여백 축소 */
-    .modal-content {
-        padding: 10px;
-        margin: 5% auto;
-    }
-    
-    /* 텍스트 간격 축소 */
-    p {
-        margin: 5px 0;
-    }
-    
-    h1, h2, h3 {
-        margin: 10px 0;
-    }
-    
-    /* 버튼 패딩 축소 */
-    button {
-        padding: 8px 16px;
-    }
-    
-    /* 푸터 패딩 축소 */
-    .footer-text {
-        padding: 10px 0;
-    }
-}
-
-/* 더 작은 모바일 화면 */
-@media screen and (max-width: 480px) {
-    main {
-        margin: 0 10pt;
-    }
-    
-    .portfolio-grid {
-        gap: 5px;
-        padding: 5px;
-    }
-    
-    nav {
-        margin: 0 1%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    * {
-        font-size: 12pt;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    h3 {
-        font-size: 1.2rem;
-    }
-
-    p, span, button {
-        font-size: 11pt;
-    }
-
-    .portfolio-caption h3 {
-        font-size: 1.2rem;
-    }
-
-    .portfolio-caption p {
-        font-size: 0.9rem;
-    }
-
-    nav button {
-        font-size: 11pt;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    * {
-        font-size: 11pt;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.3rem;
-    }
-
-    h3 {
-        font-size: 1.1rem;
-    }
-
-    p, span, button {
-        font-size: 10pt;
-    }
-
-    .portfolio-caption h3 {
-        font-size: 1.1rem;
-    }
-
-    .portfolio-caption p {
-        font-size: 0.8rem;
-    }
-
-    nav button {
-        font-size: 10pt;
+        gap: 3px;
     }
 }

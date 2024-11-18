@@ -12,8 +12,10 @@ let isPaused = false;
 // 3.1 스크롤 이벤트
 window.addEventListener('scroll', () => {
   requestAnimationFrame(scrollCheck);
+  document.addEventListener('DOMContentLoaded', () => {
+    initHamburgerMenu();
 });
-
+});
 function scrollCheck() {
   const browserScrollY = window.scrollY || window.pageYOffset;
   headerEl.classList.toggle("active", browserScrollY > 0);
@@ -61,15 +63,29 @@ function fadeElement(element, start, end, speed, callback) {
 // 5. 모달 관련 함수
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
-  modal.style.display = "block";
-  fadeElement(modal, 0, 1, 25);
+  if (modal) {
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // 모달 바깥 클릭 이벤트 추가
+      modal.addEventListener('click', function(event) {
+          if (event.target === modal) {
+              closeModal(modalId);
+          }
+      });
+  }
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
-  fadeElement(modal, 1, 0, 5, () => {
-    modal.style.display = "none";
-  });
+  if (modal) {
+      modal.classList.add('hidden');
+      setTimeout(() => {
+          modal.style.display = 'none';
+      }, 250);
+      document.body.style.overflow = 'auto';
+  }
 }
 
 // 6. 포트폴리오 필터링 및 애니메이션
@@ -126,42 +142,6 @@ function updateAccessibility(category) {
   });
 }
 
-// 9. 햄버거 메뉴 처리
-function initHamburgerMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('nav ul');
-    
-    if (!hamburger || !navMenu) return;
-    
-    hamburger.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
-    });
-    
-    // 네비게이션 메뉴 항목 클릭 시 메뉴 닫기
-    document.querySelectorAll('nav ul li a').forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    });
-    
-    // 외부 클릭 시 메뉴 닫기
-    document.addEventListener('click', function(e) {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
 // 10. 모달 외부 클릭 처리
 window.onclick = function(event) {
   const modals = document.getElementsByClassName('modal');
@@ -174,3 +154,4 @@ window.onclick = function(event) {
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+
