@@ -1,21 +1,21 @@
 @font-face {
-    font-family: 'LINERg';
+    font-family: 'LINE SEED Sans';
     font-weight: 45 920;
     font-style: normal;
     font-display: swap;
-    src: url('fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
+    src: url('../fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
 }
 @font-face {
-    font-family: 'LINEBd';
+    font-family: 'LINE SEED Sans';
     font-weight: 45 920;
     font-style: bold;
     font-display: swap;
-    src: url('fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
+    src: url('../fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
 }
 
 /* 전체설정 */
 * {
-    font-family: 'LINERg', sans-serif;
+    font-family: 'LINE SEED Sans', sans-serif;
     color: #e9e9e9;
     font-size: 14pt;
     background-color: #151515;
@@ -125,7 +125,7 @@ main {
 
 .main-title .title a,
 .main-title .title2 a {
-    font-family: 'LINEBd', sans-serif;
+    font-family: 'LINE SEED Sans', sans-serif;
     color: #e9e9e9;
     text-decoration-line: none;
     opacity: 0.05;
@@ -142,7 +142,7 @@ main img {
 }
 
 main h1 {
-    font-family: 'LINEBd', sans-serif;
+    font-family: 'LINE SEED Sans', sans-serif;
     font-size: 2.5rem;
 }
 
@@ -161,7 +161,7 @@ main h1 {
 
 .main-text .boost2:hover {
     color: #80CA4E;
-    font-family: 'LINEBd', sans-serif;
+    font-family: 'LINE SEED Sans', sans-serif;
     transition: color 0.1s ease-in-out;
 }
 
@@ -211,6 +211,17 @@ main h1 {
 }
 
 /* contact 파트 */
+.language-toggle {
+    text-align: center;
+    margin-top: 10px;
+}
+.language-toggle a {
+    color: #e9e9e9;
+    margin: 0 5px;
+}
+.language-toggle a:hover {
+    color: #80CA4E;
+}
 .contact {
     display: flex;
     justify-content: center;

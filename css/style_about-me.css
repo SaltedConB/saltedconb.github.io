@@ -1,22 +1,22 @@
 @import url(style.css);
 
 @font-face {
-    font-family: 'LINERg';
+    font-family: 'LINE SEED Sans';
     font-weight: 45 920;
     font-style: normal;
     font-display: swap;
-    src: url('fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
+    src: url('../fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
 }
 @font-face {
-    font-family: 'LINEBd';
+    font-family: 'LINE SEED Sans';
     font-weight: 45 920;
     font-style: bold;
     font-display: swap;
-    src: url('fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
+    src: url('../fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
 }
 /* 전체설정 */
 * {
-    font-family: 'LINERg', sans-serif;
+    font-family: 'LINE SEED Sans', sans-serif;
     color: #e9e9e9;
     font-size: 14pt;
     background-color: #151515;
@@ -109,13 +109,13 @@ main img {
     margin: 0 auto;
 }
 main h1 {
-    font-family: 'LINEBd', sans-serif;
+    font-family: 'LINE SEED Sans', sans-serif;
     font-size: 2rem;
 }
 
 .boost:hover {
     color: rgb(255, 53, 53);
-    font-family: 'LINEBd', sans-serif;
+    font-family: 'LINE SEED Sans', sans-serif;
     transition: color 0.3s ease-in;
 }
 
