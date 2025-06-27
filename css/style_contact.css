@@ -3,15 +3,15 @@
 /* 폰트 설정 */
 @font-face {
     font-family: 'LINE SEED Sans';
-    font-weight: 45 920;
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
     src: url('../fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
 }
 @font-face {
     font-family: 'LINE SEED Sans';
-    font-weight: 45 920;
-    font-style: bold;
+    font-weight: 700;
+    font-style: normal;
     font-display: swap;
     src: url('../fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
 }
