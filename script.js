@@ -9,13 +9,10 @@ const navMenu = document.querySelector('nav ul');
 let isPaused = false;
 
 // 3. 이벤트 리스너
-// 3.1 스크롤 이벤트
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   requestAnimationFrame(scrollCheck);
-  document.addEventListener('DOMContentLoaded', () => {
-    initHamburgerMenu();
 });
-});
+
 function scrollCheck() {
   const browserScrollY = window.scrollY || window.pageYOffset;
   headerEl.classList.toggle("active", browserScrollY > 0);
@@ -153,5 +150,23 @@ window.onclick = function(event) {
 }
 
 // 페이지 로드 시 초기화
-document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+document.addEventListener('DOMContentLoaded', () => {
+  initHamburgerMenu();
+  initScrollAnimations();
+});
+
+function initScrollAnimations() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+}
 
