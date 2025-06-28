@@ -149,6 +149,29 @@ window.onclick = function(event) {
   }
 }
 
+function initHamburgerMenu() {
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
+
+  if (!hamburger || !navMenu) return;
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+}
+
+function toggleMediaPlayback(section) {
+  const media = section.querySelector('video, audio');
+  if (media) {
+    if (media.paused) {
+      media.play();
+    } else {
+      media.pause();
+    }
+  }
+}
+
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', () => {
   initHamburgerMenu();

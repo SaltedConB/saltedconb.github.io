@@ -184,6 +184,7 @@ main h1 {
     width: auto;
     height: 50px;
     display: block;
+    opacity: 1;
 }
 
 .skills-list .skills-list-detail span {
