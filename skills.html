@@ -169,37 +169,6 @@
             <p>© 2024 You Sujong. All rights reserved.</p>
         </div>
     </footer>
-    <script>
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.remove('hidden');
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// 모달 외부 클릭 이벤트 처리
-document.addEventListener('DOMContentLoaded', function() {
-    const modals = document.querySelectorAll('.modal');
-    
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal(modal.id);
-            }
-        });
-    });
-});
-      </script>
     <script src="./script.js"></script>
 </body>
 </html>
