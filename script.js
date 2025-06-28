@@ -2,8 +2,8 @@
 const headerEl = document.querySelector("header");
 const navButtonEl = document.querySelector(".nav-button");
 const mainImg = document.querySelector(".main-img");
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('nav ul');
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector("nav ul");
 
 // 2. 상태 변수
 let isPaused = false;
@@ -19,7 +19,7 @@ function scrollCheck() {
 }
 
 // 3.2 리사이즈 이벤트
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   if (!navButtonEl) return;
   const windowWidth = window.innerWidth;
   const fontSize = windowWidth / 20;
@@ -32,7 +32,7 @@ window.addEventListener('resize', () => {
 
 // 3.3 이미지 관련 이벤트
 if (mainImg) {
-  mainImg.addEventListener('click', () => {
+  mainImg.addEventListener("click", () => {
     isPaused = !isPaused;
     mainImg.classList.toggle("paused", isPaused);
   });
@@ -66,102 +66,105 @@ function fadeElement(element, start, end, speed, callback) {
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
-      modal.classList.remove('hidden');
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      
-      // 모달 바깥 클릭 이벤트 추가
-      modal.addEventListener('click', function(event) {
-          if (event.target === modal) {
-              closeModal(modalId);
-          }
-      });
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+
+    // 모달 바깥 클릭 이벤트 추가
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeModal(modalId);
+      }
+    });
   }
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
-      modal.classList.add('hidden');
-      setTimeout(() => {
-          modal.style.display = 'none';
-      }, 250);
-      document.body.style.overflow = 'auto';
+    modal.classList.add("hidden");
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 250);
+    document.body.style.overflow = "auto";
   }
 }
 
 // 6. 포트폴리오 필터링 및 애니메이션
 function filterPortfolio(category) {
-  const grid = document.querySelector('.portfolio-grid');
-  const items = document.getElementsByClassName('portfolio-item');
+  const grid = document.querySelector(".portfolio-grid");
+  const items = document.getElementsByClassName("portfolio-item");
   if (!grid || items.length === 0) return;
-  grid.classList.add('animate-grid');
-  
+  grid.classList.add("animate-grid");
+
   Array.from(items).forEach((item, index) => {
-    const shouldShow = category === 'all' || item.classList.contains(category);
+    const shouldShow = category === "all" || item.classList.contains(category);
     if (shouldShow) {
       showItem(item, index);
     } else {
       hideItem(item);
     }
   });
-  
+
   updateAccessibility(category);
 }
 
 // 7. 아이템 애니메이션 함수
 function showItem(item, index) {
-  item.style.display = 'block';
-  item.classList.add('fade-hidden');
+  item.style.display = "block";
+  item.classList.add("fade-hidden");
   setTimeout(() => {
-    item.classList.remove('fade-hidden');
+    item.classList.remove("fade-hidden");
   }, index * 100);
 }
 
 function hideItem(item) {
-  item.classList.add('fade-hidden');
+  item.classList.add("fade-hidden");
   setTimeout(() => {
-    item.style.display = 'none';
+    item.style.display = "none";
   }, 300);
 }
 
 // 8. 접근성 관련
 function updateAccessibility(category) {
-  const buttons = document.querySelectorAll('.portfolio-categories button');
+  const buttons = document.querySelectorAll(".portfolio-categories button");
   if (buttons.length === 0) return;
-  buttons.forEach(button => {
-    const isSelected = button.textContent.toLowerCase().includes(category) || 
-                      (category === 'all' && button.textContent === '전체');
-    button.setAttribute('aria-pressed', isSelected);
-    button.setAttribute('aria-label', 
-      `${button.textContent} 카테고리 ${isSelected ? '선택됨' : ''}`);
+  buttons.forEach((button) => {
+    const isSelected =
+      button.textContent.toLowerCase().includes(category) ||
+      (category === "all" && button.textContent === "전체");
+    button.setAttribute("aria-pressed", isSelected);
+    button.setAttribute(
+      "aria-label",
+      `${button.textContent} 카테고리 ${isSelected ? "선택됨" : ""}`,
+    );
   });
 }
 
 // 10. 모달 외부 클릭 처리
-window.onclick = function(event) {
-  const modals = document.getElementsByClassName('modal');
+window.onclick = function (event) {
+  const modals = document.getElementsByClassName("modal");
   for (let i = 0; i < modals.length; i++) {
     if (event.target == modals[i]) {
-      modals[i].style.display = 'none';
+      modals[i].style.display = "none";
     }
   }
-}
+};
 
 function initHamburgerMenu() {
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector("nav ul");
 
   if (!hamburger || !navMenu) return;
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
   });
 }
 
 function toggleMediaPlayback(section) {
-  const media = section.querySelector('video, audio');
+  const media = section.querySelector("video, audio");
   if (media) {
     if (media.paused) {
       media.play();
@@ -172,31 +175,34 @@ function toggleMediaPlayback(section) {
 }
 
 // 페이지 로드 시 초기화
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   initHamburgerMenu();
   initScrollAnimations();
   initWipeLinks();
 });
 
 function initScrollAnimations() {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
 
-  document.querySelectorAll('.fade-on-scroll').forEach(el => {
+  document.querySelectorAll(".fade-on-scroll").forEach((el) => {
     observer.observe(el);
   });
 }
 
 function initWipeLinks() {
-  const links = document.querySelectorAll('.wipe-link');
-  links.forEach(link => {
-    link.addEventListener('click', e => {
+  const links = document.querySelectorAll(".wipe-link");
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
       e.preventDefault();
       const href = link.href;
       startWipe(() => {
@@ -207,39 +213,11 @@ function initWipeLinks() {
 }
 
 function startWipe(callback) {
-  const overlay = document.querySelector('.wipe-overlay');
+  const overlay = document.querySelector(".wipe-overlay");
   if (!overlay) {
     callback();
     return;
   }
-  overlay.classList.add('active');
-  setTimeout(callback, 600);
-}
-
-  document.querySelectorAll('.fade-on-scroll').forEach(el => {
-    observer.observe(el);
-  });
-}
-
-function initWipeLinks() {
-  const links = document.querySelectorAll('.wipe-link');
-  links.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const href = link.href;
-      startWipe(() => {
-        window.location.href = href;
-      });
-    });
-  });
-}
-
-function startWipe(callback) {
-  const overlay = document.querySelector('.wipe-overlay');
-  if (!overlay) {
-    callback();
-    return;
-  }
-  overlay.classList.add('active');
+  overlay.classList.add("active");
   setTimeout(callback, 600);
 }
