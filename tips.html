@@ -53,6 +53,12 @@
                 </article>
                 <!-- 글을 추가하려면 위 형식의 tip-item 블록을 복사해 작성하세요. -->
             </div>
+            <form id="post-form">
+                <input type="text" id="post-title" placeholder="제목" required>
+                <textarea id="post-content" placeholder="내용" required></textarea>
+                <button type="submit">업로드</button>
+            </form>
+            <div id="posts"></div>
         </section>
     </main>
     <footer>
@@ -61,5 +67,6 @@
         </div>
     </footer>
     <script src="./script.js"></script>
+    <script src="./tips.js"></script>
 </body>
 </html>
