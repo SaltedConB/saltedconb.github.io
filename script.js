@@ -98,36 +98,28 @@ function filterPortfolio(category) {
   grid.classList.add('animate-grid');
   
   Array.from(items).forEach((item, index) => {
-    setTimeout(() => {
-      const shouldShow = category === 'all' || item.classList.contains(category);
-      item.style.display = shouldShow ? 'block' : 'none';
-      
-      if (shouldShow) {
-        animateItem(item, index);
-      } else {
-        fadeOutItem(item);
-      }
-    }, 50);
+    const shouldShow = category === 'all' || item.classList.contains(category);
+    if (shouldShow) {
+      showItem(item, index);
+    } else {
+      hideItem(item);
+    }
   });
   
   updateAccessibility(category);
 }
 
 // 7. 아이템 애니메이션 함수
-function animateItem(item, index) {
-  item.style.opacity = '0';
-  item.style.transform = 'translateY(20px)';
-  
+function showItem(item, index) {
+  item.style.display = 'block';
+  item.classList.add('fade-hidden');
   setTimeout(() => {
-    item.style.opacity = '1';
-    item.style.transform = 'translateY(0)';
+    item.classList.remove('fade-hidden');
   }, index * 100);
 }
 
-function fadeOutItem(item) {
-  item.style.opacity = '0';
-  item.style.transform = 'translateY(20px)';
-  
+function hideItem(item) {
+  item.classList.add('fade-hidden');
   setTimeout(() => {
     item.style.display = 'none';
   }, 300);
