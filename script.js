@@ -175,6 +175,7 @@ function toggleMediaPlayback(section) {
 document.addEventListener('DOMContentLoaded', () => {
   initHamburgerMenu();
   initScrollAnimations();
+  initWipeLinks();
 });
 
 function initScrollAnimations() {
@@ -192,3 +193,25 @@ function initScrollAnimations() {
   });
 }
 
+function initWipeLinks() {
+  const links = document.querySelectorAll('.wipe-link');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const href = link.href;
+      startWipe(() => {
+        window.location.href = href;
+      });
+    });
+  });
+}
+
+function startWipe(callback) {
+  const overlay = document.querySelector('.wipe-overlay');
+  if (!overlay) {
+    callback();
+    return;
+  }
+  overlay.classList.add('active');
+  setTimeout(callback, 600);
+}

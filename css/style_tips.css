@@ -24,10 +24,14 @@
 
 .tip-item {
     position: relative;
+    display: block;
     background: #1a1a1a;
     border-radius: 15px;
     overflow: hidden;
     aspect-ratio: 1 / 1;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .tip-thumb {
