@@ -20,6 +20,7 @@ function scrollCheck() {
 
 // 3.2 리사이즈 이벤트
 window.addEventListener('resize', () => {
+  if (!navButtonEl) return;
   const windowWidth = window.innerWidth;
   const fontSize = windowWidth / 20;
   const buttonSize = windowWidth / 10;
@@ -30,18 +31,22 @@ window.addEventListener('resize', () => {
 });
 
 // 3.3 이미지 관련 이벤트
-mainImg.addEventListener('click', () => {
-  isPaused = !isPaused;
-  mainImg.classList.toggle("paused", isPaused);
-});
+if (mainImg) {
+  mainImg.addEventListener('click', () => {
+    isPaused = !isPaused;
+    mainImg.classList.toggle("paused", isPaused);
+  });
+}
 
 // 4. 애니메이션 효과
 // 4.1 이미지 페이드 효과
-setInterval(() => {
-  if (!isPaused) {
-    mainImg.classList.toggle("fade");
-  }
-}, 100);
+if (mainImg) {
+  setInterval(() => {
+    if (!isPaused) {
+      mainImg.classList.toggle("fade");
+    }
+  }, 100);
+}
 
 // 4.2 페이드 효과 유틸리티 함수
 function fadeElement(element, start, end, speed, callback) {
@@ -87,8 +92,9 @@ function closeModal(modalId) {
 
 // 6. 포트폴리오 필터링 및 애니메이션
 function filterPortfolio(category) {
-  const items = document.getElementsByClassName('portfolio-item');
   const grid = document.querySelector('.portfolio-grid');
+  const items = document.getElementsByClassName('portfolio-item');
+  if (!grid || items.length === 0) return;
   grid.classList.add('animate-grid');
   
   Array.from(items).forEach((item, index) => {
@@ -130,6 +136,7 @@ function fadeOutItem(item) {
 // 8. 접근성 관련
 function updateAccessibility(category) {
   const buttons = document.querySelectorAll('.portfolio-categories button');
+  if (buttons.length === 0) return;
   buttons.forEach(button => {
     const isSelected = button.textContent.toLowerCase().includes(category) || 
                       (category === 'all' && button.textContent === '전체');
