@@ -215,4 +215,3 @@ function startWipe(callback) {
   overlay.classList.add('active');
   setTimeout(callback, 600);
 }
-
