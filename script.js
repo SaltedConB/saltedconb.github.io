@@ -9,13 +9,10 @@ const navMenu = document.querySelector('nav ul');
 let isPaused = false;
 
 // 3. 이벤트 리스너
-// 3.1 스크롤 이벤트
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   requestAnimationFrame(scrollCheck);
-  document.addEventListener('DOMContentLoaded', () => {
-    initHamburgerMenu();
 });
-});
+
 function scrollCheck() {
   const browserScrollY = window.scrollY || window.pageYOffset;
   headerEl.classList.toggle("active", browserScrollY > 0);
@@ -23,6 +20,7 @@ function scrollCheck() {
 
 // 3.2 리사이즈 이벤트
 window.addEventListener('resize', () => {
+  if (!navButtonEl) return;
   const windowWidth = window.innerWidth;
   const fontSize = windowWidth / 20;
   const buttonSize = windowWidth / 10;
@@ -33,18 +31,22 @@ window.addEventListener('resize', () => {
 });
 
 // 3.3 이미지 관련 이벤트
-mainImg.addEventListener('click', () => {
-  isPaused = !isPaused;
-  mainImg.classList.toggle("paused", isPaused);
-});
+if (mainImg) {
+  mainImg.addEventListener('click', () => {
+    isPaused = !isPaused;
+    mainImg.classList.toggle("paused", isPaused);
+  });
+}
 
 // 4. 애니메이션 효과
 // 4.1 이미지 페이드 효과
-setInterval(() => {
-  if (!isPaused) {
-    mainImg.classList.toggle("fade");
-  }
-}, 100);
+if (mainImg) {
+  setInterval(() => {
+    if (!isPaused) {
+      mainImg.classList.toggle("fade");
+    }
+  }, 100);
+}
 
 // 4.2 페이드 효과 유틸리티 함수
 function fadeElement(element, start, end, speed, callback) {
@@ -90,41 +92,34 @@ function closeModal(modalId) {
 
 // 6. 포트폴리오 필터링 및 애니메이션
 function filterPortfolio(category) {
-  const items = document.getElementsByClassName('portfolio-item');
   const grid = document.querySelector('.portfolio-grid');
+  const items = document.getElementsByClassName('portfolio-item');
+  if (!grid || items.length === 0) return;
   grid.classList.add('animate-grid');
   
   Array.from(items).forEach((item, index) => {
-    setTimeout(() => {
-      const shouldShow = category === 'all' || item.classList.contains(category);
-      item.style.display = shouldShow ? 'block' : 'none';
-      
-      if (shouldShow) {
-        animateItem(item, index);
-      } else {
-        fadeOutItem(item);
-      }
-    }, 50);
+    const shouldShow = category === 'all' || item.classList.contains(category);
+    if (shouldShow) {
+      showItem(item, index);
+    } else {
+      hideItem(item);
+    }
   });
   
   updateAccessibility(category);
 }
 
 // 7. 아이템 애니메이션 함수
-function animateItem(item, index) {
-  item.style.opacity = '0';
-  item.style.transform = 'translateY(20px)';
-  
+function showItem(item, index) {
+  item.style.display = 'block';
+  item.classList.add('fade-hidden');
   setTimeout(() => {
-    item.style.opacity = '1';
-    item.style.transform = 'translateY(0)';
+    item.classList.remove('fade-hidden');
   }, index * 100);
 }
 
-function fadeOutItem(item) {
-  item.style.opacity = '0';
-  item.style.transform = 'translateY(20px)';
-  
+function hideItem(item) {
+  item.classList.add('fade-hidden');
   setTimeout(() => {
     item.style.display = 'none';
   }, 300);
@@ -133,6 +128,7 @@ function fadeOutItem(item) {
 // 8. 접근성 관련
 function updateAccessibility(category) {
   const buttons = document.querySelectorAll('.portfolio-categories button');
+  if (buttons.length === 0) return;
   buttons.forEach(button => {
     const isSelected = button.textContent.toLowerCase().includes(category) || 
                       (category === 'all' && button.textContent === '전체');
@@ -152,6 +148,71 @@ window.onclick = function(event) {
   }
 }
 
+function initHamburgerMenu() {
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
+
+  if (!hamburger || !navMenu) return;
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+}
+
+function toggleMediaPlayback(section) {
+  const media = section.querySelector('video, audio');
+  if (media) {
+    if (media.paused) {
+      media.play();
+    } else {
+      media.pause();
+    }
+  }
+}
+
 // 페이지 로드 시 초기화
-document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+document.addEventListener('DOMContentLoaded', () => {
+  initHamburgerMenu();
+  initScrollAnimations();
+  initWipeLinks();
+});
+
+function initScrollAnimations() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+function initWipeLinks() {
+  const links = document.querySelectorAll('.wipe-link');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const href = link.href;
+      startWipe(() => {
+        window.location.href = href;
+      });
+    });
+  });
+}
+
+function startWipe(callback) {
+  const overlay = document.querySelector('.wipe-overlay');
+  if (!overlay) {
+    callback();
+    return;
+  }
+  overlay.classList.add('active');
+  setTimeout(callback, 600);
+}
 
