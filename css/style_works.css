@@ -244,6 +244,12 @@ main h1 {
     transition: opacity 0.25s ease;
 }
 
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease-in-out;
+}
+
 .modal-content {
     background-color: #151515;
     margin: 15% auto;
