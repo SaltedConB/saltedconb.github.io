@@ -1,81 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yoo Sujong's Portfolio</title>
-    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
     <header>
-        <nav>
+      <nav>
         <div class="logo">
-            <a href="./index_ja.html"><img src="./img/favicon-light.png" alt="logo" style="width: 56px;"></a>
+          <a href="./index_ja.html"
+            ><img src="./img/favicon-light.png" alt="logo" style="width: 56px"
+          /></a>
         </div>
         <button type="button" class="hamburger" aria-label="メニュー">
-            <span></span>
-            <span></span>
-            <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
         <ul>
-            <li>
-                <a href="./about-me.html"><button data-animation-scroll="true" data-target="#main">About Me</button></a>
-            </li>
-            <li>
-                <a href="./skills.html"><button data-animation-scroll="true" data-target="#main">Skills</button></a>
-            </li>
-            <li>
-                <a href="./works.html"><button data-animation-scroll="true" data-target="#main">Works</button></a>
-            </li>
-            <li>
-                <a href="./tips.html"><button data-animation-scroll="true" data-target="#main">Tips</button></a>
-            </li>
-            <li>
-                <a href="./contact.html"><button data-animation-scroll="true" data-target="#main">Contact</button></a>
-            </li>
+          <li>
+            <a href="./about-me.html"
+              ><button data-animation-scroll="true" data-target="#main">
+                About Me
+              </button></a
+            >
+          </li>
+          <li>
+            <a href="./skills.html"
+              ><button data-animation-scroll="true" data-target="#main">
+                Skills
+              </button></a
+            >
+          </li>
+          <li>
+            <a href="./works.html"
+              ><button data-animation-scroll="true" data-target="#main">
+                Works
+              </button></a
+            >
+          </li>
+          <li>
+            <a href="./contact.html"
+              ><button data-animation-scroll="true" data-target="#main">
+                Contact
+              </button></a
+            >
+          </li>
         </ul>
-        </nav>
+      </nav>
     </header>
     <main>
-        <section class="about" onclick="toggleMediaPlayback(this)">
-            <div class="title">
-            <img src="./img/title.webp" alt="thumbnail" style="max-width: 75%; height: auto;">
-            </div>
-        </section>
-        <section class="main">
-            <div class="main-text">
-                <h1 class="main-title">Seamless <span id="boost">Creativity.</span></h1>
-                <p><strong>こんにちは、<br>
-                    <span class="boost">途切れない創造力</span>を持つデザイナー、<br>
-                    <span class="boost2"><a href="./about-me.html">ユ・スジョンです。</a></span></strong></p>
-            </div>
-            <div class="main-img">
-                <img src="./img/main@4x.webp" alt="main" style="max-width: 100%; height: auto;">
-            </div>
-        </section>
-        <section class="about-me">
-        </section>
-        <section class="contact">
-            <div class="contact-text">
-                <p>
-                <h1 class="contact-title">Need Contact?</h1>
-                <h2>ご連絡は下記よりお願いいたします。</h2>
-                </p>
-                <a href="./contact.html"><button>Contact</button></a>
-            </div>
-        </section>
+      <section class="about" onclick="toggleMediaPlayback(this)">
+        <div class="title">
+          <img
+            src="./img/title.webp"
+            alt="thumbnail"
+            style="max-width: 75%; height: auto"
+          />
+        </div>
+      </section>
+      <section class="main">
+        <div class="main-text">
+          <h1 class="main-title">
+            Seamless <span id="boost">Creativity.</span>
+          </h1>
+          <span class="boost">途切れない創造力</span>を持つデザイナー、<br />
+        </div>
+        <div class="main-img">
+          <img
+            src="./img/main@4x.webp"
+            alt="main"
+            style="max-width: 100%; height: auto"
+          />
+        </div>
+      </section>
+      <section class="about-me"></section>
+      <section class="contact">
+        <div class="contact-text">
+          <h1 class="contact-title">Need Contact?</h1>
+          <h2>ご連絡は下記よりお願いいたします。</h2>
+          <a href="./contact.html"><button>Contact</button></a>
+        </div>
+      </section>
     </main>
     <footer>
-        <div class="footer-text">
-            <p>© 2024 You Sujong. All rights reserved.</p>
-        </div>
-        <div class="language-toggle">
-            <a href="index.html">한국어</a> |
-            <a href="index_en.html">English</a> |
-            <a href="index_ja.html">日本語</a>
-        </div>
+      <div class="footer-text"></div>
+      <div class="language-toggle">
+        <a href="index.html">한국어</a> | <a href="index_en.html">English</a> |
+        <a href="index_ja.html">日本語</a>
+      </div>
     </footer>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

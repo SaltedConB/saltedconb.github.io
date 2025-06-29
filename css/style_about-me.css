@@ -1,317 +1,37 @@
 @import url(style.css);
 
-@font-face {
-    font-family: 'LINE SEED Sans';
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src: url('../fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
-}
-@font-face {
-    font-family: 'LINE SEED Sans';
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-    src: url('../fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
-}
-/* 전체설정 */
-* {
-    font-family: 'LINE SEED Sans', sans-serif;
-    color: #e9e9e9;
-    font-size: 14pt;
-    background-color: #151515;
-}
-/* 바디 부분 */
-body {
-    -webkit-user-select: none; /* 사파리 */
-    -moz-user-select: none; /* 파폭 */
-    -ms-user-select: none; /* 엣지 */
-    user-select: none; /* 크롬 */
-    margin: .5rem;
-
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid #e9e9e9;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 320px;
 }
 
-img {
-    pointer-events: none; /* 이미지 불펌 방지용 */
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px 0;
-}
-/* 네비게이션 바 관련 */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin: 0 7.5%;
-    flex-wrap: wrap;
-    padding: 10px;
-}
-nav .logo {
-    padding: 0 20px;
+.card-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
+.card .title {
+  font-size: 1rem;
+  color: #b4b4b4;
+  margin-bottom: 0.5rem;
 }
 
-nav li {
-    margin: 0 10px;
+.links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-nav a {
-    text-decoration: none;
-    color: #2b2b2b;
-}
-.main-title {
-    opacity: 0.1;
-    transition: opacity 0.25s ease-in;
-}
-.main-title:hover {
-    opacity: 1;
-}
-nav button {
-    border: none;
-    border-radius: 50px;
-    font-size: 14pt;
-    padding: 12px 24px;
-    margin: 0;
-    cursor: pointer;
-    transition: background-color 0.1s ease-in, color 0.1s ease-in;
-    white-space: nowrap;
-}
-
-nav ul li button:active {
-    color: #3b9400;
-    background-color: #e9e9e9;
-}
-
-nav button:hover {
-    background-color: #2b2b2b;
-    color: #e9e9e9;
-}
-
-/* 메인 관련 */
-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24pt;
-    flex-direction: column;
-    background-color: transparent;
-}
-
-main img {
-    margin: 0 auto;
-}
-main h1 {
-    font-family: 'LINE SEED Sans', sans-serif;
-    font-size: 2rem;
-}
-
-.boost:hover {
-    color: rgb(255, 53, 53);
-    font-family: 'LINE SEED Sans', sans-serif;
-    transition: color 0.3s ease-in;
-}
-
-::selection {
-    background-color: #2b2b2b;
-    color: #e9e9e9;
-}
-
-.footer-text {
-    font-size: 10pt;
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-/* 자기소개 파트 */
-.about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 10px;
-    flex-direction: column;
-    background-color: transparent;
-    border: #e9e9e9 15px solid;
-    border-radius: 25px;
-    width: 90%;
-    max-width: 1200px;
-}
-.about-intro {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
-}
-.background-image {
-    position: relative;
-    width: 100%;
-    max-width: 240px;
-    height: auto;
-    margin: 0 auto;
-}
-.background-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 25px;
-    margin: 0 auto;
-}
-/* 출처: https://memostack.tistory.com/260 [memostack:티스토리] */
-
-/* 자기소개 텍스트 */
-.about-text {
-    text-align: center;
-    padding: 15px;
-    margin: 10px auto;
-    width: 90%;
-}
-
-.about-text h1 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-.about-text p {
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-/* 공모전, 자격증, 수상 관련 */
-.about-award {
-    position: relative;
-    transform: translate(50, 50);
-    background-color: transparent;
-    margin: -36pt 0pt 24pt 0pt;
-    padding: 0;
-    border-bottom: 5px solid #e9e9e9;
-    /* 갭 줄이기용 마진값 */
-    width: 90%;
-}
-.about-award .award1,.award2,.award3 {
-    display: flex;
-    justify-content: space-between;
-    text-align: right;
-    align-items: left;
-    flex-direction: row;
-    margin: auto;
-    padding: auto;
-    object-fit: cover;
-    background-color: transparent;
-    border-bottom: 1px solid #e9e9e9;
-}
-.about-award .award4 {
-    display: flex;
-    justify-content: space-between;
-    text-align: right;
-    align-items: left;
-    flex-direction: row;
-    margin: auto;
-    padding: auto;
-    object-fit: cover;
-    background-color: transparent;
-}
-/* 학력 관련 */
-.about-education {
-    position: relative;
-    transform: translate(50, 50);
-    background-color: transparent;
-    margin: 12pt 0pt 12pt 0;
-    padding: 10px 20px;
-    width: 90%;
-}
-
-.about-education .education1,.education2 {
-    display: flex;
-    justify-content: space-between;
-    text-align: right;
-    align-items: left;
-    flex-direction: row;
-    margin: auto;
-    padding: auto;
-    object-fit: cover;
-    background-color: transparent;
-}
-.about-education .education1 {
-    border-bottom: 1px solid #e9e9e9;
-}
-
-@media screen and (max-width: 768px) {
-    * {
-        font-size: 11pt;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.2rem;
-    }
-
-    h3 {
-        font-size: 1rem;
-    }
-
-    p, span {
-        font-size: 7pt;
-    }
-    nav {
-        margin: 0;
-        padding: 10px;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    nav .logo {
-        padding: 0;
-        margin-bottom: 10px;
-    }
-    
-    nav ul {
-        display: flex;
-        position: static;
-        width: 100%;
-        height: auto;
-        background: transparent;
-        flex-direction: row;
-        justify-content: center;
-        padding: 3pt;
-        margin: 0;
-        gap: 5px;
-    }
-    
-    nav li {
-        margin: 0;
-        opacity: 1;
-        transform: none;
-    }
-    
-    nav button {
-        font-size: 11pt;
-        padding: 8px 16px;
-        width: auto;
-    }
-}
-
-/* 더 작은 화면에서의 추가 조정 */
-@media screen and (max-width: 480px) {
-    nav button {
-        font-size: 10pt;
-        padding: 6px 12px;
-    }
-    
-    nav ul {
-        gap: 3px;
-    }
+.links a:hover {
+  color: #80ca4e;
 }
