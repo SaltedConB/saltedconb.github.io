@@ -65,29 +65,36 @@ function fadeElement(element, start, end, speed, callback) {
 // 5. 모달 관련 함수
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.classList.remove("hidden");
-    modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
+  if (!modal) return;
 
-    // 모달 바깥 클릭 이벤트 추가
-    modal.addEventListener("click", function (event) {
-      if (event.target === modal) {
-        closeModal(modalId);
-      }
+  modal.style.display = "flex";
+  // 다음 프레임에서 hidden 제거 → CSS transition 트리거
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      modal.classList.remove("hidden");
     });
-  }
+  });
+  document.body.style.overflow = "hidden";
+
+  // 모달 바깥 클릭으로 닫기
+  modal.addEventListener("click", function handler(event) {
+    if (event.target === modal) {
+      closeModal(modalId);
+      modal.removeEventListener("click", handler);
+    }
+  });
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.classList.add("hidden");
-    setTimeout(() => {
-      modal.style.display = "none";
-    }, 250);
-    document.body.style.overflow = "auto";
-  }
+  if (!modal) return;
+
+  modal.classList.add("hidden");
+  document.body.style.overflow = "auto";
+  // transition 끝나면 display:none
+  setTimeout(() => {
+    modal.style.display = "none";
+  }, 400);
 }
 
 // 6. 포트폴리오 필터링 및 애니메이션
@@ -178,7 +185,16 @@ function toggleMediaPlayback(section) {
 document.addEventListener("DOMContentLoaded", () => {
   initHamburgerMenu();
   initScrollAnimations();
-  initWipeLinks();
+  injectTransitionOverlay();
+  initPageTransitions();
+  playEnterTransition();
+});
+
+// bfcache (뒤로가기) 지원
+window.addEventListener("pageshow", (e) => {
+  if (e.persisted) {
+    playEnterTransition();
+  }
 });
 
 function initScrollAnimations() {
@@ -199,25 +215,74 @@ function initScrollAnimations() {
   });
 }
 
-function initWipeLinks() {
-  const links = document.querySelectorAll(".wipe-link");
-  links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const href = link.href;
-      startWipe(() => {
-        window.location.href = href;
-      });
+// ===== Double Wipe Transition System =====
+
+function injectTransitionOverlay() {
+  if (document.querySelector(".transition-wrapper")) return;
+  const wrapper = document.createElement("div");
+  wrapper.className = "transition-wrapper";
+  wrapper.innerHTML =
+    '<div class="transition-layer transition-layer-1"></div>' +
+    '<div class="transition-layer transition-layer-2"></div>';
+  document.body.appendChild(wrapper);
+}
+
+function initPageTransitions() {
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a[href]");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    // 외부 링크, 앵커, javascript: 등은 무시
+    if (
+      !href ||
+      href.startsWith("#") ||
+      href.startsWith("javascript:") ||
+      href.startsWith("http") ||
+      href.startsWith("mailto:")
+    ) {
+      return;
+    }
+
+    e.preventDefault();
+    playExitTransition(() => {
+      window.location.href = href;
     });
   });
 }
 
-function startWipe(callback) {
-  const overlay = document.querySelector(".wipe-overlay");
-  if (!overlay) {
+function playExitTransition(callback) {
+  const wrapper = document.querySelector(".transition-wrapper");
+  if (!wrapper) {
     callback();
     return;
   }
-  overlay.classList.add("active");
-  setTimeout(callback, 600);
+  // 깨끗한 상태에서 시작
+  wrapper.classList.remove("phase-cover", "phase-reveal", "no-transition");
+  wrapper.offsetWidth; // force reflow
+  // 레이어 확장 (L→R 커버)
+  wrapper.classList.add("phase-cover");
+  // transition 완료 후 네비게이션
+  setTimeout(callback, 500);
+}
+
+function playEnterTransition() {
+  const wrapper = document.querySelector(".transition-wrapper");
+  if (!wrapper) return;
+
+  // 1) 즉시 커버 상태로 세팅 (transition 없이)
+  wrapper.classList.remove("phase-reveal");
+  wrapper.classList.add("no-transition", "phase-cover");
+  wrapper.offsetWidth; // force reflow
+
+  // 2) transition 활성화 후 reveal
+  wrapper.classList.remove("no-transition");
+  wrapper.offsetWidth; // force reflow
+  wrapper.classList.remove("phase-cover");
+  wrapper.classList.add("phase-reveal");
+
+  // 3) 완료 후 정리
+  setTimeout(() => {
+    wrapper.classList.remove("phase-reveal");
+  }, 600);
 }
