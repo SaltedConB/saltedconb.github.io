@@ -1,45 +1,13 @@
 @import url(style.css);
 
-@font-face {
-    font-family: 'LINE SEED Sans';
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src: url('../fonts/woff2/LINESeedKR-Rg.woff2') format('woff2-variations');
-}
-@font-face {
-    font-family: 'LINE SEED Sans';
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-    src: url('../fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
-}
-/* 전체설정 */
-* {
-    font-family: 'LINE SEED Sans', sans-serif;
-    color: #e9e9e9;
-    font-size: 14pt;
-    background-color: #151515;
-}
-/* 바디 부분 */
-body {
-    -webkit-user-select: none; /* 사파리 */
-    -moz-user-select: none; /* 파폭 */
-    -ms-user-select: none; /* 엣지 */
-    user-select: none; /* 크롬 */
-    margin: .5rem;
-
-}
-
-img {
-    pointer-events: none; /* 이미지 불펌 방지용 */
-}
+/* font-face and global styles are inherited from style.css */
 header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px 0;
 }
+
 /* 네비게이션 바 관련 */
 nav {
     display: flex;
@@ -50,6 +18,7 @@ nav {
     flex-wrap: wrap;
     padding: 10px;
 }
+
 nav .logo {
     padding: 0 20px;
 }
@@ -67,13 +36,16 @@ nav a {
     text-decoration: none;
     color: #2b2b2b;
 }
+
 .main-title {
     opacity: 0.1;
     transition: opacity 0.25s ease-in;
 }
+
 .main-title:hover {
     opacity: 1;
 }
+
 nav button {
     border: none;
     border-radius: 50px;
@@ -108,6 +80,7 @@ main {
 main img {
     margin: 0 auto;
 }
+
 main h1 {
     font-family: 'LINE SEED Sans', sans-serif;
     font-size: 2rem;
@@ -145,6 +118,7 @@ main h1 {
     width: 90%;
     max-width: 1200px;
 }
+
 .about-intro {
     display: flex;
     justify-content: center;
@@ -154,6 +128,7 @@ main h1 {
     margin: 10px 0;
     width: 100%;
 }
+
 .background-image {
     position: relative;
     width: 100%;
@@ -161,12 +136,14 @@ main h1 {
     height: auto;
     margin: 0 auto;
 }
+
 .background-image img {
     width: 100%;
     height: auto;
     border-radius: 25px;
     margin: 0 auto;
 }
+
 /* 출처: https://memostack.tistory.com/260 [memostack:티스토리] */
 
 /* 자기소개 텍스트 */
@@ -198,7 +175,10 @@ main h1 {
     /* 갭 줄이기용 마진값 */
     width: 90%;
 }
-.about-award .award1,.award2,.award3 {
+
+.about-award .award1,
+.award2,
+.award3 {
     display: flex;
     justify-content: space-between;
     text-align: right;
@@ -210,6 +190,7 @@ main h1 {
     background-color: transparent;
     border-bottom: 1px solid #e9e9e9;
 }
+
 .about-award .award4 {
     display: flex;
     justify-content: space-between;
@@ -221,6 +202,7 @@ main h1 {
     object-fit: cover;
     background-color: transparent;
 }
+
 /* 학력 관련 */
 .about-education {
     position: relative;
@@ -231,7 +213,8 @@ main h1 {
     width: 90%;
 }
 
-.about-education .education1,.education2 {
+.about-education .education1,
+.education2 {
     display: flex;
     justify-content: space-between;
     text-align: right;
@@ -242,6 +225,7 @@ main h1 {
     object-fit: cover;
     background-color: transparent;
 }
+
 .about-education .education1 {
     border-bottom: 1px solid #e9e9e9;
 }
@@ -263,21 +247,23 @@ main h1 {
         font-size: 1rem;
     }
 
-    p, span {
+    p,
+    span {
         font-size: 7pt;
     }
+
     nav {
         margin: 0;
         padding: 10px;
         flex-direction: column;
         align-items: center;
     }
-    
+
     nav .logo {
         padding: 0;
         margin-bottom: 10px;
     }
-    
+
     nav ul {
         display: flex;
         position: static;
@@ -290,13 +276,13 @@ main h1 {
         margin: 0;
         gap: 5px;
     }
-    
+
     nav li {
         margin: 0;
         opacity: 1;
         transform: none;
     }
-    
+
     nav button {
         font-size: 11pt;
         padding: 8px 16px;
@@ -310,8 +296,17 @@ main h1 {
         font-size: 10pt;
         padding: 6px 12px;
     }
-    
+
     nav ul {
         gap: 3px;
     }
+}
+
+/* Utility classes from inline styles */
+.logo-img {
+    width: 56px;
+}
+
+.transparent-bg {
+    background-color: transparent !important;
 }
