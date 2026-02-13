@@ -126,7 +126,7 @@ main {
     font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
     font-weight: 100;
     font-variation-settings: 'wght' 100;
-    font-size: 4rem;
+    font-size: 3.6rem;
     transition: font-weight 0.3s ease, font-variation-settings 0.3s ease, opacity 0.3s ease, color 0.3s ease;
     opacity: 0.25;
     text-align: center;
@@ -164,7 +164,7 @@ main h1 {
 }
 
 .main-text {
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 0 auto;
     text-align: center;
     padding: 20px 60pt;
@@ -435,7 +435,7 @@ body.page-leaving {
     }
 
     .landing-subtitle {
-        font-size: 0.2rem;
+        font-size: 1rem;
     }
 
     .my-works-btn {
