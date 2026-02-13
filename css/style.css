@@ -14,6 +14,11 @@
     src: url('../fonts/woff2/LINESeedKR-Bd.woff2') format('woff2-variations');
 }
 
+/* CSS 변수 */
+:root {
+    --accent: #80CA4E;
+}
+
 /* 전체설정 */
 * {
     font-family: 'LINE SEED Sans', sans-serif;
@@ -26,19 +31,14 @@
 /* 바디 부분 */
 body {
     -webkit-user-select: none;
-    /* 사파리 */
     -moz-user-select: none;
-    /* 파폭 */
     -ms-user-select: none;
-    /* 엣지 */
     user-select: none;
-    /* 크롬 */
     margin: .5rem;
 }
 
 img {
     pointer-events: none;
-    /* 이미지 불펌 방지용 */
 }
 
 header {
@@ -54,13 +54,13 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 7.5%;
+    margin: 0 4%;
     flex-wrap: wrap;
     padding: 10px;
 }
 
 nav .logo {
-    padding: 0 20px;
+    padding: 0;
 }
 
 nav ul {
@@ -94,15 +94,16 @@ nav ul li button:active {
 
 nav button:hover {
     background-color: #2b2b2b;
-    color: #80CA4E;
+    color: var(--accent);
 }
 
 /* 메인 관련 */
 main {
     display: flex;
     justify-content: center;
-    align-items: left;
-    margin: 0 60pt;
+    align-items: center;
+    margin: 0 4%;
+    padding: 0 10px;
     flex-direction: column;
 }
 
@@ -112,35 +113,34 @@ main {
     margin: 0 auto;
 }
 
+/* ===== 랜딩 — Pretendard Variable 텍스트 ===== */
 .main-title {
+    font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+    font-size: 5rem;
+    transition: font-weight 0.3s ease, font-variation-settings 0.3s ease, opacity 0.3s ease;
     opacity: 0.25;
+    text-align: center;
 }
 
 .main-title:hover {
     opacity: 1;
+    font-weight: 900;
+    font-variation-settings: 'wght' 900;
 }
 
 .main-title #boost {
-    font-size: 2.5rem;
+    font-size: inherit;
+    font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
+    transition: color 0.2s ease, font-weight 0.3s ease, font-variation-settings 0.3s ease;
+    font-weight: inherit;
+    font-variation-settings: inherit;
+    background-color: transparent;
 }
 
-.main-title #boost:hover {
-    color: rgb(255, 53, 53);
-    transition: color .5s ease-in-out;
-}
-
-.main-title .title a,
-.main-title .title2 a {
-    font-family: 'LINE SEED Sans', sans-serif;
-    color: #e9e9e9;
-    text-decoration-line: none;
-    opacity: 0.05;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.main-title .title a:hover,
-.main-title .title2 a:hover {
-    opacity: 1;
+.main-title:hover #boost {
+    color: var(--accent);
 }
 
 main img {
@@ -148,27 +148,64 @@ main img {
 }
 
 main h1 {
-    font-family: 'LINE SEED Sans', sans-serif;
-    font-size: 2.5rem;
-}
-
-.boost:hover {
-    color: rgb(53, 205, 255);
-    transition: color 0.1s ease-in-out;
+    font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
+    font-size: 5rem;
 }
 
 .main-text {
     font-size: 1rem;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
     padding: 20px 60pt;
     transition: color 0.1s ease-in-out;
 }
 
-.main-text .boost2:hover {
-    color: #80CA4E;
-    font-family: 'LINE SEED Sans', sans-serif;
-    transition: color 0.1s ease-in-out;
+/* 랜딩 서브타이틀 */
+.landing-subtitle {
+    font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+    font-size: 1.3rem;
+    display: inline-block;
+    transition: font-weight 0.3s ease, font-variation-settings 0.3s ease;
+    background-color: transparent;
+}
+
+.landing-subtitle:hover {
+    font-weight: 900;
+    font-variation-settings: 'wght' 900;
+}
+
+/* My Works 버튼 */
+.cta-section {
+    text-align: center;
+    padding: 48px 0 24px;
+    background-color: transparent;
+}
+
+.my-works-btn {
+    font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
+    font-weight: 300;
+    font-variation-settings: 'wght' 300;
+    font-size: 1.6rem;
+    color: #e9e9e9;
+    background: transparent;
+    border: 1px solid rgba(233, 233, 233, 0.2);
+    border-radius: 60px;
+    padding: 24px 56px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: font-weight 0.3s ease, font-variation-settings 0.3s ease,
+        color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.my-works-btn:hover {
+    font-weight: 900;
+    font-variation-settings: 'wght' 900;
+    color: #151515;
+    background-color: #e9e9e9;
+    border-color: #e9e9e9;
 }
 
 ::selection {
@@ -191,11 +228,8 @@ main h1 {
     position: relative;
     margin: auto;
     flex-wrap: wrap;
-    /* 항목이 다음 줄로 넘어가도록 허용 */
     text-align: center;
-    /* 제목을 가운데 정렬 */
     width: 100%;
-    /* 제목이 전체 너비를 차지하도록 설정 */
 }
 
 .about .main-title .title a {
@@ -220,53 +254,58 @@ main h1 {
     padding: 20px 0;
 }
 
-/* contact 파트 */
-.language-toggle {
-    text-align: center;
-    margin-top: 10px;
+
+
+/* ===== 햄버거 메뉴 (항상 적용) ===== */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
 }
 
-.language-toggle a {
-    color: #e9e9e9;
-    margin: 0 5px;
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
 }
 
-.language-toggle a:hover {
-    color: #80CA4E;
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
-.contact {
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    margin: 0 60pt;
-    flex-direction: column;
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background: #e9e9e9;
+    transition: all 0.3s ease-in-out;
+    transform-origin: center;
 }
 
-.contact .contact-text button {
-    border: none !important;
-    background-color: #e9e9e9;
-    color: #2b2b2b;
-    border-radius: 50px;
-    font-size: 14pt;
-    padding: 12px 24px;
-    margin: 0;
-    cursor: pointer;
-    transition: background-color 0.1s ease-in, color 0.1s ease-in;
-    white-space: nowrap;
+/* ===== 스크롤 페이드 ===== */
+.fade-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.contact .contact-text button:hover {
-    background-color: #2b2b2b;
-    color: #80CA4E;
+.fade-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.contact .contact-text button:active {
-    color: #3b9400;
-    background-color: #2b2b2b;
+/* ===== Seamless Fade Transition ===== */
+body {
+    opacity: 1;
+    transition: opacity 0.25s ease;
 }
 
+body.page-leaving {
+    opacity: 0;
+}
+
+/* ===== 태블릿 / 모바일 (≤768px) ===== */
 @media screen and (max-width: 768px) {
+    * {
+        font-size: 12pt;
+    }
+
+    /* 네비게이션 */
     nav {
         margin: 0;
         padding: 10px 16px;
@@ -359,106 +398,36 @@ main h1 {
         text-align: center;
     }
 
-    .main-title {
-        display: none;
-    }
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-}
-
-.hamburger span {
-    width: 100%;
-    height: 2px;
-    background: #e9e9e9;
-    transition: all 0.3s ease-in-out;
-    transform-origin: center;
-}
-
-@media screen and (max-width: 768px) {
-
-    /* 전체 여백 축소 */
+    /* 레이아웃 */
     main {
-        margin: 0 15pt;
+        margin: 0 2%;
         padding: 10px;
     }
 
-    /* 섹션 간격 축소 */
     section {
         margin: 10px 0;
         padding: 10px;
     }
 
-    /* 네비게이션 여백 축소 */
-    nav {
-        margin: 0 2%;
-        padding: 5px;
+    /* 랜딩 텍스트 — 모바일 */
+    .main-title {
+        font-size: 2.5rem;
     }
 
-    /* 그리드 간격 축소 */
-    .portfolio-grid {
-        gap: 10px;
-        padding: 10px;
+    .main-text {
+        padding: 10px 20px;
     }
 
-    /* 모달 여백 축소 */
-    .modal-content {
-        padding: 10px;
-        margin: 5% auto;
+    .landing-subtitle {
+        font-size: 1rem;
     }
 
-    /* 텍스트 간격 축소 */
-    p {
-        margin: 5px 0;
+    .my-works-btn {
+        font-size: 1.2rem;
+        padding: 16px 36px;
     }
 
-    h1,
-    h2,
-    h3 {
-        margin: 10px 0;
-    }
-
-    /* 버튼 패딩 축소 */
-    button {
-        padding: 8px 16px;
-    }
-
-    /* 푸터 패딩 축소 */
-    .footer-text {
-        padding: 10px 0;
-    }
-}
-
-/* 더 작은 모바일 화면 */
-@media screen and (max-width: 480px) {
-    main {
-        margin: 0 10pt;
-    }
-
-    .portfolio-grid {
-        gap: 5px;
-        padding: 5px;
-    }
-
-    nav {
-        margin: 0 1%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    * {
-        font-size: 12pt;
-    }
-
+    /* 타이포그래피 */
     h1 {
         font-size: 1.5rem;
     }
@@ -477,6 +446,11 @@ main h1 {
         font-size: 10pt;
     }
 
+    .portfolio-grid {
+        gap: 10px;
+        padding: 10px;
+    }
+
     .portfolio-caption h3 {
         font-size: 1.2rem;
     }
@@ -485,14 +459,51 @@ main h1 {
         font-size: 0.9rem;
     }
 
-    nav button {
-        font-size: 11pt;
+    .modal-content {
+        padding: 10px;
+        margin: 5% auto;
+    }
+
+    .footer-text {
+        padding: 10px 0;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+        margin: 10px 0;
     }
 }
 
+/* ===== 작은 모바일 (≤480px) ===== */
 @media screen and (max-width: 480px) {
     * {
         font-size: 11pt;
+    }
+
+    main {
+        margin: 0 1%;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .landing-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .my-works-btn {
+        font-size: 1rem;
+        padding: 14px 28px;
     }
 
     h1 {
@@ -513,6 +524,11 @@ main h1 {
         font-size: 10pt;
     }
 
+    .portfolio-grid {
+        gap: 5px;
+        padding: 5px;
+    }
+
     .portfolio-caption h3 {
         font-size: 1.1rem;
     }
@@ -526,73 +542,14 @@ main h1 {
     }
 }
 
-.fade-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
+/* ===== 초소형 모바일 (≤375px) ===== */
+@media screen and (max-width: 375px) {
+    .main-title {
+        font-size: 1.6rem;
+    }
 
-.fade-on-scroll.in-view {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== Double Wipe Transition ===== */
-.transition-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    pointer-events: none;
-    background: transparent !important;
-}
-
-.transition-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scaleX(0);
-    transform-origin: left;
-    background: transparent !important;
-}
-
-.transition-layer-1 {
-    background: #80CA4E;
-    z-index: 2;
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1);
-}
-
-.transition-layer-2 {
-    background: #151515;
-    z-index: 1;
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1) 0.08s;
-}
-
-/* Phase: Cover - layers expand L->R */
-.transition-wrapper.phase-cover .transition-layer {
-    transform-origin: left;
-    transform: scaleX(1);
-}
-
-/* Phase: Reveal - layers shrink from the right side */
-.transition-wrapper.phase-reveal .transition-layer {
-    transform-origin: right;
-    transform: scaleX(0);
-}
-
-.transition-wrapper.phase-reveal .transition-layer-1 {
-    transition-delay: 0s;
-}
-
-.transition-wrapper.phase-reveal .transition-layer-2 {
-    transition-delay: 0.08s;
-}
-
-/* When we need instant state (no transition) */
-.transition-wrapper.no-transition .transition-layer {
-    transition: none !important;
+    .my-works-btn {
+        font-size: 0.9rem;
+        padding: 12px 24px;
+    }
 }

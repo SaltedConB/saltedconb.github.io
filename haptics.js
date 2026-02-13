@@ -115,7 +115,7 @@ const HapticEngine = (() => {
         // 버튼, 링크, 클릭 가능 요소
         document.addEventListener('pointerdown', (e) => {
             const interactive = e.target.closest(
-                'button, a, .skill-row, .portfolio-item, .skills-list-detail, .nav-button, [onclick]'
+                'button, a, .skill-row, .portfolio-item, .skills-list-detail, [onclick]'
             );
             if (interactive) {
                 touchStart(interactive);
@@ -125,7 +125,7 @@ const HapticEngine = (() => {
         // 클릭/탭 확정 시
         document.addEventListener('pointerup', (e) => {
             const interactive = e.target.closest(
-                'button, a, .skill-row, .portfolio-item, .skills-list-detail, .nav-button, [onclick]'
+                'button, a, .skill-row, .portfolio-item, .skills-list-detail, [onclick]'
             );
             if (interactive) {
                 select(interactive);

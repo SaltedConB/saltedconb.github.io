@@ -7,6 +7,9 @@
   <meta name="description" content="Yoo Sujong's Portfolio - Seamless Creativity" />
   <title>Yoo Sujong's Portfolio</title>
   <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 
@@ -24,8 +27,8 @@
       </button>
       <ul>
         <li>
-          <a href="./about-me.html">
-            <button data-animation-scroll="true" data-target="#main">About Me</button>
+          <a href="./works.html">
+            <button data-animation-scroll="true" data-target="#main">Works</button>
           </a>
         </li>
         <li>
@@ -34,15 +37,11 @@
           </a>
         </li>
         <li>
-          <a href="./works.html">
-            <button data-animation-scroll="true" data-target="#main">Works</button>
+          <a href="./about-me.html">
+            <button data-animation-scroll="true" data-target="#main">About Me</button>
           </a>
         </li>
-        <li>
-          <a href="./contact.html">
-            <button data-animation-scroll="true" data-target="#main">Contact</button>
-          </a>
-        </li>
+
       </ul>
     </nav>
   </header>
@@ -50,7 +49,7 @@
 
   <!-- 메인 시작부분 -->
   <main>
-    <section class="about" onclick="toggleMediaPlayback(this)">
+    <section class="about">
       <div class="title">
         <img src="./img/title.webp" alt="thumbnail" style="max-width: 75%; height: auto" />
       </div>
@@ -60,13 +59,12 @@
         <h1 class="main-title">
           Seamless <span id="boost">Creativity.</span>
         </h1>
-        <span class="boost">끊기지 않는 창의력</span>을 가진 디자이너, <br />
-      </div>
-      <div class="main-img">
-        <img src="./img/main@4x.webp" alt="main" style="max-width: 100%; height: auto" />
+        <span class="landing-subtitle">끊기지 않는 창의, monoton입니다.</span>
       </div>
     </section>
-    <section class="about-me"></section>
+    <section class="cta-section">
+      <a href="./works.html" class="my-works-btn">My Works</a>
+    </section>
   </main>
   <footer>
     <div class="footer-text">

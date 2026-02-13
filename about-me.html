@@ -24,8 +24,8 @@
       </button>
       <ul>
         <li>
-          <a href="./about-me.html">
-            <button data-animation-scroll="true" data-target="#main">About Me</button>
+          <a href="./works.html">
+            <button data-animation-scroll="true" data-target="#main">Works</button>
           </a>
         </li>
         <li>
@@ -34,8 +34,8 @@
           </a>
         </li>
         <li>
-          <a href="./works.html">
-            <button data-animation-scroll="true" data-target="#main">Works</button>
+          <a href="./about-me.html">
+            <button data-animation-scroll="true" data-target="#main">About Me</button>
           </a>
         </li>
       </ul>
@@ -45,57 +45,67 @@
 
   <!-- 메인 시작부분 -->
   <main>
-    <section class="about">
-      <section class="about-intro">
+    <h1 class="page-title">About Me</h1>
+
+    <div class="resume-grid">
+      <!-- 프로필 카드 -->
+      <section class="resume-card profile-card">
         <div class="background-image">
-          <img src="./img/sujong_bg.jpeg" alt="My img BG" />
+          <img src="./img/sujong_bg.jpeg" alt="유수종 프로필" />
         </div>
-        <div class="about-text transparent-bg">
-          <h1 class="transparent-bg">
-            안녕하세요, 유수종입니다.
-          </h1>
-          <p class="transparent-bg">
-            다양한 툴들을 다룰 줄 알면서도 워크플로우에 빠르게 적응할 수 있는
-            능력. 빠르게 변화하는 트렌드에 유연하게 적응하고, <br />곧바로
-            적용할 수 있는 강점과 저만의 색을 강하게 뿜어내는 강점을 이용해,
-            점진적으로 나아가는 디자이너가 되겠습니다.
-          </p>
-        </div>
+        <h2>유수종</h2>
+        <p class="profile-role">디자이너</p>
       </section>
-      <section class="about-award">
-        <h1>이력, 수상, 자격증</h1>
-        <div class="award1">
-          <h2>2015.08</h2>
-          <p>GTQ 1급 자격증 취득</p>
-        </div>
-        <div class="award2">
-          <h2>2017.07</h2>
-          <p>컴퓨터그래픽스운용기능사 자격증 취득</p>
-        </div>
-        <div class="award3">
-          <h2>2023.08</h2>
-          <p>2023 판타지움 유튜브 영상 공모전 우수상</p>
-        </div>
-        <div class="award4">
-          <h2>2023.09</h2>
-          <p>Web3 Creator Festival 2023 공모전 우수상</p>
-        </div>
+
+      <!-- 소개 카드 -->
+      <section class="resume-card intro-card">
+        <h2>소개</h2>
+        <p>
+          다양한 툴들을 다룰 줄 알면서도 워크플로우에 빠르게 적응할 수 있는
+          능력. 빠르게 변화하는 트렌드에 유연하게 적응하고,
+          곧바로 적용할 수 있는 강점과 저만의 색을 강하게 뿜어내는 강점을 이용해,
+          점진적으로 나아가는 디자이너가 되겠습니다.
+        </p>
       </section>
-      <section class="about-education">
-        <h1>학력</h1>
-        <div class="education1">
-          <h2>2015.03 <br />2018.02</h2>
-          <p>인천디자인고등학교 <br />제품디자인과 졸업</p>
-        </div>
-        <div class="education2">
-          <h2>
-            2023.03 <br />
-            2025.02
-          </h2>
-          <p>한국폴리텍대학교 서울강서캠퍼스 <br />디지털콘텐츠과 졸업</p>
-        </div>
+
+      <!-- 이력/수상/자격증 카드 -->
+      <section class="resume-card awards-card">
+        <h2>이력 · 수상 · 자격증</h2>
+        <ul class="timeline">
+          <li>
+            <span class="timeline-date">2015.08</span>
+            <span class="timeline-desc">GTQ 1급 자격증 취득</span>
+          </li>
+          <li>
+            <span class="timeline-date">2017.07</span>
+            <span class="timeline-desc">컴퓨터그래픽스운용기능사 자격증 취득</span>
+          </li>
+          <li>
+            <span class="timeline-date">2023.08</span>
+            <span class="timeline-desc">2023 판타지움 유튜브 영상 공모전 우수상</span>
+          </li>
+          <li>
+            <span class="timeline-date">2023.09</span>
+            <span class="timeline-desc">Web3 Creator Festival 2023 공모전 우수상</span>
+          </li>
+        </ul>
       </section>
-    </section>
+
+      <!-- 학력 카드 -->
+      <section class="resume-card education-card">
+        <h2>학력</h2>
+        <ul class="timeline">
+          <li>
+            <span class="timeline-date">2015.03 – 2018.02</span>
+            <span class="timeline-desc">인천디자인고등학교 제품디자인과 졸업</span>
+          </li>
+          <li>
+            <span class="timeline-date">2023.03 – 2025.02</span>
+            <span class="timeline-desc">한국폴리텍대학교 서울강서캠퍼스 디지털콘텐츠과 졸업</span>
+          </li>
+        </ul>
+      </section>
+    </div>
   </main>
   <footer>
     <div class="footer-text">

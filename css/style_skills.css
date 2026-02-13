@@ -15,13 +15,13 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 7.5%;
+    margin: 0 4%;
     flex-wrap: wrap;
     padding: 10px;
 }
 
 nav .logo {
-    padding: 0 20px;
+    padding: 0;
 }
 
 nav ul {
@@ -64,7 +64,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: left;
-    margin: 0 60pt;
+    margin: 0 4%;
+    padding: 0 10px;
     flex-direction: column;
 }
 
@@ -76,8 +77,6 @@ main h1 {
     font-family: 'LINE SEED Sans', sans-serif;
     font-size: 3rem;
 }
-
-
 
 .boost:hover {
     color: rgb(255, 53, 53);
@@ -114,46 +113,6 @@ main h1 {
     font-family: 'LINE SEED Sans', sans-serif;
     font-size: 1.25rem;
     margin-top: -30px;
-}
-
-.skills-list {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 25px;
-    list-style-type: none;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.skills-list .skills-list-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    border: transparent;
-    cursor: pointer;
-    transition: opacity 0.1s ease-in;
-    justify-content: center;
-}
-
-.skills-list .skills-list-detail:hover {
-    opacity: 0.5;
-}
-
-.skills-list .skills-list-detail:active {
-    opacity: 0.2;
-}
-
-.skills-list .skills-list-detail img {
-    width: auto;
-    height: 50px;
-    display: block;
-    opacity: 1;
-}
-
-.skills-list .skills-list-detail span {
-    align-items: center;
-    font-size: 10pt;
 }
 
 .skill-icon {
@@ -243,12 +202,12 @@ main h1 {
     visibility: hidden;
 }
 
-/* 차트 레이아웃 */
+/* 차트 레이아웃 — 3열 그리드 */
 .skill-chart {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 10px 0;
 }
@@ -256,171 +215,80 @@ main h1 {
 .skill-row {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 14px;
+    padding: 8px;
+    border-radius: 12px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.skill-row:hover {
+    background-color: rgba(128, 202, 78, 0.06);
 }
 
 .skill-row img {
-    width: 50px;
+    width: 40px;
     height: auto;
+    flex-shrink: 0;
 }
 
 .skill-info {
     flex: 1;
+    min-width: 0;
 }
 
 .skill-info span {
     display: block;
     text-align: left;
     margin-bottom: 6px;
-    font-size: 1rem;
-}
-
-.progress {
-    width: 100%;
-    height: 10px;
-    background-color: #2b2b2b;
-    border-radius: 5px;
+    font-size: 0.85rem;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.progress-bar {
+/* ===== 5-level 게이지 ===== */
+.gauge {
+    display: flex;
+    gap: 4px;
+}
+
+.gauge i {
     display: block;
-    height: 100%;
-    width: 0;
-    background-color: #80CA4E;
-    transition: width 0.6s ease;
+    width: 100%;
+    height: 14px;
+    border-radius: 3px;
+    background-color: #2b2b2b;
+    transition: background-color 0.3s ease;
 }
 
-.skill-row.in-view .progress-bar {
-    width: var(--level);
+.gauge i.active {
+    background-color: #80CA4E;
+}
+
+/* 접근성 — 키보드 포커스 */
+.skill-row:focus-visible {
+    outline: 2px solid #80CA4E;
+    outline-offset: 2px;
+    border-radius: 12px;
 }
 
 @media screen and (max-width: 768px) {
-    nav {
-        margin: 0;
-        padding: 10px 16px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    nav .logo {
-        padding: 0;
-        margin: 0;
-    }
-
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 6px;
-        width: 48px;
-        height: 48px;
-        padding: 12px;
-        cursor: pointer;
-        border: none;
-        background: transparent !important;
-        z-index: 1100;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    nav ul {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 75vw;
-        max-width: 320px;
-        height: 100vh;
-        background: rgba(21, 21, 21, 0.97) !important;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        gap: 8px;
-        z-index: 1050;
-        transform: translateX(100%);
-        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        border-left: 1px solid rgba(128, 202, 78, 0.15);
-    }
-
-    nav ul.active {
-        transform: translateX(0);
-    }
-
-    nav li {
-        margin: 0;
-        opacity: 0;
-        transform: translateX(30px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        width: 80%;
-    }
-
-    nav ul.active li {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    nav ul.active li:nth-child(1) {
-        transition-delay: 0.08s;
-    }
-
-    nav ul.active li:nth-child(2) {
-        transition-delay: 0.14s;
-    }
-
-    nav ul.active li:nth-child(3) {
-        transition-delay: 0.20s;
-    }
-
-    nav ul.active li:nth-child(4) {
-        transition-delay: 0.26s;
-    }
-
-    nav button {
-        font-size: 13pt;
-        padding: 14px 24px;
-        width: 100%;
-        min-height: 48px;
-        border-radius: 14px;
-        text-align: center;
+    .skill-chart {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
     .skill-row img {
-        width: 35px;
-    }
-
-    .skill-info span {
-        font-size: 0.9rem;
-    }
-}
-
-/* 더 작은 화면에서의 추가 조정 */
-@media screen and (max-width: 480px) {
-    .skill-row img {
-        width: 30px;
+        width: 32px;
     }
 
     .skill-info span {
         font-size: 0.8rem;
     }
-}
 
-@media screen and (max-width: 1024px) {
-    .skills-list {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .skills-list {
-        grid-template-columns: repeat(3, 1fr);
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        padding: 8px;
+    .gauge i {
+        height: 10px;
     }
 
     .skills h1 {
@@ -432,25 +300,24 @@ main h1 {
         font-size: 1rem;
         margin-top: -15px;
     }
-
-    .skills-list .skills-list-detail {
-        padding: 6px;
-    }
-
-    .skills-list .skills-list-detail img {
-        height: 35px;
-    }
-
-    .skills-list .skills-list-detail span {
-        font-size: 8pt;
-    }
 }
 
 @media screen and (max-width: 480px) {
-    .skills-list {
-        grid-template-columns: repeat(3, 1fr);
+    .skill-chart {
+        grid-template-columns: 1fr;
         gap: 10px;
-        padding: 5px;
+    }
+
+    .skill-row img {
+        width: 30px;
+    }
+
+    .skill-info span {
+        font-size: 0.8rem;
+    }
+
+    .gauge i {
+        height: 10px;
     }
 
     .skills h1 {
@@ -461,14 +328,6 @@ main h1 {
     .skills h5 {
         font-size: 0.9rem;
         margin-top: -15px;
-    }
-
-    .skills-list .skills-list-detail img {
-        height: 35px;
-    }
-
-    .skills-list .skills-list-detail span {
-        font-size: 8pt;
     }
 }
 
@@ -491,20 +350,8 @@ main h1 {
         margin-top: -12px;
     }
 
-    .skills-list .skills-list-detail {
-        padding: 5px;
-    }
-
-    .skills-list .skills-list-detail img {
-        height: 30px;
-    }
-
-    .skills-list .skills-list-detail span {
-        font-size: 7pt;
-    }
-
     main {
-        margin: 0 5pt;
+        margin: 0 2%;
     }
 
     .modal-content {

@@ -24,8 +24,8 @@
       </button>
       <ul>
         <li>
-          <a href="./about-me.html">
-            <button data-animation-scroll="true" data-target="#main">About Me</button>
+          <a href="./works.html">
+            <button data-animation-scroll="true" data-target="#main">Works</button>
           </a>
         </li>
         <li>
@@ -34,8 +34,8 @@
           </a>
         </li>
         <li>
-          <a href="./works.html">
-            <button data-animation-scroll="true" data-target="#main">Works</button>
+          <a href="./about-me.html">
+            <button data-animation-scroll="true" data-target="#main">About Me</button>
           </a>
         </li>
       </ul>
@@ -68,29 +68,33 @@
           브랜딩 프로젝트
         </button>
       </div>
-      <div class="portfolio-grid">
-        <div class="portfolio-item graphic-design fade-on-scroll col-span-2" onclick="openModal('modal1')">
+      <div class="portfolio-grid" aria-live="polite">
+        <div class="portfolio-item graphic-design fade-on-scroll" role="button" tabindex="0"
+          aria-label="The Typoster — 레터링 콜렉션" onclick="openModal('modal1')">
           <img src="./img/work1-thumb.jpeg" alt="아무말" />
           <div class="portfolio-caption">
             <h3>The Typoster</h3>
             <p>아무런 말과 닉네임으로 지어낸 레터링 콜렉션.</p>
           </div>
         </div>
-        <div class="portfolio-item motion-graphics fade-on-scroll" onclick="openModal('modal2')">
+        <div class="portfolio-item motion-graphics fade-on-scroll" role="button" tabindex="0"
+          aria-label="상상해봐! 판타지움 — 홍보영상 우수상" onclick="openModal('modal2')">
           <img src="./img/work2-thumb.webp" alt="판타지움" />
           <div class="portfolio-caption">
             <h3>상상해봐! 판타지움</h3>
             <p>쇼핑몰 판타지움의 홍보영상 콘테스트 출품작. 우수상.</p>
           </div>
         </div>
-        <div class="portfolio-item motion-graphics fade-on-scroll" onclick="openModal('modal3')">
+        <div class="portfolio-item motion-graphics fade-on-scroll" role="button" tabindex="0"
+          aria-label="소래의 풍차 — 공모전 우수상" onclick="openModal('modal3')">
           <img src="./img/work3-thumb.webp" alt="소래" />
           <div class="portfolio-caption">
             <h3>소래의 풍차</h3>
             <p>Web3 Creator Festival 2023 공모전에 출품한 작품. 우수상.</p>
           </div>
         </div>
-        <div class="portfolio-item branding fade-on-scroll row-span-2" onclick="openModal('modal4')">
+        <div class="portfolio-item branding fade-on-scroll" role="button" tabindex="0" aria-label="브랜딩 프로젝트 - 엠게임"
+          onclick="openModal('modal4')">
           <img src="./img/work4-thumb.png" alt="mgame" />
           <div class="portfolio-caption">
             <h3>브랜딩 프로젝트 - 엠게임</h3>
@@ -100,28 +104,32 @@
             </p>
           </div>
         </div>
-        <div class="portfolio-item motion-graphics fade-on-scroll col-span-2" onclick="openModal('modal5')">
+        <div class="portfolio-item motion-graphics fade-on-scroll" role="button" tabindex="0"
+          aria-label="신데렐라 — 오프닝 타이틀 시퀀스" onclick="openModal('modal5')">
           <img src="./img/work5-thumb.png" alt="신데렐라" />
           <div class="portfolio-caption">
             <h3>신데렐라</h3>
             <p>동화 신데렐라를 오프닝 타이틀 시퀀스로 만든 영상.</p>
           </div>
         </div>
-        <div class="portfolio-item graphic-design fade-on-scroll" onclick="openModal('modal6')">
+        <div class="portfolio-item graphic-design fade-on-scroll" role="button" tabindex="0" aria-label="게임 타이틀 한글화 #1"
+          onclick="openModal('modal6')">
           <img src="./img/work6-thumb.png" alt="아무말" />
           <div class="portfolio-caption">
             <h3>게임 타이틀 한글화 #1</h3>
             <p>말그대로 게임 타이틀을 한글로 만들어본 콜렉션.</p>
           </div>
         </div>
-        <div class="portfolio-item graphic-design fade-on-scroll col-span-2" onclick="openModal('modal7')">
+        <div class="portfolio-item graphic-design fade-on-scroll" role="button" tabindex="0"
+          aria-label="The Typoster Remake — 리메이크 레터링" onclick="openModal('modal7')">
           <img src="./img/work7-thumb.png" alt="아무말_re" />
           <div class="portfolio-caption">
             <h3>The Typoster Remake</h3>
             <p>이전에 제작한 레터링 콜렉션을 리메이크한 것.</p>
           </div>
         </div>
-        <div class="portfolio-item graphic-design fade-on-scroll row-span-2" onclick="openModal('modal8')">
+        <div class="portfolio-item graphic-design fade-on-scroll" role="button" tabindex="0"
+          aria-label="무에서 유기로 — 가상전시회 포스터" onclick="openModal('modal8')">
           <img src="./img/work8-thumb.jpg" alt="개인전 카탈로그" />
           <div class="portfolio-caption">
             <h3>무에서 유기로</h3>

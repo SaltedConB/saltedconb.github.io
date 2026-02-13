@@ -1,6 +1,6 @@
 // 1. DOM 요소 선택
 const headerEl = document.querySelector("header");
-const navButtonEl = document.querySelector(".nav-button");
+
 const mainImg = document.querySelector(".main-img");
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector("nav ul");
@@ -18,17 +18,7 @@ function scrollCheck() {
   headerEl.classList.toggle("active", browserScrollY > 0);
 }
 
-// 3.2 리사이즈 이벤트
-window.addEventListener("resize", () => {
-  if (!navButtonEl) return;
-  const windowWidth = window.innerWidth;
-  const fontSize = windowWidth / 20;
-  const buttonSize = windowWidth / 10;
 
-  navButtonEl.style.fontSize = `${fontSize}px`;
-  navButtonEl.style.width = `${buttonSize}px`;
-  navButtonEl.style.height = `${buttonSize}px`;
-});
 
 // 3.3 이미지 관련 이벤트
 if (mainImg) {
@@ -48,19 +38,7 @@ if (mainImg) {
   }, 100);
 }
 
-// 4.2 페이드 효과 유틸리티 함수
-function fadeElement(element, start, end, speed, callback) {
-  let opacity = start;
-  const fade = setInterval(() => {
-    if ((end === 1 && opacity >= end) || (end === 0 && opacity <= end)) {
-      clearInterval(fade);
-      if (callback) callback();
-    } else {
-      opacity += end === 1 ? 0.1 : -0.1;
-      element.style.opacity = opacity;
-    }
-  }, speed);
-}
+
 
 // 5. 모달 관련 함수
 function openModal(modalId) {
@@ -148,15 +126,7 @@ function updateAccessibility(category) {
   });
 }
 
-// 10. 모달 외부 클릭 처리
-window.onclick = function (event) {
-  const modals = document.getElementsByClassName("modal");
-  for (let i = 0; i < modals.length; i++) {
-    if (event.target == modals[i]) {
-      modals[i].style.display = "none";
-    }
-  }
-};
+
 
 function initHamburgerMenu() {
   const hamburger = document.querySelector(".hamburger");
@@ -170,30 +140,21 @@ function initHamburgerMenu() {
   });
 }
 
-function toggleMediaPlayback(section) {
-  const media = section.querySelector("video, audio");
-  if (media) {
-    if (media.paused) {
-      media.play();
-    } else {
-      media.pause();
-    }
-  }
-}
+
 
 // 페이지 로드 시 초기화
 document.addEventListener("DOMContentLoaded", () => {
   initHamburgerMenu();
   initScrollAnimations();
-  injectTransitionOverlay();
   initPageTransitions();
-  playEnterTransition();
+  initKeyboardAccessibility();
+  initGauge();
 });
 
 // bfcache (뒤로가기) 지원
 window.addEventListener("pageshow", (e) => {
   if (e.persisted) {
-    playEnterTransition();
+    document.body.classList.remove("page-leaving");
   }
 });
 
@@ -215,17 +176,7 @@ function initScrollAnimations() {
   });
 }
 
-// ===== Double Wipe Transition System =====
-
-function injectTransitionOverlay() {
-  if (document.querySelector(".transition-wrapper")) return;
-  const wrapper = document.createElement("div");
-  wrapper.className = "transition-wrapper";
-  wrapper.innerHTML =
-    '<div class="transition-layer transition-layer-1"></div>' +
-    '<div class="transition-layer transition-layer-2"></div>';
-  document.body.appendChild(wrapper);
-}
+// ===== Seamless Fade Transition =====
 
 function initPageTransitions() {
   document.addEventListener("click", (e) => {
@@ -245,44 +196,43 @@ function initPageTransitions() {
     }
 
     e.preventDefault();
-    playExitTransition(() => {
+    document.body.classList.add("page-leaving");
+    setTimeout(() => {
       window.location.href = href;
-    });
+    }, 250);
   });
 }
 
-function playExitTransition(callback) {
-  const wrapper = document.querySelector(".transition-wrapper");
-  if (!wrapper) {
-    callback();
-    return;
-  }
-  // 깨끗한 상태에서 시작
-  wrapper.classList.remove("phase-cover", "phase-reveal", "no-transition");
-  wrapper.offsetWidth; // force reflow
-  // 레이어 확장 (L→R 커버)
-  wrapper.classList.add("phase-cover");
-  // transition 완료 후 네비게이션
-  setTimeout(callback, 500);
+// ===== 키보드 접근성 =====
+
+function initKeyboardAccessibility() {
+  // portfolio-item, skill-row에 Enter/Space 키보드 이벤트 추가
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      const item = e.target.closest(".portfolio-item, .skill-row");
+      if (item && item.hasAttribute("onclick")) {
+        e.preventDefault();
+        item.click();
+      }
+    }
+
+    // Escape 키로 모달 닫기
+    if (e.key === "Escape") {
+      const openModal = document.querySelector(".modal:not(.hidden)");
+      if (openModal) {
+        closeModal(openModal.id);
+      }
+    }
+  });
 }
 
-function playEnterTransition() {
-  const wrapper = document.querySelector(".transition-wrapper");
-  if (!wrapper) return;
-
-  // 1) 즉시 커버 상태로 세팅 (transition 없이)
-  wrapper.classList.remove("phase-reveal");
-  wrapper.classList.add("no-transition", "phase-cover");
-  wrapper.offsetWidth; // force reflow
-
-  // 2) transition 활성화 후 reveal
-  wrapper.classList.remove("no-transition");
-  wrapper.offsetWidth; // force reflow
-  wrapper.classList.remove("phase-cover");
-  wrapper.classList.add("phase-reveal");
-
-  // 3) 완료 후 정리
-  setTimeout(() => {
-    wrapper.classList.remove("phase-reveal");
-  }, 600);
+// ===== 5-level 게이지 초기화 =====
+function initGauge() {
+  document.querySelectorAll(".skill-row[data-level]").forEach((row) => {
+    const level = parseInt(row.getAttribute("data-level"), 10) || 0;
+    const dots = row.querySelectorAll(".gauge i");
+    dots.forEach((dot, idx) => {
+      if (idx < level) dot.classList.add("active");
+    });
+  });
 }
