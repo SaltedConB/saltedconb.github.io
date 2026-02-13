@@ -1,7 +1,13 @@
 @import url(style.css);
 
-/* font-face and global styles are inherited from style.css */
+/* =============================================
+   About Me 페이지 전용 스타일
+   - 네비게이션, 메인 레이아웃, 이력서 그리드,
+     프로필/소개/타임라인 카드, 반응형 순서로 구성
+   ============================================= */
 
+
+/* ===== 헤더 / 네비게이션 ===== */
 header {
     display: flex;
     justify-content: space-between;
@@ -9,7 +15,6 @@ header {
     padding: 20px 0;
 }
 
-/* 네비게이션 바 관련 */
 nav {
     display: flex;
     justify-content: space-between;
@@ -22,6 +27,10 @@ nav {
 
 nav .logo {
     padding: 0;
+}
+
+.hamburger {
+    display: none;
 }
 
 nav ul {
@@ -45,6 +54,7 @@ nav button {
     padding: 12px 24px;
     margin: 0;
     cursor: pointer;
+    background-color: #151515;
     transition: background-color 0.1s ease-in, color 0.1s ease-in;
     white-space: nowrap;
 }
@@ -59,39 +69,60 @@ nav button:hover {
     color: #80CA4E;
 }
 
-/* 메인 관련 */
+
+/* ===== 메인 레이아웃 ===== */
 main {
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
-    margin: 0 4%;
-    padding: 0 10px;
+    margin: 0 auto;
+    padding: 0 5vw;
     flex-direction: column;
     background-color: transparent;
+    max-width: 1200px;
 }
 
+
+/* ===== 페이지 타이틀 ===== */
 .page-title {
-    font-family: 'LINE SEED Sans', sans-serif;
-    font-size: 2.5rem;
+    font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
+    font-weight: 100;
+    font-variation-settings: 'wght' 100;
+    font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
-    margin: 40px 0 10px;
+    margin: clamp(24px, 4vw, 48px) 0 clamp(8px, 1.5vw, 16px);
+    transition: font-weight 0.3s ease, font-variation-settings 0.3s ease, opacity 0.3s ease;
+    opacity: 0.3;
 }
+
+.page-title:hover {
+    font-weight: 900;
+    font-variation-settings: 'wght' 900;
+    opacity: 1;
+}
+
+.logo-img {
+    width: 56px;
+}
+
 
 /* ===== 이력서 그리드 ===== */
 .resume-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: clamp(14px, 2vw, 24px);
     max-width: 1000px;
-    margin: 20px auto 40px;
+    margin: clamp(16px, 2vw, 24px) auto clamp(30px, 4vw, 48px);
     width: 100%;
 }
 
+
+/* ===== 카드 공통 ===== */
 .resume-card {
     background-color: #1e1e1e;
     border: 1px solid rgba(233, 233, 233, 0.1);
     border-radius: 18px;
-    padding: 28px;
+    padding: clamp(20px, 3vw, 32px);
     transition: border-color 0.2s ease;
 }
 
@@ -99,21 +130,24 @@ main {
     border-color: rgba(128, 202, 78, 0.25);
 }
 
+/* 카드 제목 */
 .resume-card h2 {
     font-family: 'LINE SEED Sans', sans-serif;
-    font-size: 1.3rem;
-    margin-bottom: 16px;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    margin-bottom: clamp(12px, 1.5vw, 20px);
     color: #80CA4E;
     background-color: transparent;
 }
 
+/* 카드 본문 */
 .resume-card p {
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+    line-height: 1.8;
     background-color: transparent;
 }
 
-/* 프로필 카드 */
+
+/* ===== 프로필 카드 ===== */
 .profile-card {
     display: flex;
     flex-direction: column;
@@ -123,8 +157,8 @@ main {
 }
 
 .profile-card .background-image {
-    width: 160px;
-    height: 160px;
+    width: clamp(120px, 14vw, 180px);
+    height: clamp(120px, 14vw, 180px);
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 16px;
@@ -138,23 +172,25 @@ main {
 
 .profile-card h2 {
     color: #e9e9e9;
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
     margin-bottom: 4px;
 }
 
 .profile-role {
-    font-size: 0.9rem !important;
+    font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
     color: #999 !important;
 }
 
-/* 소개 카드 */
+
+/* ===== 소개 카드 ===== */
 .intro-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* 타임라인 리스트 */
+
+/* ===== 타임라인 리스트 (날짜 위 / 설명 아래) ===== */
 .timeline {
     list-style: none;
     padding: 0;
@@ -163,9 +199,9 @@ main {
 
 .timeline li {
     display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 10px 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: clamp(10px, 1.2vw, 14px) 0;
     border-bottom: 1px solid rgba(233, 233, 233, 0.06);
     background-color: transparent;
 }
@@ -174,21 +210,23 @@ main {
     border-bottom: none;
 }
 
+/* 날짜 — 위쪽 */
 .timeline-date {
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1vw, 0.85rem);
     color: #80CA4E;
     white-space: nowrap;
-    min-width: 110px;
     background-color: transparent;
 }
 
+/* 설명 — 아래쪽 */
 .timeline-desc {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+    line-height: 1.6;
     background-color: transparent;
 }
 
-/* footer */
+
+/* ===== 푸터 ===== */
 .footer-text {
     font-size: 10pt;
     text-align: center;
@@ -201,26 +239,14 @@ main {
     color: #e9e9e9;
 }
 
-/* Utility classes */
-.logo-img {
-    width: 56px;
-}
 
-/* ===== 반응형 ===== */
+/* ===== 반응형 — 태블릿 (≤768px) ===== */
 @media screen and (max-width: 768px) {
 
     /* 네비게이션 — 햄버거 메뉴 */
     nav {
         margin: 0;
         padding: 10px 16px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    nav .logo {
-        padding: 0;
-        margin: 0;
     }
 
     .hamburger {
@@ -302,51 +328,21 @@ main {
         text-align: center;
     }
 
-    /* 레이아웃 */
+    /* 이력서 그리드 — 1열 */
     .resume-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .page-title {
-        font-size: 2rem;
-        margin: 24px 0 8px;
-    }
-
-    .resume-card {
-        padding: 20px;
-    }
-
-    .profile-card .background-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    .timeline-date {
-        min-width: 90px;
-        font-size: 0.75rem;
-    }
-
-    .timeline-desc {
-        font-size: 0.85rem;
     }
 }
 
-@media screen and (max-width: 480px) {
+
+/* ===== 반응형 — 소형 모바일 (≤375px, iPhone 13 mini) ===== */
+@media screen and (max-width: 375px) {
+
+    main {
+        padding: 0 3vw;
+    }
+
     .resume-card {
         padding: 16px;
-    }
-
-    .resume-card h2 {
-        font-size: 1.1rem;
-    }
-
-    .timeline li {
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .timeline-date {
-        min-width: unset;
     }
 }

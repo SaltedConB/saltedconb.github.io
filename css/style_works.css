@@ -25,6 +25,10 @@ nav .logo {
     padding: 0;
 }
 
+.hamburger {
+    display: none;
+}
+
 nav ul {
     list-style: none;
     display: flex;
@@ -57,6 +61,7 @@ nav button {
     padding: 12px 24px;
     margin: 0;
     cursor: pointer;
+    background-color: #151515;
     transition: background-color 0.1s ease-in, color 0.1s ease-in;
     white-space: nowrap;
 }
@@ -75,7 +80,7 @@ nav button:hover {
 main {
     display: flex;
     justify-content: center;
-    align-items: left;
+    align-items: flex-start;
     margin: 0 4%;
     padding: 0 10px;
     flex-direction: column;
@@ -192,9 +197,7 @@ p .boost {
     opacity: .25;
 }
 
-.portfolio-item:hover .portfolio-caption,
-.portfolio h3,
-p {
+.portfolio-item:hover .portfolio-caption {
     opacity: 1;
 }
 
@@ -362,6 +365,16 @@ p {
     max-width: 800px;
     margin: 20px auto;
     display: block;
+}
+
+/* PDF 임베드 */
+.pdf-embed {
+    width: 100%;
+    max-width: 700px;
+    height: 80vh;
+    aspect-ratio: auto;
+    border: none;
+    border-radius: 12px;
 }
 
 /* ===== 태블릿 / 모바일 (≤768px) ===== */
