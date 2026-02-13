@@ -136,6 +136,13 @@ p .boost {
     background-color: #1a1a1a;
     cursor: pointer;
     aspect-ratio: 1 / 1;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 터치/클릭 시 부드러운 눌림 효과 */
+.portfolio-item:active {
+    transform: scale(0.92);
+    transition: transform 0.1s ease;
 }
 
 @media screen and (max-width: 900px) {
@@ -275,30 +282,29 @@ p .boost {
     border: none;
     border-radius: 30px;
     font-size: 14pt;
-    padding: 12px 24px;
+    padding: 14px 28px;
     margin: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in, color 0.2s ease-in, transform 0.2s ease-in;
+    transition: background-color 0.15s ease, color 0.15s ease;
     background-color: #2b2b2b;
     color: #e9e9e9;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 48px;
 }
 
 .portfolio-categories button:hover {
     background-color: #e9e9e9;
     color: #2b2b2b;
-    transform: scale(1.05);
 }
 
 .portfolio-categories button:active {
     background-color: #80CA4E;
     color: #151515;
-    transform: scale(0.95);
 }
 
 .portfolio-categories button[aria-pressed="true"] {
     background-color: #80CA4E;
     color: #151515;
-    transform: scale(1.05);
 }
 
 .portfolio-categories button[aria-pressed="true"]::after {
@@ -324,7 +330,7 @@ p .boost {
 }
 
 .portfolio-item {
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.1s ease;
 }
 
 .portfolio-item.fade-hidden {
@@ -412,6 +418,13 @@ p .boost {
         -webkit-tap-highlight-color: transparent;
     }
 
+    /* 메뉴 버튼 크기 확대 */
+    nav button {
+        font-size: 16pt;
+        padding: 18px 28px;
+        min-height: 56px;
+    }
+
     nav ul {
         position: fixed;
         top: 0;
@@ -427,7 +440,7 @@ p .boost {
         align-items: center;
         padding: 0;
         margin: 0;
-        gap: 8px;
+        gap: 12px;
         z-index: 1050;
         transform: translateX(100%);
         transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -467,14 +480,7 @@ p .boost {
         transition-delay: 0.26s;
     }
 
-    nav button {
-        font-size: 13pt;
-        padding: 14px 24px;
-        width: 100%;
-        min-height: 48px;
-        border-radius: 14px;
-        text-align: center;
-    }
+    /* nav button 위에서 정의됨 */
 
     /* 레이아웃 */
     main {
@@ -497,14 +503,16 @@ p .boost {
     .portfolio-categories {
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         padding: 15px 10px;
     }
 
     .portfolio-categories button {
-        width: 85%;
-        max-width: 300px;
-        font-size: 10pt;
+        width: 90%;
+        max-width: 320px;
+        font-size: 12pt;
+        padding: 16px 24px;
+        min-height: 52px;
     }
 
     /* 타이포그래피 */
@@ -605,15 +613,16 @@ p .boost {
     }
 
     .portfolio-categories {
-        gap: 6px;
+        gap: 8px;
         padding: 12px 8px;
     }
 
     .portfolio-categories button {
-        width: 85%;
-        max-width: 280px;
-        font-size: 9.5pt;
-        padding: 10px 15px;
+        width: 90%;
+        max-width: 300px;
+        font-size: 11pt;
+        padding: 14px 20px;
+        min-height: 50px;
     }
 
     h1 {
@@ -668,15 +677,16 @@ p .boost {
 /* ===== 초소형 모바일 (≤375px) ===== */
 @media screen and (max-width: 375px) {
     .portfolio-categories {
-        gap: 5px;
+        gap: 6px;
         padding: 10px 5px;
     }
 
     .portfolio-categories button {
-        width: 90%;
-        max-width: 250px;
-        font-size: 9pt;
-        padding: 8px 12px;
+        width: 92%;
+        max-width: 280px;
+        font-size: 10pt;
+        padding: 14px 18px;
+        min-height: 48px;
         margin: 2px 0;
     }
 
