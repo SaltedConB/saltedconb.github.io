@@ -59,11 +59,11 @@ main {
 
 /* ===== 카드 공통 ===== */
 .resume-card {
-    background-color: #1e1e1e;
-    border: 1px solid rgba(233, 233, 233, 0.1);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 18px;
     padding: clamp(20px, 3vw, 32px);
-    transition: border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .resume-card:hover {
@@ -111,14 +111,14 @@ main {
 }
 
 .profile-card h2 {
-    color: #e9e9e9;
+    color: var(--text-main);
     font-size: clamp(1.4rem, 2vw, 1.8rem);
     margin-bottom: 4px;
 }
 
 .profile-role {
     font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
-    color: #999 !important;
+    color: var(--text-muted) !important;
 }
 
 
@@ -143,7 +143,7 @@ main {
     flex-direction: column;
     gap: 4px;
     padding: clamp(10px, 1.2vw, 14px) 0;
-    border-bottom: 1px solid rgba(233, 233, 233, 0.06);
+    border-bottom: 1px solid var(--border-color);
     background: transparent !important;
 }
 
@@ -189,8 +189,8 @@ main {
     gap: clamp(10px, 1.5vw, 16px);
     padding: clamp(8px, 1vw, 14px);
     border-radius: 12px;
-    background-color: #1e1e1e;
-    border: 1px solid rgba(233, 233, 233, 0.1);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     transition: background-color 0.2s ease, border-color 0.2s ease;
     cursor: pointer;
 }
@@ -261,7 +261,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: var(--shadow-color);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: none;
@@ -279,13 +279,13 @@ main {
 }
 
 .modal-content {
-    background: rgba(21, 21, 21, 0.75);
+    background: var(--overlay-color);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 28px);
     border-radius: 20px;
     text-align: center;
-    border: 1px solid rgba(233, 233, 233, 0.1);
+    border: 1px solid var(--border-color);
     max-width: 460px;
     width: 90%;
     position: relative;
