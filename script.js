@@ -142,13 +142,31 @@ function initHamburgerMenu() {
 
 // ===== Light / Dark Theme Toggle =====
 function initThemeToggle() {
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  let savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem('theme');
+  } catch (e) {
+    console.warn("localStorage block detected:", e);
+  }
+
+  let systemPrefersLight = false;
+  try {
+    if (window.matchMedia) {
+      systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    }
+  } catch (e) {
+    console.warn("matchMedia error:", e);
+  }
+
   let currentTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
 
   // Set initial theme before render
+  const logoImg = document.querySelector('.logo img');
   if (currentTheme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
+    if (logoImg) logoImg.src = './img/monoton_black.svg';
+  } else {
+    if (logoImg) logoImg.src = './img/monoton_light.svg';
   }
 
   const toggleBtn = document.createElement('button');
@@ -161,10 +179,18 @@ function initThemeToggle() {
     currentTheme = currentTheme === 'light' ? 'dark' : 'light';
     if (currentTheme === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
+      if (logoImg) logoImg.src = './img/monoton_black.svg';
     } else {
       document.documentElement.removeAttribute('data-theme');
+      if (logoImg) logoImg.src = './img/monoton_light.svg';
     }
-    localStorage.setItem('theme', currentTheme);
+
+    try {
+      localStorage.setItem('theme', currentTheme);
+    } catch (e) {
+      // Ignore strictly blocked contexts
+    }
+
     toggleBtn.innerHTML = currentTheme === 'light' ? '🌙' : '☀️';
   });
 
