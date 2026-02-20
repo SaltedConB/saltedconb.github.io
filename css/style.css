@@ -17,12 +17,46 @@
 /* CSS 변수 */
 :root {
     --accent: #80CA4E;
+
+    /* Dark Mode (Default) */
+    --bg-main: #151515;
+    --text-main: #e9e9e9;
+    --text-muted: #999;
+    --nav-btn-bg: #151515;
+    --nav-btn-hover: #2b2b2b;
+    --nav-btn-active-bg: #e9e9e9;
+    --nav-btn-active-text: #3b9400;
+    --card-bg: #1e1e1e;
+    --modal-bg: #1a1a1a;
+    --border-color: rgba(233, 233, 233, 0.1);
+    --icon-filter: grayscale(1) invert(1) brightness(2);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --overlay-color: rgba(10, 10, 10, 0.85);
+    /* 50% 투명한 #0a0a0a */
+}
+
+[data-theme='light'] {
+    --accent: #5b9c32;
+    /* Slightly darker for readability */
+    --bg-main: #f5f5f7;
+    --text-main: #1d1d1f;
+    --text-muted: #666;
+    --nav-btn-bg: #e8e8ed;
+    --nav-btn-hover: #d1d1d6;
+    --nav-btn-active-bg: #1d1d1f;
+    --nav-btn-active-text: #80CA4E;
+    --card-bg: #ffffff;
+    --modal-bg: #ffffff;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --icon-filter: grayscale(1) invert(0);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --overlay-color: rgba(255, 255, 255, 0.85);
 }
 
 /* 전체설정 */
 * {
     font-family: 'LINE SEED Sans', sans-serif;
-    color: #e9e9e9;
+    color: var(--text-main);
     font-size: 14pt;
     text-decoration: none;
     margin: 0;
@@ -32,12 +66,14 @@
 
 /* 바디 부분 */
 body {
-    background-color: #151515;
+    background-color: var(--bg-main);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    margin: .5rem;
+    margin: 0 auto;
+    padding: .5rem;
+    max-width: 1200px;
 }
 
 img {
@@ -57,7 +93,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 4%;
+    margin: 0;
     flex-wrap: wrap;
     padding: 10px;
 }
@@ -80,7 +116,7 @@ nav li {
 }
 
 nav a {
-    color: #2b2b2b;
+    color: var(--text-main);
 }
 
 nav button {
@@ -90,18 +126,18 @@ nav button {
     padding: 12px 24px;
     margin: 0;
     cursor: pointer;
-    background-color: #151515;
+    background-color: var(--nav-btn-bg);
     transition: background-color 0.1s ease-in, color 0.1s ease-in;
     white-space: nowrap;
 }
 
 nav ul li button:active {
-    color: #3b9400;
-    background-color: #e9e9e9;
+    color: var(--nav-btn-active-text);
+    background-color: var(--nav-btn-active-bg);
 }
 
 nav button:hover {
-    background-color: #2b2b2b;
+    background-color: var(--nav-btn-hover);
     color: var(--accent);
 }
 
@@ -110,7 +146,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 4%;
+    margin: 0;
     padding: 0 10px;
     flex-direction: column;
 }
@@ -126,7 +162,7 @@ main {
     font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
     font-weight: 100;
     font-variation-settings: 'wght' 100;
-    font-size: 3.6rem;
+    font-size: clamp(2rem, 5vw, 4rem);
     transition: font-weight 0.3s ease, font-variation-settings 0.3s ease, opacity 0.3s ease, color 0.3s ease;
     opacity: 0.25;
     text-align: center;
@@ -158,9 +194,10 @@ main img {
     margin: 0 auto;
 }
 
+/* h1 sizes */
 main h1 {
     font-family: 'Pretendard Variable', 'LINE SEED Sans', sans-serif;
-    font-size: 5rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
 }
 
 .main-text {
@@ -288,7 +325,7 @@ main h1 {
 .hamburger span {
     width: 100%;
     height: 2px;
-    background: #e9e9e9;
+    background: var(--text-main);
     transition: all 0.3s ease-in-out;
     transform-origin: center;
 }
@@ -357,7 +394,7 @@ body.page-leaving {
         width: 75vw;
         max-width: 320px;
         height: 100vh;
-        background: rgba(21, 21, 21, 0.97) !important;
+        background: var(--overlay-color) !important;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
@@ -369,7 +406,7 @@ body.page-leaving {
         z-index: 1050;
         transform: translateX(100%);
         transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        border-left: 1px solid rgba(128, 202, 78, 0.15);
+        border-left: 1px solid var(--border-color);
     }
 
     nav ul.active {
