@@ -20,7 +20,6 @@ const DragReorder = (() => {
     let startX = 0, startY = 0;
     let offsetX = 0, offsetY = 0;
     let isDragging = false;
-    let hapticDrag = null;
 
     function init() {
         grid = document.querySelector('.portfolio-grid');
@@ -187,10 +186,7 @@ const DragReorder = (() => {
             const dashOffset = circumference * (1 - progress);
             ringFill.style.strokeDashoffset = dashOffset;
 
-            // 햅틱 - 점진적 진동
-            if (typeof HapticEngine !== 'undefined') {
-                HapticEngine.longPressProgress(progress, dragItem);
-            }
+
         }, PROGRESS_INTERVAL);
 
         // 프로그레스 링 표시
@@ -251,10 +247,7 @@ const DragReorder = (() => {
         cancelLongPress();
         isDragging = true;
 
-        // 햅틱 - 롱프레스 확정
-        if (typeof HapticEngine !== 'undefined') {
-            HapticEngine.longPressConfirm(item);
-        }
+
 
         // 드래그 클론 생성
         const rect = item.getBoundingClientRect();
@@ -273,10 +266,7 @@ const DragReorder = (() => {
         // 하단 인디케이터 표시
         showIndicator('드래그하여 순서를 변경하세요');
 
-        // 햅틱 드래그 패턴 시작
-        if (typeof HapticEngine !== 'undefined') {
-            hapticDrag = HapticEngine.dragStart(dragClone);
-        }
+
     }
 
     function updateDropTarget(x, y) {
@@ -297,11 +287,7 @@ const DragReorder = (() => {
     function finishDrag(e) {
         isDragging = false;
 
-        // 햅틱 드래그 중지
-        if (hapticDrag) {
-            hapticDrag.stop();
-            hapticDrag = null;
-        }
+
 
         // 드롭 위치 아이템 찾기
         const elements = document.elementsFromPoint(e.clientX, e.clientY);
@@ -313,10 +299,7 @@ const DragReorder = (() => {
             // DOM 순서 교환
             swapItems(dragItem, target);
 
-            // 햅틱 - 선택 (확정)
-            if (typeof HapticEngine !== 'undefined') {
-                HapticEngine.select(target);
-            }
+
         }
 
         // 정리
