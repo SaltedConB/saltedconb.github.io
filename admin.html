@@ -43,6 +43,29 @@
             color: #80CA4E;
         }
 
+        .admin-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .admin-nav a {
+            color: #aaa;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: #1e1e1e;
+            border-radius: 8px;
+            border: 1px solid #444;
+            transition: 0.2s;
+        }
+
+        .admin-nav a:hover,
+        .admin-nav a.active {
+            color: #111;
+            background: #80CA4E;
+            border-color: #80CA4E;
+        }
+
         /* Form Elements */
         .section-title {
             font-size: 1.4rem;
@@ -196,6 +219,11 @@
             <button class="btn btn-primary" onclick="exportData()">💾 Save & Download data.js</button>
         </div>
 
+        <div class="admin-nav">
+            <a href="#" class="active">General Settings (Landing & Skills)</a>
+            <a href="admin_works.html">Works / Portfolio Editor →</a>
+        </div>
+
         <p style="color:#aaa; font-size:0.9rem; margin-bottom: 30px; line-height: 1.5;">
             Edit your website text and portfolio items below. When finished, click <strong>Save & Download</strong>.
             <br>Replace the original <code>data.js</code> file in your folder with the newly downloaded one to update
@@ -219,11 +247,20 @@
             </div>
         </div>
 
-        <!-- Works / Portfolio Section -->
+        <!-- Works / Portfolio Section (Redirect link) -->
         <h2 class="section-title">Portfolio Works</h2>
-        <div class="portfolio-list" id="worksContainer">
-            <!-- Rendered by JS -->
+        <div class="portfolio-list" style="margin-bottom: 20px;">
+            <div class="portfolio-edit-box" style="text-align: center; padding: 40px 20px;">
+                <h3 style="margin-top:0;">Advanced Works Editor</h3>
+                <p style="color: #aaa; margin-bottom: 20px;">Managing Works has been moved to a dedicated WYSIWYG editor
+                    page providing rich text capabilities, add/remove functions, and deeper customizations.</p>
+                <a href="admin_works.html" class="btn btn-primary"
+                    style="text-decoration: none; display: inline-block;">Open Works Editor</a>
+            </div>
         </div>
+
+        <!-- We keep a hidden container just to not break the old admin.js script structure if we don't fully refactor everything -->
+        <div id="worksContainer" style="display:none;"></div>
 
         <!-- Skills Section -->
         <h2 class="section-title">Skills</h2>
