@@ -469,6 +469,11 @@ body.page-leaving {
         padding: 10px;
     }
 
+    .about .title #hero-canvas {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+    }
+
     /* 랜딩 텍스트 — 모바일 */
     .main-title {
         font-size: 2rem;
