@@ -206,8 +206,9 @@ if (canvas) {
         const size = box.getSize(new THREE.Vector3());
 
         const maxDim = Math.max(size.x, size.y, size.z);
-        // Scale significantly increased as requested
-        const scale = 5.5 / maxDim; // Increased from 4.2
+        // 모바일 환경에서는 큐브 크기를 많이(약 1.8배) 키움
+        const baseScale = isMobile ? 10.0 : 5.5;
+        const scale = baseScale / maxDim;
 
         model.scale.setScalar(scale);
         model.position.sub(center.multiplyScalar(scale));

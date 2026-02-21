@@ -278,6 +278,7 @@ main h1 {
     object-fit: cover;
     border-radius: 20px;
     outline: none;
+    touch-action: none;
 }
 
 .about .main-title {
@@ -612,11 +613,13 @@ body.page-leaving {
         padding: 12px 24px;
     }
 }
+
 /* Hero 3D Entrance Animation */
 #hero-canvas.hero-animate-in {
     opacity: 0;
     transform: translateX(-50px);
 }
+
 #hero-canvas.hero-animate-active {
     opacity: 1;
     transform: translateX(0);
