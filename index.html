@@ -11,6 +11,17 @@
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <link rel="stylesheet" href="./css/style.css?v=1.1" />
+  <!-- Import maps polyfill -->
+  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+  <!-- Three.js import map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -46,8 +57,7 @@
   <main>
     <section class="about">
       <div class="title">
-        <img src="./img/landing-placeholder.png" alt="placeholder"
-          style="max-width: 75%; height: auto; aspect-ratio: 1200 / 1080; object-fit: cover; border-radius: 20px;" />
+        <canvas id="hero-canvas"></canvas>
       </div>
     </section>
     <section class="main">
@@ -70,9 +80,10 @@
       <p>© 2026 You Sujong. All rights reserved.</p>
     </div>
   </footer>
-  <script src="./haptics.js"></script>
-  <script src="./data.js?v=2"></script>
-  <script src="./script.js?v=2"></script>
+  <script src="./js/main/haptics.js"></script>
+  <script src="./js/data/data.js?v=2"></script>
+  <script src="./js/main/script.js?v=2"></script>
+  <script type="module" src="./js/main/landing-3d.js?v=1"></script>
 </body>
 
 </html>

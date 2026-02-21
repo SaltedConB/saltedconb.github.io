@@ -267,11 +267,17 @@ main h1 {
     margin-bottom: 80px;
 }
 
-.about .title img {
+.about .title #hero-canvas {
     align-items: center;
-    display: flex;
+    display: block;
     justify-content: center;
     margin: 0 auto;
+    width: 75%;
+    max-width: 100%;
+    aspect-ratio: 1200 / 1080;
+    object-fit: cover;
+    border-radius: 20px;
+    outline: none;
 }
 
 .about .main-title {
@@ -605,4 +611,14 @@ body.page-leaving {
         font-size: 0.9rem;
         padding: 12px 24px;
     }
+}
+/* Hero 3D Entrance Animation */
+#hero-canvas.hero-animate-in {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+#hero-canvas.hero-animate-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
