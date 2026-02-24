@@ -206,8 +206,8 @@ if (canvas) {
         const size = box.getSize(new THREE.Vector3());
 
         const maxDim = Math.max(size.x, size.y, size.z);
-        // 모바일 환경에서는 큐브 크기를 많이(약 1.8배) 키움
-        const baseScale = isMobile ? 10.0 : 5.5;
+        // 큐브 회전 시 대각선 길이가 캔버스를 넘지 않도록 크기를 추가로 축소
+        const baseScale = isMobile ? 5.8 : 5.2;
         const scale = baseScale / maxDim;
 
         model.scale.setScalar(scale);

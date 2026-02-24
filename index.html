@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <link rel="stylesheet" href="./css/style.css?v=1.1" />
+  <link rel="stylesheet" href="./css/style.css?v=2.5" />
   <!-- Import maps polyfill -->
   <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
   <!-- Three.js import map -->
@@ -25,6 +25,7 @@
 </head>
 
 <body>
+  <canvas id="bg-grid-canvas"></canvas>
   <!-- 헤더 시작부분 -->
   <header>
     <nav>
@@ -54,36 +55,40 @@
   <!-- 헤더 끝부분 -->
 
   <!-- 메인 시작부분 -->
-  <main>
+  <main id="index-main">
     <section class="about">
       <div class="title">
         <canvas id="hero-canvas"></canvas>
       </div>
     </section>
-    <section class="main">
-      <div class="main-text">
-        <h1 class="main-title">
-          Seamless Creativity.
-        </h1>
-        <span class="landing-subtitle">끊기지 않는 창의력, monoton입니다.</span>
-      </div>
-    </section>
-    <section class="cta-section">
-      <a href="./works.html" class="my-works-btn">My Works</a>
-    </section>
+    <div id="index-right">
+      <section class="main">
+        <div class="main-text">
+          <h1 class="main-title">
+            Seamless<br>
+            Creativity.
+          </h1>
+          <span class="landing-subtitle">끊기지 않는 창의력, monoton입니다.</span>
+        </div>
+      </section>
+      <section class="cta-section">
+        <a href="./works.html" class="my-works-btn">My Works</a>
+      </section>
+    </div>
   </main>
   <footer>
     <div class="footer-text">
       <p>Contact: monotonsub@gmail.com</p>
     </div>
     <div class="footer-text">
-      <p>© 2026 You Sujong. All rights reserved.</p>
+      <p>© 2026 Yoo Sujong. All rights reserved.</p>
     </div>
   </footer>
   <script src="./js/main/haptics.js"></script>
-  <script src="./js/data/data.js?v=2"></script>
+  <script src="./js/data/data.js?v=3"></script>
   <script src="./js/main/script.js?v=2"></script>
-  <script type="module" src="./js/main/landing-3d.js?v=1"></script>
+  <script src="./js/main/bg-grid.js?v=1.8"></script>
+  <script type="module" src="./js/main/landing-3d.js?v=2"></script>
 </body>
 
 </html>

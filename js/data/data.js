@@ -1,6 +1,6 @@
 const SITE_DATA = {
     "landing": {
-        "title": "Seamless Creativity.",
+        "title": "Seamless<br>Creativity.",
         "subtitle": "끊기지 않는 창의력, monoton입니다.",
         "contactEmail": "Contact: monotonsub@gmail.com"
     },
