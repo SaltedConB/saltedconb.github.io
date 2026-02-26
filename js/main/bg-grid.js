@@ -14,9 +14,9 @@ class FoveatedGrid {
         this.dots = [];
 
         // Configuration
-        this.spacing = 14;
+        this.spacing = 10;
         this.baseRadius = 1.0;
-        this.foveaRadius = 30; // 롤백, 살짝 여유를 줌
+        this.foveaRadius = 60; // 페더 범위 확장 (blindSpot 15px 유지)
 
         // State
         this.mouse = { x: -1000, y: -1000 };
@@ -59,7 +59,7 @@ class FoveatedGrid {
     updateThemeColor() {
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
         // Dark theme: subtle light dots. Light theme: subtle dark dots.
-        this.themeColor = isLight ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.15)';
+        this.themeColor = isLight ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.1)';
     }
 
     resize() {
