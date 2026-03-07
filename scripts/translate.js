@@ -17,7 +17,7 @@ const path = require('path');
 // ── Gemini API 설정 ──
 // 여기에 직접 따옴표('')를 사용해 키를 넣으셔도 되지만, 
 // 보안을 위해 터미널에서 GEMINI_API_KEY=... 로 입력하는 것을 권장합니다.
-const API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDegBLX26j9KAPN7KJi4OUG2KO8-yuGwRY';
+const API_KEY = process.env.GEMINI_API_KEY || '';
 
 if (!API_KEY) {
     console.error('❌ GEMINI_API_KEY가 설정되지 않았습니다.');
