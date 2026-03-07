@@ -32,6 +32,7 @@ const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/
 // ── 파일 경로 설정 ──
 const DATA_KO_PATH = path.join(__dirname, '..', 'js', 'data', 'data.js');
 const DATA_EN_PATH = path.join(__dirname, '..', 'js', 'data', 'data_en.js');
+const DATA_JA_PATH = path.join(__dirname, '..', 'js', 'data', 'data_ja.js');
 
 // ── data.js에서 SITE_DATA 추출 ──
 function getSiteData() {
@@ -71,14 +72,21 @@ function extractTranslatableTexts(data) {
 
 // ── Gemini API 호출 ──
 async function translateWithGemini(textsObj) {
-    const prompt = `You are a professional Korean-to-English translator for a designer's portfolio website.
-Translate the following JSON object values from Korean to English.
+    const prompt = `You are a professional translator for a designer's portfolio website.
+Translate the following JSON object values from Korean into both English and Japanese.
 Keep all JSON keys exactly as they are.
 Keep HTML tags like <br>, <br />, etc. intact.
-Keep proper nouns (brand names, tool names, contest names) as-is or use their official English names.
+Keep proper nouns (brand names, tool names, contest names) as-is or use their official names.
 Keep email addresses and URLs unchanged.
-Return ONLY the JSON object with translated values, no explanation.
+Return ONLY a JSON object containing TWO keys: "en" and "ja", where each key contains the translated JSON object. No explanation.
 
+Example output format:
+{
+  "en": { "key1": "english text..." },
+  "ja": { "key1": "japanese text..." }
+}
+
+JSON to translate:
 ${JSON.stringify(textsObj, null, 2)}`;
 
     const response = await fetch(GEMINI_API_URL, {
@@ -156,11 +164,11 @@ function applyTranslations(data, translations) {
     return translated;
 }
 
-// ── data_en.js 파일 생성 ──
-function writeDataEnFile(translatedData) {
+// ── 데이터 파일 생성 ──
+function writeDataFile(filePath, translatedData, langName) {
     const header = `/**
  * ============================================================================
- * 🌐 영문 데이터 파일 (자동 생성됨 - 직접 수정하지 마세요!)
+ * 🌐 ${langName} 데이터 파일 (자동 생성됨 - 직접 수정하지 마세요!)
  * ============================================================================
  * 이 파일은 scripts/translate.js 에 의해 자동 생성됩니다.
  * 한국어 data.js를 수정한 뒤 \`npm run translate\` 를 실행하면 갱신됩니다.
@@ -169,7 +177,7 @@ function writeDataEnFile(translatedData) {
  */`;
 
     const content = `${header}\nconst SITE_DATA = ${JSON.stringify(translatedData, null, 4)};\n`;
-    fs.writeFileSync(DATA_EN_PATH, content, 'utf-8');
+    fs.writeFileSync(filePath, content, 'utf-8');
 }
 
 // ── 메인 실행 ──
@@ -182,16 +190,26 @@ async function main() {
     const textCount = Object.keys(textsToTranslate).length;
     console.log(`   → ${textCount}개 텍스트 발견`);
 
-    console.log('🌐 Gemini API로 번역 중...');
+    console.log('🌐 Gemini API로 번역 중 (영어 & 일본어)...');
     const translations = await translateWithGemini(textsToTranslate);
 
-    console.log('📦 번역 결과 적용 중...');
-    const translatedData = applyTranslations(siteData, translations);
+    if (!translations.en || !translations.ja) {
+        throw new Error('Gemini 응답에 en 또는 ja 키가 없습니다.');
+    }
+
+    console.log('📦 영어 번역 결과 적용 중...');
+    const translatedDataEn = applyTranslations(siteData, translations.en);
+
+    console.log('📦 일본어 번역 결과 적용 중...');
+    const translatedDataJa = applyTranslations(siteData, translations.ja);
 
     console.log('💾 data_en.js 저장 중...');
-    writeDataEnFile(translatedData);
+    writeDataFile(DATA_EN_PATH, translatedDataEn, '영문');
 
-    console.log(`✅ 완료! ${DATA_EN_PATH} 생성됨`);
+    console.log('💾 data_ja.js 저장 중...');
+    writeDataFile(DATA_JA_PATH, translatedDataJa, '일문');
+
+    console.log(`✅ 완료! ${DATA_EN_PATH}, ${DATA_JA_PATH} 생성됨`);
 }
 
 main().catch(err => {
