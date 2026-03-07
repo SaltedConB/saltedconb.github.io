@@ -140,13 +140,13 @@ function initHamburgerMenu() {
   });
 }
 
-// ===== Light / Dark Theme Toggle =====
+// ===== 라이트 / 다크 테마 전환 =====
 function initThemeToggle() {
   let savedTheme = null;
   try {
     savedTheme = localStorage.getItem('theme');
   } catch (e) {
-    console.warn("localStorage block detected:", e);
+    console.warn("localStorage 접근 차단 감지:", e);
   }
 
   let systemPrefersLight = false;
@@ -155,12 +155,12 @@ function initThemeToggle() {
       systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
     }
   } catch (e) {
-    console.warn("matchMedia error:", e);
+    console.warn("matchMedia 오류:", e);
   }
 
   let currentTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
 
-  // Set initial theme before render
+  // 렌더링 전 초기 테마 설정
   const logoImg = document.querySelector('.logo img');
   if (currentTheme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -171,9 +171,9 @@ function initThemeToggle() {
 
   const toggleBtn = document.createElement('button');
   toggleBtn.className = 'theme-toggle';
-  // Use sun for dark mode (to switch to light), moon for light mode (to switch to dark)
+  // 다크 모드일 때 ☀️(라이트 전환), 라이트 모드일 때 🌙(다크 전환)
   toggleBtn.innerHTML = currentTheme === 'light' ? '🌙' : '☀️';
-  toggleBtn.setAttribute('aria-label', 'Toggle Theme');
+  toggleBtn.setAttribute('aria-label', '테마 전환');
 
   toggleBtn.addEventListener('click', () => {
     currentTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -188,13 +188,13 @@ function initThemeToggle() {
     try {
       localStorage.setItem('theme', currentTheme);
     } catch (e) {
-      // Ignore strictly blocked contexts
+      // 차단된 환경에서는 무시
     }
 
     toggleBtn.innerHTML = currentTheme === 'light' ? '🌙' : '☀️';
   });
 
-  // Append to the end of the nav menu
+  // 네비게이션 메뉴 끝에 추가
   const navUl = document.querySelector('nav ul');
   if (navUl) {
     const li = document.createElement('li');
@@ -215,15 +215,15 @@ document.addEventListener("DOMContentLoaded", () => {
   initKeyboardAccessibility();
   initGauge();
 
-  // Static CMS Content Rendering
+  // 데이터 기반 콘텐츠 렌더링
   renderSiteData();
 });
 
-// ===== Static CMS Data Rendering =====
+// ===== 데이터 기반 콘텐츠 렌더링 =====
 function renderSiteData() {
   if (typeof SITE_DATA === 'undefined') return;
 
-  // 1. Landing Page Strings
+  // 1. 랜딩 페이지 텍스트
   const mainTitle = document.querySelector('.main-title');
   const landingSub = document.querySelector('.landing-subtitle');
   const footerContact = document.querySelector('.footer-text p');
@@ -232,10 +232,10 @@ function renderSiteData() {
   if (landingSub && SITE_DATA.landing.subtitle) landingSub.innerHTML = SITE_DATA.landing.subtitle;
   if (footerContact && SITE_DATA.landing.contactEmail) footerContact.innerHTML = SITE_DATA.landing.contactEmail;
 
-  // 2. Portfolio Works Render
+  // 2. 포트폴리오 작업물 렌더링
   const portfolioGrid = document.querySelector('.portfolio-grid');
   if (portfolioGrid && SITE_DATA.works.length > 0) {
-    // Clear existing static items and modals
+    // 기존 아이템 및 모달 초기화
     portfolioGrid.innerHTML = '';
     const existingModals = document.querySelectorAll('.modal');
     existingModals.forEach(m => m.remove());
@@ -243,7 +243,7 @@ function renderSiteData() {
     const modalContainer = document.createElement('div');
 
     SITE_DATA.works.forEach((work, index) => {
-      // A. Create Grid Item
+      // A. 그리드 아이템 생성
       const itemHTML = `
                 <div class="portfolio-item ${work.category} fade-on-scroll" role="button" tabindex="0"
                     aria-label="${work.title}" onclick="openModal('${work.id}')">
@@ -256,7 +256,7 @@ function renderSiteData() {
             `;
       portfolioGrid.insertAdjacentHTML('beforeend', itemHTML);
 
-      // B. Create Modal
+      // B. 모달 생성
       let galleryHTML = '';
       if (work.images && work.images.length > 0) {
         galleryHTML = '<div class="image-gallery">';
@@ -291,14 +291,14 @@ function renderSiteData() {
       modalContainer.insertAdjacentHTML('beforeend', modalHTML);
     });
 
-    // Append modals out of grid container (to outer section)
+    // 모달을 그리드 밖 상위 요소에 추가
     portfolioGrid.parentNode.appendChild(modalContainer);
 
-    // Re-initialize scroll animations for new async elements
+    // 새로 추가된 요소에 스크롤 애니메이션 재초기화
     initScrollAnimations();
   }
 
-  // 3. Skills Render
+  // 3. 스킬 카드 렌더링
   const skillChart = document.querySelector('.skill-chart');
   if (skillChart && SITE_DATA.skills && SITE_DATA.skills.length > 0) {
     skillChart.innerHTML = '';
@@ -308,7 +308,7 @@ function renderSiteData() {
     const skillModalContainer = document.createElement('div');
 
     SITE_DATA.skills.forEach((skill) => {
-      // A. Create Skill Row
+      // A. 스킬 행 생성
       const rowHTML = `
         <div class="skill-row fade-on-scroll" onclick="openModal('${skill.id}')" data-level="${skill.level}">
           <img src="${skill.icon}" alt="${skill.name}" class="skill-icon">
@@ -320,13 +320,23 @@ function renderSiteData() {
       `;
       skillChart.insertAdjacentHTML('beforeend', rowHTML);
 
-      // B. Create Skill Modal
+      // B. 스킬 모달 생성
+      let galleryHTML = '';
+      if (skill.images && skill.images.length > 0) {
+        galleryHTML = '<div class="image-gallery">';
+        skill.images.forEach((img, i) => {
+          galleryHTML += `<img src="${img}" alt="${skill.name} 작업물 ${i + 1}" />`;
+        });
+        galleryHTML += '</div>';
+      }
+
       const modalHTML = `
         <div id="${skill.id}" class="modal hidden">
           <div class="modal-content">
             <span class="close" onclick="closeModal('${skill.id}')">&times;</span>
             <h2>${skill.descTitle}</h2>
             <p>${skill.desc}</p>
+            ${galleryHTML}
           </div>
         </div>
       `;
@@ -335,7 +345,7 @@ function renderSiteData() {
 
     skillChart.parentNode.appendChild(skillModalContainer);
 
-    // Re-init gauges for newly added elements
+    // 새로 추가된 요소에 게이지 재초기화
     initGauge();
     initScrollAnimations();
   }
@@ -366,7 +376,7 @@ function initScrollAnimations() {
   });
 }
 
-// ===== Seamless Fade Transition =====
+// ===== 부드러운 페이드 전환 =====
 
 function initPageTransitions() {
   document.addEventListener("click", (e) => {

@@ -1,9 +1,52 @@
+/**
+ * ============================================================================
+ * 🛠️ 포트폴리오 데이터 관리 파일 (직접 수정용 가이드)
+ * ============================================================================
+ * 이 파일 하나로 웹사이트의 모든 텍스트와 이미지를 관리합니다.
+ * 
+ * ✏️ 수정 방법:
+ *   - 쌍따옴표("") 안의 내용만 변경하면 바로 웹사이트에 반영됩니다.
+ *   - 줄바꿈을 넣고 싶으면 <br> 또는 <br /> 태그를 사용하세요.
+ * 
+ * ➕ 항목 추가:
+ *   - 기존 항목의 { ... } 블록을 통째로 복사 → 마지막 항목 뒤에 붙여넣기
+ *   - 마지막 항목을 제외한 모든 항목 뒤에는 쉼표(,)가 있어야 합니다!
+ * 
+ * ➖ 항목 삭제:
+ *   - 해당 { ... } 블록(쉼표 포함)을 통째로 지우면 됩니다.
+ * 
+ * 🌐 영어 페이지 반영:
+ *   - 이 파일을 수정한 뒤 터미널에서 `npm run translate` 실행하면
+ *     영문 데이터(data_en.js)가 자동 생성됩니다.
+ * ============================================================================
+ */
 const SITE_DATA = {
+    // 💡 1. 메인 홈페이지 텍스트
+    //    title: 메인 타이틀 (HTML 사용 가능)
+    //    subtitle: 서브 텍스트
+    //    contactEmail: 푸터에 표시될 연락처
     "landing": {
         "title": "Seamless<br>Creativity.",
         "subtitle": "끊기지 않는 창의력, monoton입니다.",
         "contactEmail": "Contact: monotonsub@gmail.com"
     },
+
+    // 💡 2. 포트폴리오 작업물 (Works 페이지)
+    // ──────────────────────────────────────────────────────────
+    // 각 항목 필드 설명:
+    //   id       → 고유 식별자 (겹치면 안 됨, 예: "modal1", "modal2"...)
+    //   category → 카테고리 필터 ("graphic-design" / "motion-graphics" / "branding" / "web-design")
+    //   title    → 작품 제목
+    //   subtitle → 작품 한줄 설명
+    //   thumb    → 썸네일 이미지 경로 (예: "./img/work1-thumb.jpeg")
+    //   thumbAlt → 이미지 대체 텍스트
+    //   descTitle → 모달 팝업의 제목
+    //   desc     → 모달 팝업의 설명 (HTML 사용 가능)
+    //   images   → 모달에 보여줄 이미지 목록 (빈 배열 [] 가능)
+    //   youtube  → 유튜브 임베드 URL (없으면 "")
+    //   behance  → 비핸스 임베드 URL (없으면 "")
+    //   pdf      → PDF 파일 경로 (없으면 "")
+    // ──────────────────────────────────────────────────────────
     "works": [
         {
             "id": "modal1",
@@ -153,78 +196,117 @@ const SITE_DATA = {
             "pdf": "./img/work8/work8.pdf"
         }
     ],
+    // 💡 3. 내 스킬 (Skills) 카드 목록
+    // ──────────────────────────────────────────────────────────
+    // 각 항목 필드 설명:
+    //   id        → 고유 식별자 (겹치면 안 됨, 예: "skill-modal1", "skill-modal2"...)
+    //   name      → 스킬 이름 (화면에 표시됨)
+    //   level     → 숙련도 (1~5, 게이지로 표시됨)
+    //   icon      → 아이콘 이미지 경로 (예: "./img/skills/photoshop.svg")
+    //   descTitle → 모달 팝업 제목
+    //   desc      → 모달 팝업 설명 (HTML 사용 가능)
+    //   images    → 모달에 보여줄 작업물 이미지 목록 (빈 배열 [] 가능)
+    // ──────────────────────────────────────────────────────────
     "skills": [
         {
-            "id": "modal1",
+            "id": "skill-modal1",
             "name": "Adobe Photoshop",
             "level": 5,
             "icon": "./img/skills/photoshop.svg",
             "descTitle": "Adobe Photoshop",
-            "desc": "툴과 기능을 상당량 숙지함 및 응용기술 소지. <br>GTQ 1급, 컴퓨터그래픽스운용기능사 소지."
+            "desc": "툴과 기능을 상당량 숙지함 및 응용기술 소지. <br>GTQ 1급, 컴퓨터그래픽스운용기능사 소지.",
+            "images": [
+                "./img/tool_photoshop.png"
+            ]
         },
         {
-            "id": "modal2",
+            "id": "skill-modal2",
             "name": "Adobe Illustrator",
             "level": 5,
             "icon": "./img/skills/illustrator.svg",
             "descTitle": "Adobe Illustrator",
-            "desc": "툴과 기능을 상당량 숙지함 및 응용기술 소지. <br>컴퓨터그래픽스운용기능사 소지."
+            "desc": "툴과 기능을 상당량 숙지함 및 응용기술 소지. <br>컴퓨터그래픽스운용기능사 소지.",
+            "images": [
+                "./img/tool_illust.png"
+            ]
         },
         {
-            "id": "modal3",
+            "id": "skill-modal3",
             "name": "Adobe After Effects",
             "level": 4,
             "icon": "./img/skills/aftereffects.svg",
             "descTitle": "Adobe After Effects",
-            "desc": "키프레임 조절, 효과기능, 컷편집 기술, 템플릿 제작기술 소지."
+            "desc": "키프레임 조절, 효과기능, 컷편집 기술, 템플릿 제작기술 소지.",
+            "images": [
+                "./img/tool_ae.png"
+            ]
         },
         {
-            "id": "modal4",
+            "id": "skill-modal4",
             "name": "Adobe Premiere Pro",
             "level": 4,
             "icon": "./img/skills/premierepro.svg",
             "descTitle": "Adobe Premiere Pro",
-            "desc": "컷편집 기술, 자막 템플릿 제작기술 소지."
+            "desc": "컷편집 기술, 자막 템플릿 제작기술 소지.",
+            "images": [
+                "./img/tool_premiere.png"
+            ]
         },
         {
-            "id": "modal5",
+            "id": "skill-modal5",
             "name": "Maxon Cinema 4D",
             "level": 4,
             "icon": "./img/skills/cinema4d.svg",
             "descTitle": "Maxon Cinema 4D",
-            "desc": "모델링, 애니메이션 기술 소지. <br>Octane, Redshift 렌더러 사용 가능"
+            "desc": "모델링, 애니메이션 기술 소지. <br>Octane, Redshift 렌더러 사용 가능",
+            "images": [
+                "./img/tool_c4d.png"
+            ]
         },
         {
-            "id": "modal6",
+            "id": "skill-modal6",
             "name": "Blender",
             "level": 4,
             "icon": "./img/skills/blender.svg",
             "descTitle": "Blender",
-            "desc": "중급 모델링, 기본 키프레임 애니메이션 기술 소지."
+            "desc": "중급 모델링, 기본 키프레임 애니메이션 기술 소지.",
+            "images": [
+                "./img/tool_blender.png"
+            ]
         },
         {
-            "id": "modal7",
+            "id": "skill-modal7",
             "name": "Davinci Resolve",
             "level": 4,
             "icon": "./img/skills/davinci.svg",
             "descTitle": "Davinci",
-            "desc": "Edit, Fusion Page 중심의 영상편집 및 그래픽작업 가능."
+            "desc": "Edit, Fusion Page 중심의 영상편집 및 그래픽작업 가능.",
+            "images": []
         },
         {
-            "id": "modal8",
+            "id": "skill-modal8",
             "name": "Adobe Substance 3D Painter",
             "level": 3,
             "icon": "./img/skills/painter.svg",
             "descTitle": "Substance 3D painter",
-            "desc": "텍스쳐링, 디자인 기술 소지."
+            "desc": "텍스쳐링, 디자인 기술 소지.",
+            "images": []
         },
         {
-            "id": "modal9",
+            "id": "skill-modal9",
             "name": "Adobe Firefly",
             "level": 4,
             "icon": "./img/skills/adobe.svg",
             "descTitle": "Adobe Firefly",
-            "desc": "프롬프트 작성, 응용이미지 제작기술 소지."
+            "desc": "프롬프트 작성, 응용이미지 제작기술 소지.",
+            "images": [
+                "./img/tool_firefly.png"
+            ]
         }
     ]
 };
+
+// Node.js 환경에서 코드를 불러올 수 있도록 수출 설정 (번역 스크립트용)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = SITE_DATA;
+}
