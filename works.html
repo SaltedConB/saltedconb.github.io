@@ -4,10 +4,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Yoo Sujong's Portfolio - Works Archive" />
-  <title>Yoo Sujong's Portfolio</title>
+  <meta name="description" content="유수종 디자이너의 작업물 아카이브 — 모션그래픽, 그래픽디자인, UX/UI 디자인, 브랜딩 프로젝트" />
+  <meta name="keywords" content="유수종, 포트폴리오, 작업물, 모션그래픽, 그래픽디자인, UX디자인, UI디자인, 브랜딩, designer works" />
+  <meta name="author" content="Yoo Sujong" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://saltedconb.github.io/works.html" />
+  <link rel="alternate" hreflang="ko" href="https://saltedconb.github.io/works.html" />
+  <link rel="alternate" hreflang="en" href="https://saltedconb.github.io/en/works.html" />
+  <link rel="alternate" hreflang="ja" href="https://saltedconb.github.io/ja/works.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="My Works — 유수종 포트폴리오" />
+  <meta property="og:description" content="모션그래픽, 그래픽디자인, UX/UI, 브랜딩 디자인 작업물 아카이브" />
+  <meta property="og:url" content="https://saltedconb.github.io/works.html" />
+  <meta property="og:image" content="https://saltedconb.github.io/img/og-image.png" />
+  <meta property="og:site_name" content="Yoo Sujong Portfolio" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="My Works — 유수종 포트폴리오" />
+  <meta name="twitter:description" content="모션그래픽, 그래픽디자인, UX/UI, 브랜딩 디자인 작업물 아카이브" />
+  <meta name="twitter:image" content="https://saltedconb.github.io/img/og-image.png" />
+
+  <title>작업물 아카이브 | 유수종 포트폴리오</title>
   <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./css/style_works.css?v=1.1" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "My Works — 유수종 포트폴리오",
+    "description": "모션그래픽, 그래픽디자인, UX/UI, 브랜딩 디자인 작업물 아카이브",
+    "url": "https://saltedconb.github.io/works.html",
+    "isPartOf": { "@id": "https://saltedconb.github.io/#website" },
+    "about": { "@id": "https://saltedconb.github.io/#person" },
+    "inLanguage": "ko"
+  }
+  </script>
 </head>
 
 <body>
@@ -34,7 +70,7 @@
           </a>
         </li>
         <li class="lang-dropdown">
-          <button class="lang-dropbtn">Korean</button>
+          <button class="lang-dropbtn" data-current-lang="Korean">Language</button>
           <div class="lang-dropdown-content">
             <a href="./works.html">Korean</a>
             <a href="./en/works.html">English</a>
@@ -84,6 +120,7 @@
   <script src="./js/main/haptics.js"></script>
   <script src="./js/data/data.js?v=2"></script>
   <script src="./js/main/script.js?v=2"></script>
+  <script src="./js/main/gamepad.js?v=1"></script>
 </body>
 
 </html>

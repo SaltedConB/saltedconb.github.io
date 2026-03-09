@@ -202,9 +202,9 @@ p .boost {
     position: relative;
     overflow: hidden;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
     font-size: 14pt;
-    padding: 14px 28px;
+    padding: 12px 24px;
     margin: 8px;
     cursor: pointer;
     transition: background-color 0.15s ease, color 0.15s ease;
@@ -344,6 +344,7 @@ p .boost {
         font-size: 12pt;
         padding: 16px 24px;
         min-height: 52px;
+        border-radius: 14px;
     }
 
     /* 타이포그래피 */
@@ -452,6 +453,7 @@ p .boost {
         font-size: 11pt;
         padding: 14px 20px;
         min-height: 50px;
+        border-radius: 14px;
     }
 
     h1 {
@@ -514,6 +516,7 @@ p .boost {
         font-size: 10pt;
         padding: 14px 18px;
         min-height: 48px;
+        border-radius: 12px;
         margin: 2px 0;
     }
 

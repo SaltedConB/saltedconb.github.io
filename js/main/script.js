@@ -202,7 +202,45 @@ function initThemeToggle() {
     navUl.appendChild(li);
   }
 }
+// ===== 언어 드롭다운 (Idle→Language, Hover→현재 언어, Click→드롭다운) =====
+function initLangDropdown() {
+  const dropdown = document.querySelector('.lang-dropdown');
+  const btn = document.querySelector('.lang-dropbtn');
+  if (!dropdown || !btn) return;
 
+  const currentLang = btn.getAttribute('data-current-lang') || 'Language';
+  const isMobileQuery = window.matchMedia('(max-width: 768px)');
+
+  // Desktop: hover → 현재 언어 표시
+  btn.addEventListener('mouseenter', () => {
+    if (!isMobileQuery.matches) {
+      btn.textContent = currentLang;
+    }
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    if (!isMobileQuery.matches && !dropdown.classList.contains('open')) {
+      btn.textContent = 'Language';
+    }
+  });
+
+  // Click → 드롭다운 토글
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.classList.toggle('open');
+    btn.textContent = isOpen ? currentLang : (isMobileQuery.matches ? 'Language' : currentLang);
+  });
+
+  // 외부 클릭 시 닫기
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+      btn.textContent = 'Language';
+    }
+  });
+
+  // 드롭다운 내 링크 클릭 시에는 페이지 전환이므로 별도 처리 불필요
+}
 
 
 
@@ -210,6 +248,7 @@ function initThemeToggle() {
 document.addEventListener("DOMContentLoaded", () => {
   initHamburgerMenu();
   initThemeToggle();
+  initLangDropdown();
   initScrollAnimations();
   initPageTransitions();
   initKeyboardAccessibility();

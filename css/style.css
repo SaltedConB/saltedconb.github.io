@@ -214,10 +214,17 @@ nav ul .lang-dropdown {
     color: var(--accent);
 }
 
-.lang-dropdown:hover .lang-dropdown-content {
+.lang-dropdown:hover .lang-dropdown-content,
+.lang-dropdown.open .lang-dropdown-content {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(5px);
+}
+
+/* 드롭다운 열릴 때 버튼 활성화 표시 */
+.lang-dropdown.open .lang-dropbtn {
+    background-color: var(--nav-btn-hover);
+    color: var(--accent);
 }
 
 /* 로고 및 상단 요소 */
@@ -454,6 +461,15 @@ main h1 {
     margin: 0;
 }
 
+/* ===== 게임패드 포커스 링 ===== */
+.gamepad-focus {
+    outline: 2px solid var(--accent) !important;
+    outline-offset: 4px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(128, 202, 78, 0.3);
+    transition: outline 0.15s ease, box-shadow 0.15s ease;
+}
+
 
 
 /* ===== 햄버거 메뉴 (항상 적용) ===== */
@@ -649,13 +665,55 @@ body.page-leaving {
         transition-delay: 0.26s;
     }
 
-    nav button {
-        font-size: 16pt;
-        padding: 18px 28px;
+    nav button,
+    .lang-dropbtn {
+        font-size: 14pt;
+        padding: 14px 24px;
         width: 100%;
-        min-height: 56px;
+        min-height: 52px;
         border-radius: 14px;
         text-align: center;
+    }
+
+    /* 모바일 언어 드롭다운 — 아코디언 방식 */
+    .lang-dropdown {
+        width: 80%;
+    }
+
+    .lang-dropdown-content {
+        position: static !important;
+        transform: none !important;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transition: max-height 0.3s ease, margin 0.3s ease;
+        box-shadow: none;
+        border: none;
+        margin-top: 0;
+        border-radius: 14px;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .lang-dropdown.open .lang-dropdown-content {
+        max-height: 200px;
+        margin-top: 8px;
+    }
+
+    .lang-dropdown-content a {
+        padding: 12px 16px;
+        border-radius: 10px;
+    }
+
+    /* hover 비활성화 (모바일은 클릭으로만 동작) */
+    .lang-dropdown:hover .lang-dropdown-content {
+        max-height: 0;
+        margin-top: 0;
+    }
+
+    .lang-dropdown.open:hover .lang-dropdown-content {
+        max-height: 200px;
+        margin-top: 8px;
     }
 
     /* 레이아웃 */

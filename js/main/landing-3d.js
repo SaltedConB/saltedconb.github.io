@@ -146,6 +146,9 @@ if (canvas) {
     let targetRotationX = 0;
     let targetRotationY = 0;
 
+    // 게임패드에서 큐브를 조작할 수 있도록 전역 객체 노출
+    window._cubeTargetRotation = { x: 0, y: 0 };
+
     // For smooth lerping
     let currentRotationX = 0;
     let currentRotationY = 0;
@@ -248,18 +251,72 @@ if (canvas) {
     // Interaction State
     let isDragging = false;
     let previousTouch = null;
+    let isMouseDragging = false;
+    let previousMouse = null;
 
-    // Mouse Interaction (PC)
+    // 큐브 인터랙션 영역 — .about 섹션 (캔버스 부모)을 기준으로 여유있게 설정
+    const aboutSection = canvas.closest('.about') || canvas.parentElement;
+
+    // 마우스가 인터랙션 영역 안에 있는지 확인 (여유 패딩 포함)
+    function isInInteractionZone(e) {
+        if (!aboutSection) return false;
+        const rect = aboutSection.getBoundingClientRect();
+        const padding = 80; // 영역 바깥으로 80px 여유
+        return (
+            e.clientX >= rect.left - padding &&
+            e.clientX <= rect.right + padding &&
+            e.clientY >= rect.top - padding &&
+            e.clientY <= rect.bottom + padding
+        );
+    }
+
+    // Mouse Interaction (PC) — .about 영역 근처에서만 반응
     window.addEventListener('mousemove', (e) => {
-        if (isDragging) return; // prioritize touch
+        // 드래그 중이면 자유 회전
+        if (isMouseDragging && previousMouse) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            targetRotationY += deltaX * 0.008;
+            targetRotationX += deltaY * 0.008;
+            previousMouse = { x: e.clientX, y: e.clientY };
+            return;
+        }
 
-        // normalize to -1 to 1 based on window
-        const x = (e.clientX / window.innerWidth) * 2 - 1;
-        const y = -(e.clientY / window.innerHeight) * 2 + 1;
+        if (isDragging) return; // 터치 드래그 우선
+
+        // 영역 밖이면 조용히 기본 위치로 복귀
+        if (!isInInteractionZone(e)) {
+            targetRotationX *= 0.95;
+            targetRotationY *= 0.95;
+            return;
+        }
+
+        // 영역 안: 마우스 위치에 따라 부드럽게 팔로우
+        const rect = aboutSection.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
         targetRotationY = x * 0.4;
         targetRotationX = y * 0.4;
     });
+
+    // Mouse Drag (PC) — 클릭+드래그로 자유 회전
+    canvas.addEventListener('mousedown', (e) => {
+        isMouseDragging = true;
+        previousMouse = { x: e.clientX, y: e.clientY };
+        canvas.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isMouseDragging) {
+            isMouseDragging = false;
+            previousMouse = null;
+            canvas.style.cursor = 'grab';
+        }
+    });
+
+    // 캔버스 커서 기본값
+    canvas.style.cursor = 'grab';
 
     // Touch Interaction (Mobile)
     canvas.addEventListener('touchstart', (e) => {
@@ -283,14 +340,19 @@ if (canvas) {
     canvas.addEventListener('touchend', () => {
         isDragging = false;
         previousTouch = null;
-        // Upon touchend, maybe smoothly revert back slightly to identity, or just leave it.
-        // We will just leave it where the user swiped.
     }, { passive: true });
 
     // Animation Loop
     function animate() {
         requestAnimationFrame(animate);
         resize();
+
+        // 게임패드 입력 반영 (게임패드가 값을 변경했을 때만 적용)
+        if (window._cubeTargetRotation && window._cubeTargetRotation._dirty) {
+            targetRotationX = window._cubeTargetRotation.x;
+            targetRotationY = window._cubeTargetRotation.y;
+            window._cubeTargetRotation._dirty = false;
+        }
 
         if (model) {
             // Smoothly move the model to the target rotation
@@ -299,6 +361,12 @@ if (canvas) {
 
             model.rotation.x = currentRotationX;
             model.rotation.y = currentRotationY;
+        }
+
+        // 게임패드에 현재 상태 동기화 (게임패드가 위에서 이어갈 수 있도록)
+        if (window._cubeTargetRotation && !window._cubeTargetRotation._dirty) {
+            window._cubeTargetRotation.x = targetRotationX;
+            window._cubeTargetRotation.y = targetRotationY;
         }
 
         renderer.render(scene, camera);

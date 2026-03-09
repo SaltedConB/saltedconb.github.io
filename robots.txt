@@ -1,0 +1,10 @@
+# https://saltedconb.github.io
+User-agent: *
+Allow: /
+
+Sitemap: https://saltedconb.github.io/sitemap.xml
+
+# 크롤링 불필요 경로 차단
+Disallow: /scripts/
+Disallow: /gltf/
+Disallow: /fonts/
