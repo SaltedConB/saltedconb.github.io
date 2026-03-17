@@ -203,7 +203,7 @@ p .boost {
     overflow: hidden;
     border: none;
     border-radius: 50px;
-    font-size: 14pt;
+    font-size: var(--fs-btn);
     padding: 12px 24px;
     margin: 8px;
     cursor: pointer;
@@ -308,7 +308,7 @@ p .boost {
 /* ===== 태블릿 / 모바일 (≤768px) ===== */
 @media screen and (max-width: 768px) {
     * {
-        font-size: 12pt;
+        font-size: 13px;
     }
 
 
@@ -341,7 +341,7 @@ p .boost {
     .portfolio-categories button {
         width: 90%;
         max-width: 320px;
-        font-size: 12pt;
+        font-size: var(--fs-sm);
         padding: 16px 24px;
         min-height: 52px;
         border-radius: 14px;
@@ -363,7 +363,7 @@ p .boost {
     p,
     span,
     button {
-        font-size: 11pt;
+        font-size: var(--fs-sm);
     }
 
     .portfolio-caption h3 {
@@ -375,7 +375,7 @@ p .boost {
     }
 
     nav button {
-        font-size: 11pt;
+        font-size: var(--fs-sm);
     }
 
     /* 모달 */
@@ -430,7 +430,7 @@ p .boost {
 /* ===== 작은 모바일 (≤480px) ===== */
 @media screen and (max-width: 480px) {
     * {
-        font-size: 11pt;
+        font-size: 12px;
     }
 
     main {
@@ -450,7 +450,7 @@ p .boost {
     .portfolio-categories button {
         width: 90%;
         max-width: 300px;
-        font-size: 11pt;
+        font-size: var(--fs-xs);
         padding: 14px 20px;
         min-height: 50px;
         border-radius: 14px;
@@ -471,7 +471,7 @@ p .boost {
     p,
     span,
     button {
-        font-size: 10pt;
+        font-size: var(--fs-xs);
     }
 
     .portfolio-caption h3 {
@@ -513,7 +513,7 @@ p .boost {
     .portfolio-categories button {
         width: 92%;
         max-width: 280px;
-        font-size: 10pt;
+        font-size: var(--fs-xs);
         padding: 14px 18px;
         min-height: 48px;
         border-radius: 12px;
