@@ -14,10 +14,6 @@
  * 
  * ➖ 항목 삭제:
  *   - 해당 { ... } 블록(쉼표 포함)을 통째로 지우면 됩니다.
- * 
- * 🌐 영어 페이지 반영:
- *   - 이 파일을 수정한 뒤 터미널에서 `npm run translate` 실행하면
- *     영문 데이터(data_en.js)가 자동 생성됩니다.
  * ============================================================================
  */
 const SITE_DATA = {
@@ -31,11 +27,26 @@ const SITE_DATA = {
         "contactEmail": "Contact: monotonsub@gmail.com"
     },
 
-    // 💡 2. 포트폴리오 작업물 (Works 페이지)
+    // 💡 2. 포트폴리오 카테고리 관리
+    // ──────────────────────────────────────────────────────────
+    //   ➕ 새 카테고리를 추가하려면 아래 배열에 { id, label } 한 줄만 추가하세요.
+    //      id    → 작업물의 category 값과 일치해야 함 (영문, 하이픈 사용)
+    //      label → 화면에 표시될 버튼 텍스트
+    //   ⚠️ "all"은 전체 필터이므로 삭제하지 마세요.
+    // ──────────────────────────────────────────────────────────
+    "workCategories": [
+        { "id": "all", "label": "전체" },
+        { "id": "motion-graphics", "label": "모션그래픽" },
+        { "id": "graphic-design", "label": "그래픽디자인" },
+        { "id": "web-design", "label": "UX/UI 디자인" },
+        { "id": "branding", "label": "브랜딩 프로젝트" }
+    ],
+
+    // 💡 3. 포트폴리오 작업물 (Works 페이지)
     // ──────────────────────────────────────────────────────────
     // 각 항목 필드 설명:
     //   id       → 고유 식별자 (겹치면 안 됨, 예: "modal1", "modal2"...)
-    //   category → 카테고리 필터 ("graphic-design" / "motion-graphics" / "branding" / "web-design")
+    //   category → 카테고리 필터 (위 workCategories의 id 값 사용)
     //   title    → 작품 제목
     //   subtitle → 작품 한줄 설명
     //   thumb    → 썸네일 이미지 경로 (예: "./img/work1-thumb.jpeg")
@@ -196,10 +207,25 @@ const SITE_DATA = {
             "pdf": "./img/work8/work8.pdf"
         }
     ],
-    // 💡 3. 내 스킬 (Skills) 카드 목록
+
+    // 💡 4. 스킬 카테고리 관리
+    // ──────────────────────────────────────────────────────────
+    //   ➕ 새 스킬 카테고리를 추가하려면 아래 배열에 { id, label } 한 줄만 추가하세요.
+    //      id    → 스킬 항목의 category 값과 일치해야 함
+    //      label → 화면에 표시될 그룹 제목
+    //   스킬 항목에 해당 카테고리의 id를 "category" 필드에 넣으면 자동 그룹핑됩니다.
+    // ──────────────────────────────────────────────────────────
+    "skillCategories": [
+        { "id": "design", "label": "2D" },
+        { "id": "3d-video", "label": "3D/Video" },
+        { "id": "ai", "label": "AI" }
+    ],
+
+    // 💡 5. 내 스킬 (Skills) 카드 목록
     // ──────────────────────────────────────────────────────────
     // 각 항목 필드 설명:
     //   id        → 고유 식별자 (겹치면 안 됨, 예: "skill-modal1", "skill-modal2"...)
+    //   category  → 스킬 카테고리 (위 skillCategories의 id 값 사용)
     //   name      → 스킬 이름 (화면에 표시됨)
     //   level     → 숙련도 (1~5, 게이지로 표시됨)
     //   icon      → 아이콘 이미지 경로 (예: "./img/skills/photoshop.svg")
@@ -210,6 +236,7 @@ const SITE_DATA = {
     "skills": [
         {
             "id": "skill-modal1",
+            "category": "design",
             "name": "Adobe Photoshop",
             "level": 5,
             "icon": "./img/skills/photoshop.svg",
@@ -221,6 +248,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal2",
+            "category": "design",
             "name": "Adobe Illustrator",
             "level": 5,
             "icon": "./img/skills/illustrator.svg",
@@ -232,6 +260,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal3",
+            "category": "3d-video",
             "name": "Adobe After Effects",
             "level": 4,
             "icon": "./img/skills/aftereffects.svg",
@@ -243,6 +272,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal4",
+            "category": "3d-video",
             "name": "Adobe Premiere Pro",
             "level": 4,
             "icon": "./img/skills/premierepro.svg",
@@ -254,6 +284,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal5",
+            "category": "3d-video",
             "name": "Maxon Cinema 4D",
             "level": 4,
             "icon": "./img/skills/cinema4d.svg",
@@ -265,6 +296,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal6",
+            "category": "3d-video",
             "name": "Blender",
             "level": 4,
             "icon": "./img/skills/blender.svg",
@@ -276,6 +308,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal7",
+            "category": "3d-video",
             "name": "Davinci Resolve",
             "level": 4,
             "icon": "./img/skills/davinci.svg",
@@ -285,6 +318,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal8",
+            "category": "3d-video",
             "name": "Adobe Substance 3D Painter",
             "level": 3,
             "icon": "./img/skills/painter.svg",
@@ -294,6 +328,7 @@ const SITE_DATA = {
         },
         {
             "id": "skill-modal9",
+            "category": "ai",
             "name": "Adobe Firefly",
             "level": 4,
             "icon": "./img/skills/adobe.svg",

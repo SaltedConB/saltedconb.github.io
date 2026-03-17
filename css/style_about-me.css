@@ -183,6 +183,22 @@ main {
     width: 100%;
 }
 
+/* 스킬 카테고리 그룹 헤더 */
+.skill-group-header {
+    grid-column: 1 / -1;
+    font-family: 'LINE SEED Sans', sans-serif;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    color: var(--accent);
+    padding: clamp(6px, 1vw, 10px) 0 clamp(2px, 0.5vw, 4px);
+    margin-top: clamp(8px, 1.5vw, 16px);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 700;
+}
+
+.skill-group-header:first-child {
+    margin-top: 0;
+}
+
 .skill-row {
     display: flex;
     align-items: center;

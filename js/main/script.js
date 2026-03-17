@@ -134,64 +134,101 @@ function initHamburgerMenu() {
 
   if (!hamburger || !navMenu) return;
 
-  hamburger.addEventListener("click", () => {
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
   });
+
+  // 메뉴 외부 클릭 시 닫기
+  document.addEventListener("click", (e) => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    }
+  });
 }
 
-// ===== 라이트 / 다크 테마 전환 =====
+// ===== 라이트 / 다크 테마 전환 (시스템 시간 자동 감지 + 수동 전환) =====
 function initThemeToggle() {
+  const logoImg = document.querySelector('.logo img');
+
+  // 시스템 prefers-color-scheme 감지
+  let systemQuery = null;
+  try {
+    systemQuery = window.matchMedia('(prefers-color-scheme: light)');
+  } catch (e) {}
+
+  // 저장된 수동 설정 확인
   let savedTheme = null;
   try {
     savedTheme = localStorage.getItem('theme');
-  } catch (e) {
-    console.warn("localStorage 접근 차단 감지:", e);
-  }
+  } catch (e) {}
 
-  let systemPrefersLight = false;
-  try {
-    if (window.matchMedia) {
-      systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  // 초기 테마 결정: 수동 저장값 > 시스템 자동 감지
+  let currentTheme = savedTheme || (systemQuery && systemQuery.matches ? 'light' : 'dark');
+
+  function applyTheme(theme, withTransition) {
+    if (withTransition) {
+      document.documentElement.classList.add('theme-transitioning');
     }
-  } catch (e) {
-    console.warn("matchMedia 오류:", e);
+
+    const newLogoSrc = theme === 'light' ? './img/monoton_black.svg' : './img/monoton_light.svg';
+
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+
+    // 로고 이미지 디졸브 전환
+    if (logoImg && withTransition) {
+      logoImg.classList.add('logo-fading');
+      setTimeout(() => {
+        logoImg.src = newLogoSrc;
+        logoImg.classList.remove('logo-fading');
+      }, 300);
+    } else if (logoImg) {
+      logoImg.src = newLogoSrc;
+    }
+
+    currentTheme = theme;
+    if (toggleBtn) {
+      toggleBtn.innerHTML = theme === 'light' ? '🌙' : '☀️';
+    }
+    if (withTransition) {
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transitioning');
+      }, 500);
+    }
   }
 
-  let currentTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
+  // 초기 테마 적용 (트랜지션 없이)
+  applyTheme(currentTheme, false);
 
-  // 렌더링 전 초기 테마 설정
-  const logoImg = document.querySelector('.logo img');
-  if (currentTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    if (logoImg) logoImg.src = './img/monoton_black.svg';
-  } else {
-    if (logoImg) logoImg.src = './img/monoton_light.svg';
+  // 시스템 테마 변경 실시간 감지 (수동 설정이 없을 때만 자동 전환)
+  if (systemQuery) {
+    systemQuery.addEventListener('change', (e) => {
+      let manual = null;
+      try { manual = localStorage.getItem('theme'); } catch (ex) {}
+      if (!manual) {
+        applyTheme(e.matches ? 'light' : 'dark', true);
+      }
+    });
   }
 
-  const toggleBtn = document.createElement('button');
+  // 수동 전환 버튼
+  var toggleBtn = document.createElement('button');
   toggleBtn.className = 'theme-toggle';
-  // 다크 모드일 때 ☀️(라이트 전환), 라이트 모드일 때 🌙(다크 전환)
   toggleBtn.innerHTML = currentTheme === 'light' ? '🌙' : '☀️';
   toggleBtn.setAttribute('aria-label', '테마 전환');
 
   toggleBtn.addEventListener('click', () => {
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-    if (currentTheme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-      if (logoImg) logoImg.src = './img/monoton_black.svg';
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-      if (logoImg) logoImg.src = './img/monoton_light.svg';
-    }
-
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    applyTheme(newTheme, true);
     try {
-      localStorage.setItem('theme', currentTheme);
-    } catch (e) {
-      // 차단된 환경에서는 무시
-    }
-
-    toggleBtn.innerHTML = currentTheme === 'light' ? '🌙' : '☀️';
+      localStorage.setItem('theme', newTheme);
+    } catch (e) {}
   });
 
   // 네비게이션 메뉴 끝에 추가
@@ -202,44 +239,13 @@ function initThemeToggle() {
     navUl.appendChild(li);
   }
 }
-// ===== 언어 드롭다운 (Idle→Language, Hover→현재 언어, Click→드롭다운) =====
-function initLangDropdown() {
-  const dropdown = document.querySelector('.lang-dropdown');
-  const btn = document.querySelector('.lang-dropbtn');
-  if (!dropdown || !btn) return;
-
-  const currentLang = btn.getAttribute('data-current-lang') || 'Language';
-  const isMobileQuery = window.matchMedia('(max-width: 768px)');
-
-  // Desktop: hover → 현재 언어 표시
-  btn.addEventListener('mouseenter', () => {
-    if (!isMobileQuery.matches) {
-      btn.textContent = currentLang;
-    }
-  });
-
-  btn.addEventListener('mouseleave', () => {
-    if (!isMobileQuery.matches && !dropdown.classList.contains('open')) {
-      btn.textContent = 'Language';
-    }
-  });
-
-  // Click → 드롭다운 토글
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = dropdown.classList.toggle('open');
-    btn.textContent = isOpen ? currentLang : (isMobileQuery.matches ? 'Language' : currentLang);
-  });
-
-  // 외부 클릭 시 닫기
-  document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('open');
-      btn.textContent = 'Language';
-    }
-  });
-
-  // 드롭다운 내 링크 클릭 시에는 페이지 전환이므로 별도 처리 불필요
+// ===== 랜덤 명언 렌더링 =====
+function renderRandomQuote() {
+  if (typeof QUOTES === 'undefined' || QUOTES.length === 0) return;
+  const banner = document.querySelector('.quote-banner');
+  if (!banner) return;
+  const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+  banner.innerHTML = `"${q.text}" — <em>${q.author}</em>`;
 }
 
 
@@ -248,7 +254,6 @@ function initLangDropdown() {
 document.addEventListener("DOMContentLoaded", () => {
   initHamburgerMenu();
   initThemeToggle();
-  initLangDropdown();
   initScrollAnimations();
   initPageTransitions();
   initKeyboardAccessibility();
@@ -256,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 데이터 기반 콘텐츠 렌더링
   renderSiteData();
+  renderRandomQuote();
 });
 
 // ===== 데이터 기반 콘텐츠 렌더링 =====
@@ -271,10 +277,22 @@ function renderSiteData() {
   if (landingSub && SITE_DATA.landing.subtitle) landingSub.innerHTML = SITE_DATA.landing.subtitle;
   if (footerContact && SITE_DATA.landing.contactEmail) footerContact.innerHTML = SITE_DATA.landing.contactEmail;
 
-  // 2. 포트폴리오 작업물 렌더링
+  // 2. 포트폴리오 카테고리 버튼 자동 생성
+  const catContainer = document.querySelector('.portfolio-categories');
+  if (catContainer && SITE_DATA.workCategories && SITE_DATA.workCategories.length > 0) {
+    catContainer.innerHTML = '';
+    SITE_DATA.workCategories.forEach((cat, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = cat.label;
+      btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      btn.addEventListener('click', () => filterPortfolio(cat.id));
+      catContainer.appendChild(btn);
+    });
+  }
+
+  // 3. 포트폴리오 작업물 렌더링
   const portfolioGrid = document.querySelector('.portfolio-grid');
   if (portfolioGrid && SITE_DATA.works.length > 0) {
-    // 기존 아이템 및 모달 초기화
     portfolioGrid.innerHTML = '';
     const existingModals = document.querySelectorAll('.modal');
     existingModals.forEach(m => m.remove());
@@ -282,7 +300,6 @@ function renderSiteData() {
     const modalContainer = document.createElement('div');
 
     SITE_DATA.works.forEach((work, index) => {
-      // A. 그리드 아이템 생성
       const itemHTML = `
                 <div class="portfolio-item ${work.category} fade-on-scroll" role="button" tabindex="0"
                     aria-label="${work.title}" onclick="openModal('${work.id}')">
@@ -295,7 +312,6 @@ function renderSiteData() {
             `;
       portfolioGrid.insertAdjacentHTML('beforeend', itemHTML);
 
-      // B. 모달 생성
       let galleryHTML = '';
       if (work.images && work.images.length > 0) {
         galleryHTML = '<div class="image-gallery">';
@@ -330,14 +346,11 @@ function renderSiteData() {
       modalContainer.insertAdjacentHTML('beforeend', modalHTML);
     });
 
-    // 모달을 그리드 밖 상위 요소에 추가
     portfolioGrid.parentNode.appendChild(modalContainer);
-
-    // 새로 추가된 요소에 스크롤 애니메이션 재초기화
     initScrollAnimations();
   }
 
-  // 3. 스킬 카드 렌더링
+  // 4. 스킬 카드 렌더링 (카테고리별 그룹핑)
   const skillChart = document.querySelector('.skill-chart');
   if (skillChart && SITE_DATA.skills && SITE_DATA.skills.length > 0) {
     skillChart.innerHTML = '';
@@ -345,49 +358,79 @@ function renderSiteData() {
     existingSkillModals.forEach(m => m.remove());
 
     const skillModalContainer = document.createElement('div');
+    const categories = SITE_DATA.skillCategories || [];
 
-    SITE_DATA.skills.forEach((skill) => {
-      // A. 스킬 행 생성
-      const rowHTML = `
-        <div class="skill-row fade-on-scroll" onclick="openModal('${skill.id}')" data-level="${skill.level}">
-          <img src="${skill.icon}" alt="${skill.name}" class="skill-icon">
-          <div class="skill-info">
-            <span>${skill.name}</span>
-            <div class="gauge"><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-        </div>
-      `;
-      skillChart.insertAdjacentHTML('beforeend', rowHTML);
+    // 카테고리별로 그룹핑
+    if (categories.length > 0) {
+      categories.forEach(cat => {
+        const catSkills = SITE_DATA.skills.filter(s => s.category === cat.id);
+        if (catSkills.length === 0) return;
 
-      // B. 스킬 모달 생성
-      let galleryHTML = '';
-      if (skill.images && skill.images.length > 0) {
-        galleryHTML = '<div class="image-gallery">';
-        skill.images.forEach((img, i) => {
-          galleryHTML += `<img src="${img}" alt="${skill.name} 작업물 ${i + 1}" />`;
+        // 그룹 헤더
+        const headerHTML = `<div class="skill-group-header">${cat.label}</div>`;
+        skillChart.insertAdjacentHTML('beforeend', headerHTML);
+
+        // 해당 카테고리의 스킬 행들
+        catSkills.forEach(skill => {
+          renderSkillRow(skillChart, skill, skillModalContainer);
         });
-        galleryHTML += '</div>';
-      }
+      });
 
-      const modalHTML = `
-        <div id="${skill.id}" class="modal hidden">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('${skill.id}')">&times;</span>
-            <h2>${skill.descTitle}</h2>
-            <p>${skill.desc}</p>
-            ${galleryHTML}
-          </div>
-        </div>
-      `;
-      skillModalContainer.insertAdjacentHTML('beforeend', modalHTML);
-    });
+      // 카테고리가 없는 스킬 (미분류)
+      const uncategorized = SITE_DATA.skills.filter(s => !categories.some(c => c.id === s.category));
+      if (uncategorized.length > 0) {
+        const headerHTML = `<div class="skill-group-header">기타</div>`;
+        skillChart.insertAdjacentHTML('beforeend', headerHTML);
+        uncategorized.forEach(skill => {
+          renderSkillRow(skillChart, skill, skillModalContainer);
+        });
+      }
+    } else {
+      // 카테고리 없으면 기존처럼 전체 출력
+      SITE_DATA.skills.forEach(skill => {
+        renderSkillRow(skillChart, skill, skillModalContainer);
+      });
+    }
 
     skillChart.parentNode.appendChild(skillModalContainer);
-
-    // 새로 추가된 요소에 게이지 재초기화
     initGauge();
     initScrollAnimations();
   }
+}
+
+// ===== 스킬 행 렌더링 헬퍼 =====
+function renderSkillRow(container, skill, modalContainer) {
+  const rowHTML = `
+    <div class="skill-row fade-on-scroll" onclick="openModal('${skill.id}')" data-level="${skill.level}">
+      <img src="${skill.icon}" alt="${skill.name}" class="skill-icon">
+      <div class="skill-info">
+        <span>${skill.name}</span>
+        <div class="gauge"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  `;
+  container.insertAdjacentHTML('beforeend', rowHTML);
+
+  let galleryHTML = '';
+  if (skill.images && skill.images.length > 0) {
+    galleryHTML = '<div class="image-gallery">';
+    skill.images.forEach((img, i) => {
+      galleryHTML += `<img src="${img}" alt="${skill.name} 작업물 ${i + 1}" />`;
+    });
+    galleryHTML += '</div>';
+  }
+
+  const modalHTML = `
+    <div id="${skill.id}" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('${skill.id}')">&times;</span>
+        <h2>${skill.descTitle}</h2>
+        <p>${skill.desc}</p>
+        ${galleryHTML}
+      </div>
+    </div>
+  `;
+  modalContainer.insertAdjacentHTML('beforeend', modalHTML);
 }
 
 // bfcache (뒤로가기) 지원

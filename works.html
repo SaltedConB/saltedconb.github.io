@@ -9,9 +9,6 @@
   <meta name="author" content="Yoo Sujong" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://saltedconb.github.io/works.html" />
-  <link rel="alternate" hreflang="ko" href="https://saltedconb.github.io/works.html" />
-  <link rel="alternate" hreflang="en" href="https://saltedconb.github.io/en/works.html" />
-  <link rel="alternate" hreflang="ja" href="https://saltedconb.github.io/ja/works.html" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -27,7 +24,7 @@
   <meta name="twitter:description" content="모션그래픽, 그래픽디자인, UX/UI, 브랜딩 디자인 작업물 아카이브" />
   <meta name="twitter:image" content="https://saltedconb.github.io/img/og-image.png" />
 
-  <title>작업물 아카이브 | 유수종 포트폴리오</title>
+  <title>작업물 아카이브 | Yoo Sujong Portfolio</title>
   <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./css/style_works.css?v=1.1" />
 
@@ -69,14 +66,6 @@
             <button data-animation-scroll="true" data-target="#main">About Me</button>
           </a>
         </li>
-        <li class="lang-dropdown">
-          <button class="lang-dropbtn" data-current-lang="Korean">Language</button>
-          <div class="lang-dropdown-content">
-            <a href="./works.html">Korean</a>
-            <a href="./en/works.html">English</a>
-            <a href="./ja/works.html">Japanese</a>
-          </div>
-        </li>
       </ul>
     </nav>
   </header>
@@ -91,21 +80,7 @@
       </p>
       <br />
       <div class="portfolio-categories" role="group" aria-label="포트폴리오 카테고리">
-        <button onclick="filterPortfolio('all')" aria-pressed="true">
-          전체
-        </button>
-        <button onclick="filterPortfolio('motion-graphics')" aria-pressed="false">
-          모션그래픽
-        </button>
-        <button onclick="filterPortfolio('graphic-design')" aria-pressed="false">
-          그래픽디자인
-        </button>
-        <button onclick="filterPortfolio('web-design')" aria-pressed="false">
-          UX/UI 디자인
-        </button>
-        <button onclick="filterPortfolio('branding')" aria-pressed="false">
-          브랜딩 프로젝트
-        </button>
+        <!-- data.js의 workCategories에서 자동 생성됨 -->
       </div>
       <div class="portfolio-grid" aria-live="polite">
         <!-- Rendered by script.js via data.js -->
@@ -113,10 +88,12 @@
     </section>
   </main>
   <footer>
+    <div class="quote-banner"></div>
     <div class="footer-text">
-      <p>© 2026 You Sujong. All rights reserved.</p>
+      <p>© 2026 Yoo Sujong. All rights reserved.</p>
     </div>
   </footer>
+  <script src="./js/data/quotes.js"></script>
   <script src="./js/main/haptics.js"></script>
   <script src="./js/data/data.js?v=2"></script>
   <script src="./js/main/script.js?v=2"></script>
