@@ -1,8 +1,14 @@
 {
   "scripts": {
-    "translate": "node scripts/translate.js"
+    "translate": "node scripts/translate.js",
+    "obfuscate": "node scripts/obfuscate.js",
+    "build": "npm run obfuscate"
   },
   "dependencies": {
     "jsdom": "^28.1.0"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.0.0",
+    "clean-css": "^5.3.0"
   }
 }

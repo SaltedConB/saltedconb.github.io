@@ -126,6 +126,31 @@ function updateAccessibility(category) {
   });
 }
 
+// 9. 툴팁 필터링
+function filterTooltips(category) {
+  const grid = document.querySelector(".tooltip-grid");
+  const items = grid ? grid.querySelectorAll(".tooltip-card") : [];
+  if (!grid || items.length === 0) return;
+
+  items.forEach((item, index) => {
+    const shouldShow = category === "all" || item.classList.contains(category);
+    if (shouldShow) {
+      showItem(item, index);
+    } else {
+      hideItem(item);
+    }
+  });
+
+  // 카테고리 버튼 상태 업데이트
+  const buttons = document.querySelectorAll(".tooltip-categories button");
+  buttons.forEach((button) => {
+    const isSelected =
+      button.textContent.toLowerCase().includes(category) ||
+      (category === "all" && button.textContent === "전체");
+    button.setAttribute("aria-pressed", isSelected);
+  });
+}
+
 
 
 function initHamburgerMenu() {
@@ -394,6 +419,80 @@ function renderSiteData() {
 
     skillChart.parentNode.appendChild(skillModalContainer);
     initGauge();
+    initScrollAnimations();
+  }
+
+  // 5. 툴팁 카테고리 버튼 자동 생성
+  const tooltipCatContainer = document.querySelector('.tooltip-categories');
+  if (tooltipCatContainer && SITE_DATA.tooltipCategories && SITE_DATA.tooltipCategories.length > 0) {
+    tooltipCatContainer.innerHTML = '';
+    SITE_DATA.tooltipCategories.forEach((cat, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = cat.label;
+      btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      btn.addEventListener('click', () => filterTooltips(cat.id));
+      tooltipCatContainer.appendChild(btn);
+    });
+  }
+
+  // 6. 툴팁 카드 렌더링
+  const tooltipGrid = document.querySelector('.tooltip-grid');
+  if (tooltipGrid && SITE_DATA.tooltips && SITE_DATA.tooltips.length > 0) {
+    tooltipGrid.innerHTML = '';
+    const existingTooltipModals = document.querySelectorAll('.tooltip-modal');
+    existingTooltipModals.forEach(m => m.remove());
+
+    const tooltipModalContainer = document.createElement('div');
+
+    SITE_DATA.tooltips.forEach((tip) => {
+      // 태그 HTML 생성
+      let tagsHTML = '';
+      if (tip.tags && tip.tags.length > 0) {
+        tagsHTML = '<div class="tooltip-card-tags">';
+        tip.tags.forEach(tag => {
+          tagsHTML += `<span class="tooltip-tag">${tag}</span>`;
+        });
+        tagsHTML += '</div>';
+      }
+
+      const cardHTML = `
+        <div class="tooltip-card ${tip.category} fade-on-scroll" role="button" tabindex="0"
+            aria-label="${tip.title}" onclick="openModal('${tip.id}')">
+          <div class="tooltip-card-header">
+            <h3>${tip.title}</h3>
+            <span class="tooltip-card-date">${tip.date}</span>
+          </div>
+          <p class="tooltip-card-summary">${tip.summary}</p>
+          ${tagsHTML}
+        </div>
+      `;
+      tooltipGrid.insertAdjacentHTML('beforeend', cardHTML);
+
+      // 모달 태그 HTML
+      let modalTagsHTML = '';
+      if (tip.tags && tip.tags.length > 0) {
+        modalTagsHTML = '<div class="tooltip-modal-tags">';
+        tip.tags.forEach(tag => {
+          modalTagsHTML += `<span class="tooltip-tag">${tag}</span>`;
+        });
+        modalTagsHTML += '</div>';
+      }
+
+      const modalHTML = `
+        <div id="${tip.id}" class="modal tooltip-modal hidden">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('${tip.id}')">&times;</span>
+            <h1>${tip.title}</h1>
+            <span class="tooltip-modal-date">${tip.date}</span>
+            ${modalTagsHTML}
+            <div class="tooltip-modal-body">${tip.content}</div>
+          </div>
+        </div>
+      `;
+      tooltipModalContainer.insertAdjacentHTML('beforeend', modalHTML);
+    });
+
+    tooltipGrid.parentNode.appendChild(tooltipModalContainer);
     initScrollAnimations();
   }
 }

@@ -1,0 +1,557 @@
+@import url(style.css);
+
+/* font-face and global styles are inherited from style.css */
+
+/* 메인 관련 */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 4%;
+    padding: 0 10px;
+    flex-direction: column;
+}
+
+main img {
+    margin: 0 auto;
+}
+
+main h1 {
+    font-family: 'LINE SEED Sans', sans-serif;
+    font-size: 2.5rem;
+}
+
+/* 툴팁 섹션 */
+.tooltips-section {
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.tooltips-section h1 {
+    font-family: 'LINE SEED Sans', sans-serif;
+    font-size: 3rem;
+    margin: 10px;
+}
+
+.tooltips-section p,
+.tooltips-section p .boost {
+    font-family: 'LINE SEED Sans', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.tooltips-section p .boost:hover {
+    color: #80CA4E;
+    font-family: 'LINE SEED Sans', sans-serif;
+    transition: color 0.3s ease-in;
+}
+
+/* ===== 툴팁 카드 그리드 ===== */
+.tooltip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 15px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.tooltip-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    padding: 28px 24px;
+    text-align: left;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tooltip-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    border-color: rgba(128, 202, 78, 0.3);
+}
+
+.tooltip-card:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+
+.tooltip-card .tooltip-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.tooltip-card .tooltip-card-date {
+    font-size: 0.75rem;
+    color: #888;
+    font-family: 'Pretendard Variable', sans-serif;
+    white-space: nowrap;
+}
+
+.tooltip-card h3 {
+    font-family: 'LINE SEED Sans', sans-serif;
+    font-size: 1.25rem;
+    margin: 0;
+    color: #f0f0f0;
+    line-height: 1.4;
+}
+
+.tooltip-card .tooltip-card-summary {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin: 0;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tooltip-card .tooltip-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.tooltip-card .tooltip-tag {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background-color: rgba(128, 202, 78, 0.12);
+    color: #80CA4E;
+    font-family: 'Pretendard Variable', sans-serif;
+    white-space: nowrap;
+}
+
+/* 접근성 — 키보드 포커스 */
+.tooltip-card:focus-visible {
+    outline: 2px solid #80CA4E;
+    outline-offset: 3px;
+}
+
+/* ===== 카테고리 필터 버튼 ===== */
+.tooltip-categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.tooltip-categories button {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 50px;
+    font-size: var(--fs-btn);
+    padding: 12px 24px;
+    margin: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    background-color: #2b2b2b;
+    color: #e9e9e9;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 48px;
+}
+
+.tooltip-categories button:hover {
+    background-color: #e9e9e9;
+    color: #2b2b2b;
+}
+
+.tooltip-categories button:active {
+    background-color: #80CA4E;
+    color: #151515;
+}
+
+.tooltip-categories button[aria-pressed="true"] {
+    background-color: #80CA4E;
+    color: #151515;
+}
+
+.tooltip-categories button[aria-pressed="true"]::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+}
+
+.tooltip-categories button:focus-visible {
+    outline: 2px solid #80CA4E;
+    outline-offset: 2px;
+}
+
+/* ===== 페이드 애니메이션 ===== */
+.tooltip-card {
+    transition: opacity 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.tooltip-card.fade-hidden {
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===== 모달 설정 ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.modal-content {
+    background-color: #151515;
+    margin: 10% auto;
+    padding: 32px;
+    border-radius: 25px;
+    width: 75%;
+    max-width: 800px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.modal-content h1 {
+    font-family: 'LINE SEED Sans', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.modal-content .tooltip-modal-date {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.modal-content .tooltip-modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+}
+
+.modal-content .tooltip-tag {
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background-color: rgba(128, 202, 78, 0.12);
+    color: #80CA4E;
+    font-family: 'Pretendard Variable', sans-serif;
+}
+
+.modal-content .tooltip-modal-body {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #d0d0d0;
+}
+
+.modal-content .tooltip-modal-body code {
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #80CA4E;
+}
+
+.modal-content .tooltip-modal-body strong {
+    color: #f0f0f0;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    margin: 20px 0;
+    line-height: 1.8;
+}
+
+.close {
+    color: #e9e9e9;
+    float: right !important;
+    font-size: 28px;
+    font-weight: bold;
+    transition: opacity 0.25s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #80CA4E;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ===== 라이트모드 대응 ===== */
+:root[data-theme="light"] .tooltip-card {
+    background: linear-gradient(145deg, #f5f5f5, #ebebeb);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .tooltip-card h3 {
+    color: #1a1a1a;
+}
+
+:root[data-theme="light"] .tooltip-card .tooltip-card-summary {
+    color: #555;
+}
+
+:root[data-theme="light"] .tooltip-card .tooltip-card-date {
+    color: #888;
+}
+
+:root[data-theme="light"] .tooltip-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba(128, 202, 78, 0.4);
+}
+
+:root[data-theme="light"] .tooltip-categories button {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+:root[data-theme="light"] .tooltip-categories button:hover {
+    background-color: #333;
+    color: #e9e9e9;
+}
+
+:root[data-theme="light"] .modal-content {
+    background-color: #fafafa;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .modal-content h1 {
+    color: #1a1a1a;
+}
+
+:root[data-theme="light"] .modal-content .tooltip-modal-body {
+    color: #333;
+}
+
+:root[data-theme="light"] .modal-content .tooltip-modal-body strong {
+    color: #1a1a1a;
+}
+
+:root[data-theme="light"] .modal-content .tooltip-modal-body code {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: #2e7d32;
+}
+
+:root[data-theme="light"] .close {
+    color: #333;
+}
+
+:root[data-theme="light"] .close:hover {
+    color: #80CA4E;
+}
+
+/* ===== 반응형 — 태블릿 (≤900px) ===== */
+@media screen and (max-width: 900px) {
+    .tooltip-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== 반응형 — 태블릿/모바일 (≤768px) ===== */
+@media screen and (max-width: 768px) {
+    * {
+        font-size: 13px;
+    }
+
+    main {
+        margin: 0 15pt;
+        padding: 10px;
+    }
+
+    section {
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    .tooltip-grid {
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .tooltip-categories {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 10px;
+    }
+
+    .tooltip-categories button {
+        width: 90%;
+        max-width: 320px;
+        font-size: var(--fs-sm);
+        padding: 16px 24px;
+        min-height: 52px;
+        border-radius: 14px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p,
+    span,
+    button {
+        font-size: var(--fs-sm);
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+
+    .modal-content h1 {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    .modal-content p {
+        font-size: 0.9rem;
+        margin: 10px 0;
+    }
+
+    nav button {
+        font-size: var(--fs-sm);
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+        margin: 10px 0;
+    }
+}
+
+/* ===== 반응형 — 모바일 (≤560px) ===== */
+@media screen and (max-width: 560px) {
+    .tooltip-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== 반응형 — 작은 모바일 (≤480px) ===== */
+@media screen and (max-width: 480px) {
+    * {
+        font-size: 12px;
+    }
+
+    main {
+        margin: 0 10pt;
+    }
+
+    .tooltip-grid {
+        gap: 10px;
+        padding: 5px;
+    }
+
+    .tooltip-categories {
+        gap: 8px;
+        padding: 12px 8px;
+    }
+
+    .tooltip-categories button {
+        width: 90%;
+        max-width: 300px;
+        font-size: var(--fs-xs);
+        padding: 14px 20px;
+        min-height: 50px;
+        border-radius: 14px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p,
+    span,
+    button {
+        font-size: var(--fs-xs);
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
+        padding: 10px;
+    }
+}
+
+/* ===== 반응형 — 초소형 모바일 (≤375px) ===== */
+@media screen and (max-width: 375px) {
+    .tooltip-categories {
+        gap: 6px;
+        padding: 10px 5px;
+    }
+
+    .tooltip-categories button {
+        width: 92%;
+        max-width: 280px;
+        font-size: var(--fs-xs);
+        padding: 14px 18px;
+        min-height: 48px;
+        border-radius: 12px;
+        margin: 2px 0;
+    }
+
+    .tooltip-grid {
+        gap: 8px;
+        padding: 5px;
+    }
+
+    main {
+        margin: 0 5pt;
+    }
+}

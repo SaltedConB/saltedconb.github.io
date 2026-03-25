@@ -338,6 +338,61 @@ const SITE_DATA = {
                 "./img/tool_firefly.png"
             ]
         }
+    ],
+
+    // 💡 6. 툴팁 카테고리 관리
+    // ──────────────────────────────────────────────────────────
+    //   ➕ 새 카테고리를 추가하려면 아래 배열에 { id, label } 한 줄만 추가하세요.
+    //      id    → 툴팁의 category 값과 일치해야 함 (영문, 하이픈 사용)
+    //      label → 화면에 표시될 버튼 텍스트
+    //   ⚠️ "all"은 전체 필터이므로 삭제하지 마세요.
+    // ──────────────────────────────────────────────────────────
+    "tooltipCategories": [
+        { "id": "all", "label": "전체" },
+        { "id": "design-tips", "label": "디자인 팁" },
+        { "id": "tool-tips", "label": "툴 사용법" },
+        { "id": "workflow", "label": "워크플로우" }
+    ],
+
+    // 💡 7. 툴팁 글 목록 (Tooltips 페이지)
+    // ──────────────────────────────────────────────────────────
+    // 각 항목 필드 설명:
+    //   id       → 고유 식별자 (겹치면 안 됨, 예: "tooltip1", "tooltip2"...)
+    //   category → 카테고리 필터 (위 tooltipCategories의 id 값 사용)
+    //   title    → 툴팁 제목
+    //   summary  → 카드에 표시될 한줄 요약
+    //   content  → 모달 팝업의 본문 (HTML 사용 가능, <br>로 줄바꿈)
+    //   date     → 작성일 (YYYY-MM-DD 형식)
+    //   tags     → 태그 목록 (배열, 예: ["디자인", "팁"])
+    // ──────────────────────────────────────────────────────────
+    "tooltips": [
+        {
+            "id": "tooltip1",
+            "category": "design-tips",
+            "title": "색 조합의 기본 원리",
+            "summary": "보색, 유사색, 삼원색 조합으로 조화로운 팔레트를 만드는 법.",
+            "content": "디자인에서 색 조합은 첫인상을 결정짓는 핵심 요소입니다.<br /><br />1. <strong>보색 조합</strong> — 색상환에서 정반대에 위치한 색을 쓰면 강한 대비 효과를 줄 수 있습니다.<br />2. <strong>유사색 조합</strong> — 인접한 색을 쓰면 부드럽고 통일감 있는 분위기를 연출합니다.<br />3. <strong>삼원색 조합</strong> — 120도 간격의 세 색을 조합하면 균형 잡힌 역동적인 팔레트가 됩니다.<br /><br />Adobe Color, Coolors 등 온라인 도구를 활용해 실험해 보세요.",
+            "date": "2026-03-25",
+            "tags": ["색채", "디자인기초"]
+        },
+        {
+            "id": "tooltip2",
+            "category": "tool-tips",
+            "title": "After Effects 표현식 입문",
+            "summary": "wiggle, loopOut 등 자주 쓰는 표현식 정리.",
+            "content": "After Effects에서 표현식(Expression)을 활용하면 반복 작업을 자동화할 수 있습니다.<br /><br /><strong>wiggle(freq, amp)</strong><br />주파수(freq)와 진폭(amp)으로 자연스러운 흔들림을 만듭니다.<br />예: <code>wiggle(3, 50)</code> → 초당 3번, 50px 범위로 흔들림<br /><br /><strong>loopOut(\"cycle\")</strong><br />키프레임 애니메이션을 무한 반복시킵니다.<br /><br /><strong>time * 속도</strong><br />시간에 비례한 일정 속도 회전/이동에 유용합니다.<br />예: <code>time * 90</code> → 초당 90도 회전",
+            "date": "2026-03-25",
+            "tags": ["에프터이펙트", "표현식"]
+        },
+        {
+            "id": "tooltip3",
+            "category": "workflow",
+            "title": "효율적인 프로젝트 폴더 구조",
+            "summary": "파일을 체계적으로 정리하는 폴더 구조 템플릿.",
+            "content": "프로젝트가 커질수록 체계적인 폴더 정리가 중요합니다.<br /><br /><strong>추천 구조:</strong><br /><code>📁 프로젝트명/</code><br />&nbsp;&nbsp;<code>📁 01_기획/</code> — 기획서, 레퍼런스<br />&nbsp;&nbsp;<code>📁 02_소스/</code> — PSD, AI, AEP 원본<br />&nbsp;&nbsp;<code>📁 03_에셋/</code> — 이미지, 폰트, 사운드<br />&nbsp;&nbsp;<code>📁 04_출력/</code> — 최종 렌더 파일<br />&nbsp;&nbsp;<code>📁 05_아카이브/</code> — 이전 버전 백업<br /><br />파일명에 날짜(YYMMDD)를 접두사로 붙이면 버전 관리가 편해집니다.",
+            "date": "2026-03-25",
+            "tags": ["정리", "생산성"]
+        }
     ]
 };
 

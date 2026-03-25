@@ -30,6 +30,12 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <url>
+    <loc>https://saltedconb.github.io/tooltips.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
   <!-- English -->
   <url>
     <loc>https://saltedconb.github.io/en/index.html</loc>
